@@ -1,4 +1,4 @@
-SRCS = main.c
+SRCS = main.c init.c render.c
 
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -I./includes/
