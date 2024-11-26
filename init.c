@@ -1,5 +1,14 @@
 #include "includes/cub3d.h"
 
+void    image_init(t_game_data *game)
+{
+    // game->img = mlx_new_image(game->mlx, MAP_WIDTH, MAP_HEIGHT);
+    // game->img_addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_length, &game->endian);
+
+    game->player_img = mlx_new_image(game->mlx, CELL_SIZE, CELL_SIZE);
+    game->player_addr = mlx_get_data_addr(game->player_img, &game->bpp, &game->line_length, &game->endian);
+}
+
 void    game_data_init(t_game_data *game)
 {
     int     i;
@@ -12,7 +21,6 @@ void    game_data_init(t_game_data *game)
         "1000000101",
         "1000100101",
         "10000P0101",
-        "1000000001",
         "1010001101",
         "1111111111",
         NULL
@@ -37,10 +45,12 @@ void    game_data_init(t_game_data *game)
         }
         i++;
     }
-
-    game->bpp = 32;
-    game->endian = 0;
-    game->line_length = 2560;
+    game->player.old_x = 0;
+    game->player.old_y = 0;
+    // game->bpp = 64;
+    // game->endian = 0;
+    // game->line_length = 2560;
+    // ft_printf("bpp = %d\n", game->bpp);
 
     printf("Player initialized at: x = %.1f, y = %.1f\n", game->player.x, game->player.y);
 }

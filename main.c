@@ -8,7 +8,7 @@ void    ft_mlx_init(t_game_data *game)
         free(game->mlx);
         ft_printf("mlx_init fail");
     }
-    game->win = mlx_new_window(game->mlx, 640, 480, "CUB3D");
+    game->win = mlx_new_window(game->mlx, 640, 440, "CUB3D");
     if (!game->win)
     {
         free(game->mlx);
@@ -40,7 +40,8 @@ int main(int argc, char const *argv[])
 
     ft_mlx_init(&game);
     game_data_init(&game);
-
+    image_init(&game);
+    draw_map(&game);
     mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, 1L << 0, handle_input, &game);
 
