@@ -18,9 +18,9 @@ void    game_data_init(t_game_data *game)
     static char    *map[] = {
         "1111111111",
         "1000100101",
-        "1000000101",
+        "10P0000101",
         "1000100101",
-        "10000P0101",
+        "1000000101",
         "1010001101",
         "1111111111",
         NULL
@@ -47,7 +47,8 @@ void    game_data_init(t_game_data *game)
     }
     game->player.old_x = 0;
     game->player.old_y = 0;
-    // game->bpp = 64;
+    game->player.angle = 0;
+        // game->bpp = 64;
     // game->endian = 0;
     // game->line_length = 2560;
     // ft_printf("bpp = %d\n", game->bpp);

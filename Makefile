@@ -1,4 +1,4 @@
-SRCS = main.c init.c render.c
+SRCS = main.c init.c render.c ray_cast.c
 
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -I./includes/
@@ -20,7 +20,7 @@ all: $(MLX_LIB) cub3d
 
 cub3d: $(NAME) $(OBJS)
 	echo "${CYAN}Compiling cub3d...${RESET}"
-	cc ${SRCS} cub3d.a libft/libft.a mlx/libmlx.a mlx/libmlx_Linux.a -lX11 -lXext -o cub3d
+	cc ${SRCS} cub3d.a libft/libft.a mlx/libmlx.a mlx/libmlx_Linux.a -lX11 -lXext -o cub3d -lm
 	echo "${GREEN}Succes!!!${RESET}"
 $(NAME): $(OBJS)
 	echo "${CYAN}Compiling libft...${RESET}"

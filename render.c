@@ -51,8 +51,6 @@ void draw_circle(t_game_data *game, int center_x, int center_y, int radius, int 
     int x, y;
 
     // Parcourir un carré englobant tout le cercle
-     printf("hi");
-
     for (y = -radius; y <= radius; y++)
     {
         for (x = -radius; x <= radius; x++)
@@ -66,33 +64,39 @@ void draw_circle(t_game_data *game, int center_x, int center_y, int radius, int 
     }
 }
 
-void    draw_player(t_game_data *game, double old_x, double old_y, int color)
+void draw_player(t_game_data *game, double x, double y, int radius, int color)
 {
-    int     player_size;
-    int     offset_size;
-    int     draw_x;
-    int     draw_y;
+    int draw_x;
+    int draw_y;
 
-    player_size = CELL_SIZE / 2;
-    offset_size = (CELL_SIZE - player_size) / 8;
-    draw_x = game->player.x * CELL_SIZE + offset_size;
-    draw_y = game->player.y * CELL_SIZE + offset_size;
+    // Calculer la position de dessin
+    draw_x = x * CELL_SIZE + (CELL_SIZE / 2);
+    draw_y = y * CELL_SIZE + (CELL_SIZE / 2);
 
-    if (old_x != 0 && old_y != 0)
-    {
-        draw_circle(game, old_x * CELL_SIZE + offset_size, old_y * CELL_SIZE + offset_size, offset_size, 0x000000);
-    }
-    draw_circle(game, draw_x, draw_y, offset_size, color);
+    // Dessiner un cercle
+    draw_circle(game, draw_x, draw_y, radius, color);
 }
 
+void update_player(t_game_data *game)
+{
+    int player_size = CELL_SIZE / 8;
+
+    // Effacer l'ancienne position et remplacer avec du noir
+    draw_player(game, game->player.old_x, game->player.old_y, player_size, 0x000000);
+
+    // Dessiner la nouvelle position
+    draw_player(game, game->player.x, game->player.y, player_size, 0xFFFFFF);
+
+    // Mettre à jour les anciennes coordonnées
+    game->player.old_x = game->player.x;
+    game->player.old_y = game->player.y;
+}
 
 int    render_frame(t_game_data *game)
 {
     // mlx_clear_window(game->mlx, game->win);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    draw_player(game, game->player.old_x, game->player.old_y, 0xFFFFFF);
+    update_player(game);
     // mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);
-    game->player.old_x = game->player.x;
-    game->player.old_y = game->player.y;
     return (0);
 }

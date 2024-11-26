@@ -16,19 +16,41 @@ void    ft_mlx_init(t_game_data *game)
     }
 }
 
+void    turn_left(t_game_data *game, double rotation_speed)
+{
+    game->player.angle -= rotation_speed;
+    if (game->player.angle < 0) 
+        game->player.angle += 2 * PI;
+    printf("Player angle: %.2f\n", game->player.angle);  // Afficher l'angle
+}
+
+void    turn_right(t_game_data *game, double rotation_speed)
+{
+    game->player.angle += rotation_speed;
+    if (game->player.angle < 0) 
+        game->player.angle -= 2 * PI;
+    printf("Player angle: %.2f\n", game->player.angle);  // Afficher l'angle
+
+}
+
+void    move_player(t_game_data *game, double speed)
+{
+    game->player.x += speed * cos(game->player.angle);
+    game->player.y += speed * sin(game->player.angle);
+}
 
 int handle_input(int keycode, t_game_data *game)
 {
     if (keycode == XK_Escape)
         exit(0);
     if (keycode == XK_z)
-        game->player.y -= 0.05;
+        move_player(game, 0.05);
     else if (keycode == XK_s)
-        game->player.y += 0.05;
+        move_player(game, -0.05);
     else if (keycode == XK_q)
-        game->player.x -= 0.05;
+        turn_left(game, 0.1);
     else if (keycode == XK_d)
-        game->player.x += 0.05;
+        turn_right(game, 0.1);
     printf("%d\n", keycode);
     return (0);
 }
@@ -42,8 +64,8 @@ int main(int argc, char const *argv[])
     game_data_init(&game);
     image_init(&game);
     draw_map(&game);
-    mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, 1L << 0, handle_input, &game);
+    mlx_loop_hook(game.mlx, render_frame, &game);
 
     mlx_loop(game.mlx);
 	// mlx_hook(game.win, 17, 0, end, data);

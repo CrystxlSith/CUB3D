@@ -5,6 +5,7 @@
 #define CELL_SIZE 64
 #define MAP_HEIGHT 1920
 #define MAP_WIDTH 1080
+#define PI 3.14159265359
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
@@ -16,6 +17,7 @@
 # include <X11/X.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <math.h>
 
 
 typedef struct s_player
@@ -24,6 +26,7 @@ typedef struct s_player
     double  y;
     double  old_x;
     double  old_y;
+    double     angle;
 } t_player;
 
 
@@ -48,6 +51,6 @@ void    draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void    game_data_init(t_game_data *game);
 int    render_frame(t_game_data *game);
-void    draw_player(t_game_data *game, double old_x, double old_y, int color);
+void    draw_player(t_game_data *game, double x, double y, int radius, int color);
 
 #endif
