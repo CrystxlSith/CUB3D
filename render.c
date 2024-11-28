@@ -4,7 +4,7 @@ void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-    if (x >= 0 && x < MAP_WIDTH && y >= 0 && y < MAP_HEIGHT)
+    if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
     {
 	    dst = data->img_addr + (y * data->line_length + x * (data->bpp / 8));
 	    *(unsigned int*)dst = color;
@@ -29,7 +29,7 @@ void    draw_map(t_game_data *game)
     int y;
 
     y = 0;
-    game->img = mlx_new_image(game->mlx, MAP_WIDTH * SCREEN_WIDTH, MAP_HEIGHT * SCREEN_HEIGHT);
+    game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
     game->img_addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_length, &game->endian);
     while (game->map[y])
     {
@@ -70,8 +70,8 @@ void draw_player(t_game_data *game, double x, double y, int radius, int color)
     int draw_y;
 
     // Calculer la position de dessin
-    draw_x = x * CELL_SIZE + (CELL_SIZE / 2);
-    draw_y = y * CELL_SIZE + (CELL_SIZE / 2);
+    draw_x = (x * CELL_SIZE) + (CELL_SIZE / 2);
+    draw_y = (y * CELL_SIZE) + (CELL_SIZE / 2);
 
     // Dessiner un cercle
     draw_circle(game, draw_x, draw_y, radius, color);
@@ -82,7 +82,8 @@ void update_player(t_game_data *game)
     int player_size = CELL_SIZE / 8;
 
     // Effacer l'ancienne position et remplacer avec du noir
-    draw_player(game, game->player.old_x, game->player.old_y, player_size, 0x000000);
+    if (game->player.old_x != 0 && game->player.old_y != 0)
+        draw_player(game, game->player.old_x, game->player.old_y, player_size, 0x000000);
 
     // Dessiner la nouvelle position
     draw_player(game, game->player.x, game->player.y, player_size, 0xFFFFFF);

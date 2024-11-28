@@ -8,7 +8,7 @@ void    ft_mlx_init(t_game_data *game)
         free(game->mlx);
         ft_printf("mlx_init fail");
     }
-    game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D");
+    game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "raycaster");
     if (!game->win)
     {
         free(game->mlx);

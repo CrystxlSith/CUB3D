@@ -21,6 +21,11 @@
 # include <stdbool.h>
 # include <math.h>
 
+typedef struct s_ray
+{
+    /* data */
+} t_ray;
+
 
 typedef struct s_player
 {
