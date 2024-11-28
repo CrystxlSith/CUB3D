@@ -2,9 +2,11 @@
 # define CUB3D_H
 
 
-#define CELL_SIZE 64
-#define MAP_HEIGHT 1920
-#define MAP_WIDTH 1080
+#define CELL_SIZE 32
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+#define MAP_HEIGHT 10
+#define MAP_WIDTH 10
 #define PI 3.14159265359
 
 # include "../mlx/mlx.h"

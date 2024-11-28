@@ -29,7 +29,7 @@ void    draw_map(t_game_data *game)
     int y;
 
     y = 0;
-    game->img = mlx_new_image(game->mlx, MAP_WIDTH, MAP_HEIGHT);
+    game->img = mlx_new_image(game->mlx, MAP_WIDTH * SCREEN_WIDTH, MAP_HEIGHT * SCREEN_HEIGHT);
     game->img_addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_length, &game->endian);
     while (game->map[y])
     {
