@@ -29,11 +29,18 @@ typedef struct s_ray
     double  rayDirY;
     double  planeX;
     double  planeY;
-    double  deltaDistX;
+    double  deltaDistX; // Distance to go through 1 case
     double  deltaDistY;
+    double  sideDistx;
+    double  sideDistY;
+    double  perpWallDist;
     int     dirX;
     int     dirY;
-    int     FOV;
+    int     stepX; // Step direction (-1 or 1)
+    int     stepY;
+    int     hit; // Hit a wall
+    int     side; // Where the wall is hit
+    int     FOV; // Field of view
 } t_ray;
 
 typedef struct s_player

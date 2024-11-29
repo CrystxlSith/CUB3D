@@ -38,8 +38,12 @@ void    move_player(t_game_data *game, double speed)
     double  newposX;
     double  newposY;
 
+    // printf("%d && %d\n", (int)game->player.x, (int)game->player.y);
     newposX = speed * cos(game->player.angle);
     newposY = speed * sin(game->player.angle);
+// if (game->map[(int)(game->player.y + newposY * 1.1)][(int)(game->player.x + newposX * 1.1)] == '1')
+//     return;
+
     game->player.x += newposX;
     game->player.y += newposY;
     game->raycast.posX += newposX;
