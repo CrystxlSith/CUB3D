@@ -98,6 +98,7 @@ int    render_frame(t_game_data *game)
     // mlx_clear_window(game->mlx, game->win);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
     update_player(game);
+    raycasting(game);
     // mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);
     return (0);
 }

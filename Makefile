@@ -1,4 +1,4 @@
-SRCS = main.c init.c render.c ray_cast.c
+SRCS = main.c init.c render.c raycast.c
 
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -I./includes/

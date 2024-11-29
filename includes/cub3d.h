@@ -23,32 +23,48 @@
 
 typedef struct s_ray
 {
-    /* data */
+    double  posX;
+    double  posY;
+    double  rayDirX;
+    double  rayDirY;
+    double  planeX;
+    double  planeY;
+    double  deltaDistX;
+    double  deltaDistY;
+    int     dirX;
+    int     dirY;
+    int     FOV;
 } t_ray;
-
 
 typedef struct s_player
 {
-    double  x;
+    double  x; // Player EXACT position
     double  y;
-    double  old_x;
+    int     mapX; // Player position (1 or 0)
+    int     mapY;
+    double  old_x; // Player previous exact position
     double  old_y;
-    double     angle;
+    double  angle; // Player angle
 } t_player;
 
 
 typedef struct s_game_data
 {
-    int         bpp;
+    int         bpp; // Bits per pixel
+    double      time; // Time of current frame
+    double      oldTime; // Time if previous frame
     char        **map;
     void        *mlx;
     void        *win;
     void        *img;
     void        *player_img;
+    char        *ray_img;
+    char        *ray_addr;
     char         *img_addr;
     char        *player_addr;
     int         endian;
     int         line_length;
+    t_ray       raycast;
     t_player    player;
 } t_game_data;
 
@@ -59,5 +75,6 @@ void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void    game_data_init(t_game_data *game);
 int    render_frame(t_game_data *game);
 void    draw_player(t_game_data *game, double x, double y, int radius, int color);
+void    raycasting(t_game_data *game);
 
 #endif
