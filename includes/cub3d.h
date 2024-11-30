@@ -31,7 +31,7 @@ typedef struct s_ray
     double  planeY;
     double  deltaDistX; // Distance to go through 1 case
     double  deltaDistY;
-    double  sideDistx;
+    double  sideDistX;
     double  sideDistY;
     double  perpWallDist;
     int     dirX;
@@ -83,5 +83,6 @@ void    game_data_init(t_game_data *game);
 int    render_frame(t_game_data *game);
 void    draw_player(t_game_data *game, double x, double y, int radius, int color);
 void    raycasting(t_game_data *game);
+void    digital_differential_analyzer(t_game_data *game, int x);
 
 #endif
