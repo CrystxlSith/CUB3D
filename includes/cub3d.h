@@ -3,11 +3,17 @@
 
 
 #define CELL_SIZE 32
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 #define MAP_HEIGHT 10
 #define MAP_WIDTH 10
 #define PI 3.14159265359
+
+#define rgbRED 0xFF0000
+#define rgbGREEN 0x00FF00
+#define rgbBLUE 0x0000FF
+#define rgbDEFAULT 0xFFFF00 // Jaune
+
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
@@ -21,10 +27,16 @@
 # include <stdbool.h>
 # include <math.h>
 
+// typedef struct s_colorRGB
+// {
+//    int  r;
+//    int  g;
+//    int  b;
+// } t_colorRGB;
+
+
 typedef struct s_ray
 {
-    double  posX;
-    double  posY;
     double  rayDirX;
     double  rayDirY;
     double  planeX;
@@ -60,6 +72,9 @@ typedef struct s_game_data
     int         bpp; // Bits per pixel
     double      time; // Time of current frame
     double      oldTime; // Time if previous frame
+    double      frameTime;
+    double      moveSpeed;
+    double      rotSpeed;
     char        **map;
     void        *mlx;
     void        *win;

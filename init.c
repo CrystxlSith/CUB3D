@@ -2,8 +2,8 @@
 
 void    image_init(t_game_data *game)
 {
-    // game->img = mlx_new_image(game->mlx, MAP_WIDTH, MAP_HEIGHT);
-    // game->img_addr = mlx_get_data_addr(game->img, &game->bpp, &game->line_length, &game->endian);
+    game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
+    game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);
     // game->ray_img = mlx_new_image(game->mlx, CELL_SIZE, CELL_SIZE);
     // game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);
 
@@ -22,8 +22,10 @@ void    init_game(t_game_data *game)
     game->raycast.planeY = 0.66; 
     game->raycast.deltaDistX = 0;
     game->raycast.deltaDistY = 0;
-    game->player.mapX = 0;
-    game->player.mapY = 0;
+    game->raycast.sideDistX = 0;
+    game->raycast.sideDistY = 0;
+    game->raycast.perpWallDist = 0;
+    game->raycast.hit = 0;
 }
 
 void    game_data_init(t_game_data *game)
@@ -36,8 +38,8 @@ void    game_data_init(t_game_data *game)
         "11111111111111111111",
         "10000000001000000001",
         "10001111001001111001",
-        "10001001000001001001",
-        "1000000000P000000001",
+        "1P001001000001001001",
+        "10000000000000000001",
         "10001001000001001001",
         "10001111001001111001",
         "10000000001000000001",
@@ -46,7 +48,7 @@ void    game_data_init(t_game_data *game)
         "10000000001000000001",
         "10001111001001111001",
         "10001001000001001001",
-        "1000000000P000000001",
+        "10000000000000000001",
         "11111111111111111111",
         NULL                   
     };
@@ -58,10 +60,9 @@ void    game_data_init(t_game_data *game)
         {
             if (game->map[i][j] == 'P')
             {
-                game->player.y = i;
-                game->player.x = j;
-                game->raycast.posY = i;
-                game->raycast.posX = j;
+                game->player.x = i;
+                game->player.y = j;
+                break ;
             }
             j++;
         }

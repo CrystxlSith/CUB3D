@@ -6,7 +6,7 @@ void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color)
 
     if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
     {
-	    dst = data->img_addr + (y * data->line_length + x * (data->bpp / 8));
+	    dst = data->ray_addr + (y * data->line_length + x * (data->bpp / 8));
 	    *(unsigned int*)dst = color;
     }
 }
@@ -95,10 +95,11 @@ void update_player(t_game_data *game)
 
 int    render_frame(t_game_data *game)
 {
-    // mlx_clear_window(game->mlx, game->win);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-    update_player(game);
+    // update_player(game);
+    mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
     raycasting(game);
+    // mlx_clear_window(game->mlx, game->win);
+    // mlx_destroy_image(game->mlx, game->ray_img);
     // mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);
     return (0);
 }

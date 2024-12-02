@@ -24,27 +24,35 @@ void    step_dist(t_game_data *game)
     if (game->raycast.rayDirX < 0)
     {
         game->raycast.stepX = -1;
-        game->raycast.sideDistX = (game->raycast.posX + game->player.mapX) * game->raycast.deltaDistX;
+        game->raycast.sideDistX = (game->player.x - game->player.mapX) * game->raycast.deltaDistX;
     }
     else
     {
         game->raycast.stepX = 1;
-        game->raycast.sideDistX = (game->player.mapX + 1.0 - game->raycast.posX) * game->raycast.deltaDistX;
+        game->raycast.sideDistX = (game->player.mapX + 1.0 - game->player.x) * game->raycast.deltaDistX;
     }
     if (game->raycast.rayDirY < 0)
     {
         game->raycast.stepY = -1;
-        game->raycast.sideDistY = (game->raycast.posY + game->player.mapY) * game->raycast.deltaDistY;
+        game->raycast.sideDistY = (game->player.y - game->player.mapY) * game->raycast.deltaDistY;
     }
     else
     {
         game->raycast.stepY = 1;
-        game->raycast.sideDistY = (game->player.mapY + 1.0 - game->raycast.posY) * game->raycast.deltaDistY;
+        game->raycast.sideDistY = (game->player.mapY + 1.0 - game->player.y) * game->raycast.deltaDistY;
     }  
 }
 
 void    raycalculate(t_game_data *game, int x)
 {
+    game->player.mapX = (int)game->player.x;
+    game->player.mapY = (int)game->player.y;
+    if (game->player.mapY < 0 || game->player.mapY >= SCREEN_HEIGHT || game->player.mapX < 0 || game->player.mapX >= SCREEN_WIDTH)
+    {
+        printf("mapX = %d, mapY = %d\n", game->player.mapX, game->player.mapY);
+        printf("Error: Out of bounds map access.\n");
+        exit(1);
+    }
     if (game->raycast.rayDirX == 0)
         game->raycast.deltaDistX = 1e30; // Avoid division per 0
     else
@@ -64,15 +72,15 @@ void    raycasting(t_game_data *game)
     int     i;
     double  cameraX;
 
-    cameraX = 0;
+    // cameraX = 0;
+    // mlx_clear_window(game->mlx, game->win);
     i = 0;
     while (i < SCREEN_WIDTH)
     {
         cameraX = 2 * i / (double)SCREEN_WIDTH - 1;
         game->raycast.rayDirX = game->raycast.dirX + game->raycast.planeX * cameraX;
         game->raycast.rayDirY = game->raycast.dirY + game->raycast.planeY * cameraX;
-        game->player.mapX = (int)game->player.x;
-        game->player.mapY = (int)game->player.y;
+
         raycalculate(game, i);
         i++;
     }
