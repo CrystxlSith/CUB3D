@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	fill_map_struct(t_game_data *game, char **av)
 {

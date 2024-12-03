@@ -20,18 +20,43 @@ RESET  = \033[0m
 # ------------------------------------------------------------------------------
 
 SRC_DIR = src/
+MAP_SRC_DIR = src/map/
+ALGO_SRC_DIR = src/algo/
+
 OBJ_DIR = obj/
+MAP_OBJ_DIR = obj/map/
+ALGO_OBJ_DIR = obj/algo/
+
 DEP_DIR = dep/
+MAP_DEP_DIR = dep/map/
+ALGO_DEP_DIR = dep/algo/
 
-SRC = main.c init.c render.c raycast.c open_map.c map_check.c map_rules.c \
-	map_rules2.c map_dimensions.c flood_fill.c dda.c
+MAP_SRC = open_map.c map_check.c map_rules.c map_rules2.c map_dimensions.c \
+	flood_fill.c
 
-OBJ = ${SRC:%.c=%.o}
-DEP = ${OBJ:%.o=%.d}
+ALGO_SRC = init.c render.c raycast.c dda.c
 
-SRCF = $(addprefix $(SRC_DIR), $(SRC))
-OBJF = $(addprefix $(OBJ_DIR), $(OBJ))
-DEPF = $(addprefix $(DEP_DIR), $(DEP))
+MAIN = main.c
+
+MAP_OBJ = ${MAP_SRC:%.c=%.o}
+MAP_DEP = ${MAP_OBJ:%.o=%.d}
+
+ALGO_OBJ = ${ALGO_SRC:%.c=%.o}
+ALGO_DEP = ${ALGO_OBJ:%.o=%.d}
+
+MAIN_OBJ = main.o
+
+MAP_SRCF = $(addprefix $(MAP_SRC_DIR), $(MAP_SRC))
+MAP_OBJF = $(addprefix $(MAP_OBJ_DIR), $(MAP_OBJ))
+MAP_DEPF = $(addprefix $(MAP_DEP_DIR), $(MAP_DEP))
+
+ALGO_SRCF = $(addprefix $(ALGO_SRC_DIR), $(ALGO_SRC))
+ALGO_OBJF = $(addprefix $(ALGO_OBJ_DIR), $(ALGO_OBJ))
+ALGO_DEPF = $(addprefix $(ALGO_DEP_DIR), $(ALGO_DEP))
+
+SRCF = $(ALGO_SRCF) $(MAP_SRCF) $(MAIN)
+OBJF = $(ALGO_OBJF) $(MAP_OBJF) $(MAIN_OBJ)
+DEPF = $(ALGO_DEPF) $(MAP_DEPF)
 
 # ------------------------------------------------------------------------------
 # 									COMPILING
@@ -42,7 +67,7 @@ DEPF = $(addprefix $(DEP_DIR), $(DEP))
 
 all: $(MLX_LIB) cub3d
 
-cub3d: $(NAME) $(OBJF)
+cub3d: $(NAME) $(OBJ_DIR) $(DEP_DIR) $(OBJF)
 	@echo "${CYAN}Compiling cub3d...${RESET}"
 	@cc ${SRCF} $(NAME) $(LIBS) -o $(EXEC)
 	@echo "${GREEN}Succes!!!${RESET}"
@@ -56,8 +81,11 @@ $(NAME): $(OBJF)
 $(MLX_LIB):
 	@make -C $(MLX_DIR)
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR) $(DEP_DIR)
-	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -MF $(DEP_DIR)$*.d
+$(MAP_OBJ_DIR)%.o : $(MAP_SRC_DIR)%.c | $(MAP_OBJ_DIR) $(MAP_DEP_DIR)
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -MF $(MAP_DEP_DIR)$*.d
+
+$(ALGO_OBJ_DIR)%.o : $(ALGO_SRC_DIR)%.c | $(ALGO_OBJ_DIR) $(ALGO_DEP_DIR)
+	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -MF $(ALGO_DEP_DIR)$*.d
 
 # ------------------------------------------------------------------------------
 # 									DIR GENERATION
@@ -65,9 +93,17 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR) $(DEP_DIR)
 
 $(OBJ_DIR) :
 	@mkdir -p $(OBJ_DIR)
+$(ALGO_OBJ_DIR) :
+	@mkdir -p $(ALGO_OBJ_DIR)
+$(MAP_OBJ_DIR) :
+	@mkdir -p $(MAP_OBJ_DIR)
 
 $(DEP_DIR) :
 	@mkdir -p $(DEP_DIR)
+$(ALGO_DEP_DIR) :
+	@mkdir -p $(ALGO_DEP_DIR)
+$(MAP_DEP_DIR) :
+	@mkdir -p $(MAP_DEP_DIR)
 
 # ------------------------------------------------------------------------------
 # 									CLEANING
@@ -80,6 +116,7 @@ clean:
 	@$(RM) $(DEP_DIR) depf
 	@$(RM) libft.a
 	@echo "${GREEN}Succes!!!${RESET}"
+
 fclean: clean
 	@$(MAKE) fclean --no-print-directory -C ./libft
 	@echo "${RED}Cleaning exucutable files...${RESET}"

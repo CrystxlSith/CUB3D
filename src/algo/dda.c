@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	decide_wall_color(t_game_data *game, int *color)
 {
