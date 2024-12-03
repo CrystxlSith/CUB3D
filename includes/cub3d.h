@@ -37,57 +37,67 @@
 
 typedef struct s_ray
 {
-    double  rayDirX;
-    double  rayDirY;
-    double  planeX;
-    double  planeY;
-    double  deltaDistX; // Distance to go through 1 case
-    double  deltaDistY;
-    double  sideDistX;
-    double  sideDistY;
-    double  perpWallDist;
-    int     dirX;
-    int     dirY;
-    int     stepX; // Step direction (-1 or 1)
-    int     stepY;
-    int     hit; // Hit a wall
-    int     side; // Where the wall is hit
-    int     FOV; // Field of view
+	double  rayDirX;
+	double  rayDirY;
+	double  planeX;
+	double  planeY;
+	double  deltaDistX; // Distance to go through 1 case
+	double  deltaDistY;
+	double  sideDistX;
+	double  sideDistY;
+	double  perpWallDist;
+	double  time;
+	double  oldTime;
+	int     dirX;
+	int     dirY;
+	int     stepX; // Step direction (-1 or 1)
+	int     stepY;
+	int     hit; // Hit a wall
+	int     side; // Where the wall is hit
 } t_ray;
+
+typedef struct s_key
+{
+	int     forward;
+	int     backward;
+	int     turn_left;
+	int     turn_right;
+} t_key;
 
 typedef struct s_player
 {
-    double  x; // Player EXACT position
-    double  y;
-    int     mapX; // Player position (1 or 0)
-    int     mapY;
-    double  old_x; // Player previous exact position
-    double  old_y;
-    double  angle; // Player angle
+	double  x; // Player EXACT position
+	double  y;
+	int     mapX; // Player position (1 or 0)
+	int     mapY;
+	double  old_x; // Player previous exact position
+	double  old_y;
+	double  angle; // Player angle
 } t_player;
 
 
 typedef struct s_game_data
 {
-    int         bpp; // Bits per pixel
-    double      time; // Time of current frame
-    double      oldTime; // Time if previous frame
-    double      frameTime;
-    double      moveSpeed;
-    double      rotSpeed;
-    char        **map;
-    void        *mlx;
-    void        *win;
-    void        *img;
-    void        *player_img;
-    char        *ray_img;
-    char        *ray_addr;
-    char         *img_addr;
-    char        *player_addr;
-    int         endian;
-    int         line_length;
-    t_ray       raycast;
-    t_player    player;
+	int         bpp; // Bits per pixel
+	double      time; // Time of current frame
+	double      oldTime; // Time if previous frame
+	double      frameTime;
+	double      moveSpeed;
+	double      rotSpeed;
+	char        **map;
+	void        *mlx;
+	void        *win;
+	void        *img;
+	void        *player_img;
+	char        *ray_img;
+	char        *ray_addr;
+	char         *img_addr;
+	char        *player_addr;
+	int         endian;
+	int         line_length;
+	t_key		key;
+	t_ray       raycast;
+	t_player    player;
 } t_game_data;
 
 
@@ -99,5 +109,9 @@ int    render_frame(t_game_data *game);
 void    draw_player(t_game_data *game, double x, double y, int radius, int color);
 void    raycasting(t_game_data *game);
 void    digital_differential_analyzer(t_game_data *game, int x);
+void    move_back(t_game_data *game, double moveSpeed);
+void    move_front(t_game_data *game, double moveSpeed);
+void    turn_right(t_game_data *game, double rotation_speed);
+void	turn_left(t_game_data *game, double rotation_speed);
 
 #endif

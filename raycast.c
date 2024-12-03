@@ -62,6 +62,7 @@ void    raycalculate(t_game_data *game, int x)
     else
         game->raycast.deltaDistY = fabs(1 / game->raycast.rayDirY);
     game->raycast.hit = 0;
+    game->raycast.side = 0; // NS or EW hit ?
     step_dist(game);
     digital_differential_analyzer(game, x);
 }
@@ -72,15 +73,12 @@ void    raycasting(t_game_data *game)
     int     i;
     double  cameraX;
 
-    // cameraX = 0;
-    // mlx_clear_window(game->mlx, game->win);
     i = 0;
     while (i < SCREEN_WIDTH)
     {
         cameraX = 2 * i / (double)SCREEN_WIDTH - 1;
         game->raycast.rayDirX = game->raycast.dirX + game->raycast.planeX * cameraX;
         game->raycast.rayDirY = game->raycast.dirY + game->raycast.planeY * cameraX;
-
         raycalculate(game, i);
         i++;
     }

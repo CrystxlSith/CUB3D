@@ -25,8 +25,6 @@ static void	verLine(t_game_data *game, int x, int start, int end)
 	int	color;
 
 	decide_wall_color(game, &color);
-	// printf("color = %d\n");
-	// printf("%d\n", x);
 	while (start <= end)
 	{
 		my_mlx_pixel_put(game, x, start, color);

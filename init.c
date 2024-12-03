@@ -15,7 +15,6 @@ void    init_game(t_game_data *game)
 {
     game->player.old_x = 0; // Player previous position
     game->player.old_y = 0;
-    game->player.angle = 0; // Player angle
     game->raycast.dirX = -1; // Initial vector direction
     game->raycast.dirY = 0;
     game->raycast.planeX = 0; // 2D raycaster of camera plane
@@ -26,6 +25,14 @@ void    init_game(t_game_data *game)
     game->raycast.sideDistY = 0;
     game->raycast.perpWallDist = 0;
     game->raycast.hit = 0;
+    game->raycast.stepX = 0;
+    game->raycast.stepY = 0;
+    game->raycast.side = 0;
+    game->raycast.time = 0;
+    game->raycast.oldTime = 0;
+    game->raycast.rayDirX = 0;
+    game->raycast.rayDirY = 0;
+
 }
 
 void    game_data_init(t_game_data *game)
@@ -37,8 +44,8 @@ void    game_data_init(t_game_data *game)
     static char *map[] = {
         "11111111111111111111",
         "10000000001000000001",
-        "10001111001001111001",
-        "1P001001000001001001",
+        "1P001111001001111001",
+        "10001001000001001001",
         "10000000000000000001",
         "10001001000001001001",
         "10001111001001111001",
@@ -48,7 +55,7 @@ void    game_data_init(t_game_data *game)
         "10000000001000000001",
         "10001111001001111001",
         "10001001000001001001",
-        "10000000000000000001",
+        "10000000000000P00001",
         "11111111111111111111",
         NULL                   
     };
@@ -60,19 +67,21 @@ void    game_data_init(t_game_data *game)
         {
             if (game->map[i][j] == 'P')
             {
-                game->player.x = i;
-                game->player.y = j;
+                game->player.x = i + 0.5;
+                game->player.y = j + 0.5;
                 break ;
             }
             j++;
         }
         i++;
     }
-
     init_game(game);
+
         // game->bpp = 64;
     // game->endian = 0;
     // game->line_length = 2560;
     // ft_printf("bpp = %d\n", game->bpp);
-    printf("Player initialized at: x = %.1f, y = %.1f\n", game->player.x, game->player.y);
+printf("Player initialized at: x = %.2f, y = %.2f\n", game->player.x, game->player.y);
+printf("Direction initialized: dirX = %d, dirY = %d\n", game->raycast.dirX, game->raycast.dirY);
+
 }
