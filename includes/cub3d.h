@@ -62,6 +62,7 @@ typedef struct s_key
 	int     backward;
 	int     turn_left;
 	int     turn_right;
+	int     escape;
 } t_key;
 
 typedef struct s_player
@@ -113,5 +114,5 @@ void    move_back(t_game_data *game, double moveSpeed);
 void    move_front(t_game_data *game, double moveSpeed);
 void    turn_right(t_game_data *game, double rotation_speed);
 void	turn_left(t_game_data *game, double rotation_speed);
-
+void update_player(t_game_data *game);
 #endif

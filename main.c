@@ -93,36 +93,39 @@ void    move_back(t_game_data *game, double moveSpeed)
 		game->player.y -= game->raycast.dirY * moveSpeed;    
 }
 
-int handle_input(int keycode, t_key *key)
+int handle_input(int keycode, t_game_data *game)
 {
 	if (keycode == XK_Escape)
-		exit(0);
-	if (keycode == 119)
-		key->forward = 1;
+		game->key.escape = 1;
+	else if (keycode == 119)
+		game->key.forward = 1;
 	else if (keycode == 115)
-		key->backward = 1;
+		game->key.backward = 1;
 	else if (keycode == 97)
-		key->turn_left = 1;
+		game->key.turn_left = 1;
 	else if (keycode == 100)
-		key->turn_right = 1;
+		game->key.turn_right = 1;
+	printf("Key pressed: %d\n", keycode);
+	update_player(game);
+
 	return (0);
 }
 
 
-int input_release(int keycode, t_key *key)
+int input_release(int keycode, t_game_data *game)
 {
 	if (keycode == 119)
-		key->forward = 0;
+		game->key.forward = 0;
 	else if (keycode == 115)
-		key->backward = 0;
+		game->key.backward = 0;
 	else if (keycode == 97)
-		key->turn_left = 0;
+		game->key.turn_left = 0;
 	else if (keycode == 100)
-		key->turn_right = 0;
+		game->key.turn_right = 0;
 	return (0);
 }
 
-void	close_game(t_game_data *game)
+int	close_game(t_game_data *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
@@ -137,10 +140,11 @@ int main(int argc, char const *argv[])
 	game_data_init(&game);
 	image_init(&game);
 	// draw_map(&game);
-	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game.key);
-	mlx_hook(game.win, 33, (1L << 17), &close_game, &game);
-	mlx_hook(game.win, 2, 1L << 1, &input_release, &game.key);
 	mlx_loop_hook(game.mlx, render_frame, &game);
+	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game);
+	mlx_hook(game.win, 33, 1L << 17, &close_game, &game);
+	mlx_hook(game.win, 3, 1L << 1, &input_release, &game);
+	mlx_do_sync(game.mlx);
 	mlx_loop(game.mlx);
 	// mlx_hook(game.win, 17, 0, end, data);
 	// mlx_hook(game.win, 12, 32768, make_mouv, data);
