@@ -1,4 +1,4 @@
-#include "includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color)
 {
@@ -41,7 +41,7 @@ void    draw_map(t_game_data *game)
                 draw_square(game, x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, 0x00FF0000);
             x++;
         }
-        
+
         y++;
     }
 }

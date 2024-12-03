@@ -1,4 +1,4 @@
-#include "includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 static void	decide_wall_color(t_game_data *game, int *color)
 {
@@ -32,7 +32,7 @@ static void	verLine(t_game_data *game, int x, int start, int end)
 		my_mlx_pixel_put(game, x, start, color);
 		start++;
 	}
-	
+
 }
 
 
@@ -41,7 +41,7 @@ static void	draw_raycast(t_game_data *game, int x)
 	int	line_height;
 	int	draw_start;
 	int	draw_end;
-	int	color;
+	// /int	color;
 
 	line_height = (int)(SCREEN_WIDTH / game->raycast.perpWallDist); // Height of line
 	draw_start = -line_height / 2 + SCREEN_WIDTH / 2;
