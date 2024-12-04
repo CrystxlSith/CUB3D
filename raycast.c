@@ -24,22 +24,22 @@ void    step_dist(t_game_data *game)
     if (game->raycast.rayDirX < 0)
     {
         game->raycast.stepX = -1;
-        game->raycast.sideDistX = (game->player.x - game->player.mapX) * game->raycast.deltaDistX;
+        game->raycast.sideDistX = (game->raycast.posX - game->player.mapX) * game->raycast.deltaDistX;
     }
     else
     {
         game->raycast.stepX = 1;
-        game->raycast.sideDistX = (game->player.mapX + 1.0 - game->player.x) * game->raycast.deltaDistX;
+        game->raycast.sideDistX = (game->player.mapX + 1.0 - game->raycast.posX) * game->raycast.deltaDistX;
     }
     if (game->raycast.rayDirY < 0)
     {
         game->raycast.stepY = -1;
-        game->raycast.sideDistY = (game->player.y - game->player.mapY) * game->raycast.deltaDistY;
+        game->raycast.sideDistY = (game->raycast.posY - game->player.mapY) * game->raycast.deltaDistY;
     }
     else
     {
         game->raycast.stepY = 1;
-        game->raycast.sideDistY = (game->player.mapY + 1.0 - game->player.y) * game->raycast.deltaDistY;
+        game->raycast.sideDistY = (game->player.mapY + 1.0 - game->raycast.posY) * game->raycast.deltaDistY;
     }  
 }
 
@@ -47,6 +47,8 @@ void    raycalculate(t_game_data *game, int x)
 {
     game->player.mapX = (int)game->player.x;
     game->player.mapY = (int)game->player.y;
+    game->raycast.posX = game->player.x;
+    game->raycast.posY = game->player.y;
     if (game->player.mapY < 0 || game->player.mapY >= SCREEN_HEIGHT || game->player.mapX < 0 || game->player.mapX >= SCREEN_WIDTH)
     {
         printf("mapX = %d, mapY = %d\n", game->player.mapX, game->player.mapY);
@@ -61,8 +63,6 @@ void    raycalculate(t_game_data *game, int x)
         game->raycast.deltaDistY = 1e30;
     else
         game->raycast.deltaDistY = fabs(1 / game->raycast.rayDirY);
-    game->raycast.hit = 0;
-    // game->raycast.side = 0; // NS or EW hit ?
     step_dist(game);
     digital_differential_analyzer(game, x);
 }

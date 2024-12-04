@@ -49,12 +49,12 @@ void	turn_left(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * sin(rotation_speed);
 	game->raycast.planeY = old_planeX * sin(rotation_speed) + \
 	game->raycast.planeY * cos(rotation_speed);
+}
+
 	// game->player.angle -= rotation_speed;
 	// if (game->player.angle < 0) 
 	//     game->player.angle += 2 * PI;
 	// printf("Player angle: %.2f\n", game->player.angle);  // Afficher l'angle
-}
-
 void    turn_right(t_game_data *game, double rotation_speed)
 {
 	double	old_dirX;
@@ -79,18 +79,36 @@ void    turn_right(t_game_data *game, double rotation_speed)
 
 void    move_front(t_game_data *game, double moveSpeed)
 {
-	if (game->map[(int)(game->player.x + game->raycast.dirX * moveSpeed)][(int)game->player.y] != '1')
-		game->player.x += game->raycast.dirX * moveSpeed;
-	if (game->map[(int)game->player.x][(int)(game->player.y + game->raycast.dirY * moveSpeed)] != '1')
-		game->player.y += game->raycast.dirY * moveSpeed;
+	double newposX = game->player.x + game->raycast.dirX * moveSpeed;
+	double newposY = game->player.y + game->raycast.dirY * moveSpeed;
+
+	if (game->map[(int)newposX][(int)game->player.y] != '1')
+	{
+		game->player.x = newposX;
+		game->raycast.posX = newposX;
+	}
+	if (game->map[(int)game->player.x][(int)newposY] != '1')
+	{
+		game->player.y = newposY;
+		game->raycast.posY = newposY;
+	}
 }
 
 void    move_back(t_game_data *game, double moveSpeed)
 {
-	if (game->map[(int)(game->player.x - game->raycast.dirX * moveSpeed)][(int)game->player.y] != '1')
-		game->player.x -= game->raycast.dirX * moveSpeed;
-	if (game->map[(int)game->player.x][(int)(game->player.y - game->raycast.dirY * moveSpeed)] != '1')
-		game->player.y -= game->raycast.dirY * moveSpeed;    
+	double newposX = game->player.x - game->raycast.dirX * moveSpeed;
+	double newposY = game->player.y - game->raycast.dirY * moveSpeed;
+
+	if (game->map[(int)newposX][(int)game->player.y] != '1')
+	{
+		game->player.x = newposX;
+		game->raycast.posX = newposX;
+	}
+	if (game->map[(int)game->player.x][(int)newposY] != '1')
+	{
+		game->player.y = newposY;
+		game->raycast.posY = newposY;
+	}
 }
 
 int handle_input(int keycode, t_game_data *game)

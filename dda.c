@@ -41,19 +41,20 @@ static void	draw_raycast(t_game_data *game, int x)
 	int	draw_end;
 	int	color;
 
-	line_height = (int)(SCREEN_WIDTH / game->raycast.perpWallDist); // Height of line
-	draw_start = -line_height / 2 + SCREEN_WIDTH / 2;
+	line_height = (int)(SCREEN_HEIGHT / game->raycast.perpWallDist); // Height of line
+	draw_start = -line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + SCREEN_WIDTH / 2;
-	if (draw_end >= SCREEN_WIDTH)
-		draw_end = SCREEN_WIDTH - 1;
+	draw_end = line_height / 2 + SCREEN_HEIGHT / 2;
+	if (draw_end >= SCREEN_HEIGHT)
+		draw_end = SCREEN_HEIGHT - 1;
 	verLine(game, x, draw_start, draw_end);
 	// fps_count(game);
 }
 
 void	digital_differential_analyzer(t_game_data *game, int x)
 {
+	game->raycast.hit = 0;
 	while (game->raycast.hit == 0)
 	{
 		if (game->raycast.sideDistX < game->raycast.sideDistY)
@@ -67,12 +68,9 @@ void	digital_differential_analyzer(t_game_data *game, int x)
 			game->raycast.sideDistY += game->raycast.deltaDistY;
 			game->player.mapY += game->raycast.stepY;
 			game->raycast.side = 1;
-		}
+		} 
 		if (game->map[game->player.mapX][game->player.mapY] > 0)
 			game->raycast.hit = 1;
-		// printf("Ray direction: rayDirX = %f, rayDirY = %f\n", game->raycast.rayDirX, game->raycast.rayDirY);
-		// printf("Player position: mapX = %d, mapY = %d\n", game->player.mapX, game->player.mapY);
-
 	}
 	if (game->raycast.side == 0)
 		game->raycast.perpWallDist = (game->raycast.sideDistX - game->raycast.deltaDistX);

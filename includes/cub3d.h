@@ -45,6 +45,8 @@ typedef struct s_ray
 	double  deltaDistY;
 	double  sideDistX;
 	double  sideDistY;
+	double  posX; // Position of the ray
+	double  posY;
 	double  perpWallDist;
 	double  time;
 	double  oldTime;
