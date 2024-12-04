@@ -1,5 +1,16 @@
 #include "../../includes/cub3d.h"
 
+int	open_texture(char *texture)
+{
+	int	fd;
+
+	fd = open(texture, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	return (0);
+}
+
 int	check_colors(char *color)
 {
 	char	**colors;

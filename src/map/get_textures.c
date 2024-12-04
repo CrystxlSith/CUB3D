@@ -12,13 +12,16 @@ char	*get_file_texture(char *file)
 		i++;
 	if (!file)
 		return (NULL);
-	i++;
+	if (file[i + 1] != '\0')
+		i++;
 	texture = ft_strdup(&file[i]);
 	return (texture);
 }
 
 int	textures_n_s(t_game_data *game, char *file)
 {
+
+
 	if (!file)
 		return (-1);
 	if (file[0] == 'N')
@@ -27,12 +30,16 @@ int	textures_n_s(t_game_data *game, char *file)
 		game->north_texture = get_file_texture(file);
 		if (game->north_texture == NULL)
 			return (-1);
+		if (open_texture(game->north_texture) == -1)
+			return (-1);
 	}
-	if (file[0] == 'S')
+	else if (file[0] == 'S')
 	{
 		game->south_texture = NULL;
 		game->south_texture = get_file_texture(file);
 		if (game->south_texture == NULL)
+			return (-1);
+		if (open_texture(game->south_texture) == -1)
 			return (-1);
 	}
 	return (0);
@@ -48,12 +55,16 @@ int	textures_w_e(t_game_data *game, char *file)
 		game->west_texture = get_file_texture(file);
 		if (game->west_texture == NULL)
 			return (-1);
+		if (open_texture(game->west_texture) == -1)
+			return (-1);
 	}
-	if (file[0] == 'E')
+	else if (file[0] == 'E')
 	{
 		game->east_texture = NULL;
 		game->east_texture = get_file_texture(file);
 		if (game->east_texture == NULL)
+			return (-1);
+		if (open_texture(game->east_texture) == -1)
 			return (-1);
 	}
 	return (0);
@@ -83,10 +94,10 @@ int	get_textures(t_game_data *game, char **file)
 			return (ft_putstr_fd("Invalid colors\n", 2), -1);
 		i++;
 	}
-	if (!game->north_texture || !game->south_texture
-		|| !game->west_texture || !game->east_texture)
+	if (game->north_texture == NULL || game->south_texture == NULL
+		|| game->west_texture == NULL || game->east_texture == NULL)
 		return (ft_putstr_fd("Invalid textures\n", 2), -1);
-	else if (!game->ceiling_color || !game->floor_color)
+	else if (game->ceiling_color == NULL || game->floor_color == NULL)
 		return (ft_putstr_fd("Invalid colors\n", 2), -1);
 	printf("game->north_texture : %s\n", game->north_texture);
 	printf("game->south_texture : %s\n", game->south_texture);

@@ -132,5 +132,6 @@ int		textures(t_game_data *game, char *file);
 int		get_textures(t_game_data *game, char **file);
 char	*get_file_color(char *file);
 int		get_colors(t_game_data *game, char *file);
+int		open_texture(char *texture);
 
 #endif
