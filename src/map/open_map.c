@@ -13,17 +13,19 @@ int	fill_map_struct(t_game_data *game, char **av)
 	free(full_file);
 	if (!game->file)
 		return (-1);
+	if (get_textures(game, game->file) == -1)
+		return (free_everything(game->file), -1);
 	index = get_map_index(game->file);
 	if (index == -1)
 		return (free_everything(game->file), -1);
 	game->map = get_map(game->file, index);
-	index = 0;
 	if (!game->map)
 		return (free_everything(game->file), -1);
 	if (map_check(game->map) == FALSE)
 		return (free_everything(game->map), free_everything(game->file), -1);
 	init_game(game);
-	exit(0);
+	//exit(0);
+	return (0);
 }
 
 char	*open_file(char **av)

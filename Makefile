@@ -32,7 +32,7 @@ MAP_DEP_DIR = dep/map/
 ALGO_DEP_DIR = dep/algo/
 
 MAP_SRC = open_map.c map_check.c map_rules.c map_rules2.c map_dimensions.c \
-	flood_fill.c
+	flood_fill.c get_textures.c
 
 ALGO_SRC = init.c render.c raycast.c dda.c
 
@@ -63,7 +63,7 @@ DEPF = $(ALGO_DEPF) $(MAP_DEPF)
 # ------------------------------------------------------------------------------
 
 .SILENCE : $(CC) $(FLAGS) $(SRC) $(EXEC) $(OBJ) $(OBJF) $(OBJ_DIR) \
-	$(DEP_DIR) $(SRC_DIR)
+	$(DEP_DIR) $(SRC_DIR) $(MLX_LIB)
 
 all: $(MLX_LIB) cub3d
 
