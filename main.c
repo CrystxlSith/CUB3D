@@ -51,10 +51,6 @@ void	turn_left(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * cos(rotation_speed);
 }
 
-	// game->player.angle -= rotation_speed;
-	// if (game->player.angle < 0) 
-	//     game->player.angle += 2 * PI;
-	// printf("Player angle: %.2f\n", game->player.angle);  // Afficher l'angle
 void    turn_right(t_game_data *game, double rotation_speed)
 {
 	double	old_dirX;
@@ -70,11 +66,6 @@ void    turn_right(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * sin(-rotation_speed);
 	game->raycast.planeY = old_planeX * sin(-rotation_speed) + \
 	game->raycast.planeY * cos(-rotation_speed);
-	// game->player.angle += rotation_speed;
-	// if (game->player.angle < 0) 
-	//     game->player.angle -= 2 * PI;
-	// printf("Player angle: %.2f\n", game->player.angle);  // Afficher l'angle
-
 }
 
 void    move_front(t_game_data *game, double moveSpeed)
@@ -124,7 +115,7 @@ int handle_input(int keycode, t_game_data *game)
 	else if (keycode == 100)
 		game->key.turn_right = 1;
 	printf("Key pressed: %d\n", keycode);
-	update_player(game);
+	// update_player(game);
 	return (0);
 }
 

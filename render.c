@@ -81,26 +81,28 @@ void update_player(t_game_data *game)
 	if (game->key.escape)
 		exit(0);
 	else if (game->key.forward)
-		move_front(game, 1.1);
+		move_front(game, 0.1);
 	else if (game->key.backward)
-		move_back(game, 1.1);
+		move_back(game, 0.1);
 	else if (game->key.turn_left)
-		turn_left(game, 1.1);
+		turn_left(game, 0.1);
 	else if (game->key.turn_right)
-		turn_right(game, 1.1);
+		turn_right(game, 0.1);
 	else
 		printf("No key pressed.\n");
-	mlx_do_sync(game->mlx);
+	// mlx_do_sync(game->mlx);
 	printf("Player position: x = %.2f, y = %.2f\n", game->player.x, game->player.y);
 }
 
 int    render_frame(t_game_data *game)
 {
-	// update_player(game);
+    game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
+    game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);
 	mlx_clear_window(game->mlx, game->win);
+	update_player(game);
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
-	// mlx_destroy_image(game->mlx, game->ray_img);
+	mlx_destroy_image(game->mlx, game->ray_img);
 	// mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);
 	return (0);
 }

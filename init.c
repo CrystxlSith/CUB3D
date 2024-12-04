@@ -2,8 +2,7 @@
 
 void    image_init(t_game_data *game)
 {
-    game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
-    game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);
+
     // game->ray_img = mlx_new_image(game->mlx, CELL_SIZE, CELL_SIZE);
     // game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);
 
@@ -51,8 +50,8 @@ void    game_data_init(t_game_data *game)
         "10000000001000000001",
         "10001111001001111001",
         "10001001000001001001",
-        "100000000P0000000001",
-        "10001001000001001001",
+        "1000000000000000001",
+        "10001001000001P01001",
         "10001111001001111001",
         "10000000001000000001",
         "10000000001000000001",
