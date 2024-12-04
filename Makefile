@@ -32,7 +32,7 @@ MAP_DEP_DIR = dep/map/
 ALGO_DEP_DIR = dep/algo/
 
 MAP_SRC = open_map.c map_check.c map_rules.c map_rules2.c map_dimensions.c \
-	flood_fill.c get_textures.c
+	flood_fill.c get_textures.c get_colors.c
 
 ALGO_SRC = init.c render.c raycast.c dda.c
 
