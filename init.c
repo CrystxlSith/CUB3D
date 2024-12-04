@@ -32,6 +32,11 @@ void    init_game(t_game_data *game)
     game->raycast.oldTime = 0;
     game->raycast.rayDirX = 0;
     game->raycast.rayDirY = 0;
+    game->key.forward = 0;
+    game->key.backward = 0;
+    game->key.turn_left = 0;
+    game->key.turn_right = 0;
+    game->key.escape = 0;
 
 }
 

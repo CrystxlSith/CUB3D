@@ -107,7 +107,6 @@ int handle_input(int keycode, t_game_data *game)
 		game->key.turn_right = 1;
 	printf("Key pressed: %d\n", keycode);
 	update_player(game);
-
 	return (0);
 }
 

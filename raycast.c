@@ -62,7 +62,7 @@ void    raycalculate(t_game_data *game, int x)
     else
         game->raycast.deltaDistY = fabs(1 / game->raycast.rayDirY);
     game->raycast.hit = 0;
-    game->raycast.side = 0; // NS or EW hit ?
+    // game->raycast.side = 0; // NS or EW hit ?
     step_dist(game);
     digital_differential_analyzer(game, x);
 }
