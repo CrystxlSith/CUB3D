@@ -112,8 +112,9 @@ $(MAP_DEP_DIR) :
 clean:
 	@echo "${RED}Cleaning libft && Cub3d..${RESET}"
 	@$(MAKE) clean --no-print-directory -C ./libft
-	@$(RM) $(OBJ_DIR) objf
-	@$(RM) $(DEP_DIR) depf
+	@$(RM) $(OBJ_DIR)
+	@$(RM) $(MAIN_OBJ)
+	@$(RM) $(DEP_DIR)
 	@$(RM) libft.a
 	@echo "${GREEN}Succes!!!${RESET}"
 
