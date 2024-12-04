@@ -67,10 +67,10 @@ void    raycalculate(t_game_data *game, int x)
 }
 
 
-void    raycasting(t_game_data *game)
+void	raycasting(t_game_data *game)
 {
-	int     i;
-	double  cameraX;
+	int		i;
+	double	cameraX;
 
 	// cameraX = 0;
 	// mlx_clear_window(game->mlx, game->win);
@@ -80,7 +80,6 @@ void    raycasting(t_game_data *game)
 		cameraX = 2 * i / (double)SCREEN_WIDTH - 1;
 		game->raycast.rayDirX = game->raycast.dirX + game->raycast.planeX * cameraX;
 		game->raycast.rayDirY = game->raycast.dirY + game->raycast.planeY * cameraX;
-
 		raycalculate(game, i);
 		i++;
 	}

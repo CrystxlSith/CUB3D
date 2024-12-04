@@ -10,6 +10,8 @@ char	*get_file_texture(char *file)
 		return (NULL);
 	while (file[i] != ' ')
 		i++;
+	if (!file)
+		return (NULL);
 	i++;
 	texture = ft_strdup(&file[i]);
 	return (texture);
@@ -21,14 +23,16 @@ int	textures_n_s(t_game_data *game, char *file)
 		return (-1);
 	if (file[0] == 'N')
 	{
+		game->north_texture = NULL;
 		game->north_texture = get_file_texture(file);
-		if (!game->north_texture)
+		if (game->north_texture == NULL)
 			return (-1);
 	}
 	else if (file[0] == 'S')
 	{
+		game->south_texture = NULL;
 		game->south_texture = get_file_texture(file);
-		if (!game->south_texture)
+		if (game->south_texture == NULL)
 			return (-1);
 	}
 	return (0);
@@ -40,14 +44,16 @@ int	textures_w_e(t_game_data *game, char *file)
 		return (-1);
 	if (file[0] == 'W')
 	{
+		game->west_texture = NULL;
 		game->west_texture = get_file_texture(file);
-		if (!game->west_texture)
+		if (game->west_texture == NULL)
 			return (-1);
 	}
 	else if (file[0] == 'E')
 	{
+		game->east_texture = NULL;
 		game->east_texture = get_file_texture(file);
-		if (!game->east_texture)
+		if (game->east_texture == NULL)
 			return (-1);
 	}
 	return (0);

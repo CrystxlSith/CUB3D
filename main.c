@@ -120,7 +120,6 @@ int	main(int argc, char *argv[])
 	image_init(&game);
 	mlx_hook(game.win, 2, 1L << 0, handle_input, &game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
-
 	mlx_loop(game.mlx);
 	// mlx_hook(game.win, 17, 0, end, data);
 	// mlx_hook(game.win, 12, 32768, make_mouv, data);
