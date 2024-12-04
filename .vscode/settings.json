@@ -61,6 +61,7 @@
     "array": "c",
     "string": "c",
     "string_view": "c",
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "iostream": "cpp"
   }
 }

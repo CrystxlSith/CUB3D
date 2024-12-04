@@ -69,7 +69,7 @@ void	digital_differential_analyzer(t_game_data *game, int x)
 			game->player.mapY += game->raycast.stepY;
 			game->raycast.side = 1;
 		} 
-		if (game->map[game->player.mapX][game->player.mapY] > 0)
+		if (game->map[game->player.mapX][game->player.mapY] == '1')
 			game->raycast.hit = 1;
 	}
 	if (game->raycast.side == 0)

@@ -49,9 +49,9 @@ void    game_data_init(t_game_data *game)
     static char *map[] = {
         "11111111111111111111",
         "10000000001000000001",
-        "1P001111001001111001",
+        "10001111001001111001",
         "10001001000001001001",
-        "10000000000000000001",
+        "100000000P0000000001",
         "10001001000001001001",
         "10001111001001111001",
         "10000000001000000001",
@@ -60,7 +60,7 @@ void    game_data_init(t_game_data *game)
         "10000000001000000001",
         "10001111001001111001",
         "10001001000001001001",
-        "10000000000000P00001",
+        "10000000000000000001",
         "11111111111111111111",
         NULL                   
     };
@@ -74,6 +74,8 @@ void    game_data_init(t_game_data *game)
             {
                 game->player.x = i + 0.5;
                 game->player.y = j + 0.5;
+                game->raycast.posX = i + 0.5;
+                game->raycast.posY = j + 0.5;
                 break ;
             }
             j++;
@@ -81,12 +83,6 @@ void    game_data_init(t_game_data *game)
         i++;
     }
     init_game(game);
-
-        // game->bpp = 64;
-    // game->endian = 0;
-    // game->line_length = 2560;
-    // ft_printf("bpp = %d\n", game->bpp);
-printf("Player initialized at: x = %.2f, y = %.2f\n", game->player.x, game->player.y);
-printf("Direction initialized: dirX = %d, dirY = %d\n", game->raycast.dirX, game->raycast.dirY);
-
+    printf("Player initialized at: x = %.2f, y = %.2f\n", game->player.x, game->player.y);
+    printf("Direction initialized: dirX = %d, dirY = %d\n", game->raycast.dirX, game->raycast.dirY);
 }

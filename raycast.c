@@ -47,8 +47,6 @@ void    raycalculate(t_game_data *game, int x)
 {
     game->player.mapX = (int)game->player.x;
     game->player.mapY = (int)game->player.y;
-    game->raycast.posX = game->player.x;
-    game->raycast.posY = game->player.y;
     if (game->player.mapY < 0 || game->player.mapY >= SCREEN_HEIGHT || game->player.mapX < 0 || game->player.mapX >= SCREEN_WIDTH)
     {
         printf("mapX = %d, mapY = %d\n", game->player.mapX, game->player.mapY);
