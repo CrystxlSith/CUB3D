@@ -40,23 +40,6 @@ void	turn_left(t_game_data *game, double rotation_speed)
 	double	old_planeX;
 
 	old_dirX = game->raycast.dirX;
-	game->raycast.dirX = game->raycast.dirX * cos(rotation_speed) - \
-	game->raycast.dirY * sin(rotation_speed);
-	game->raycast.dirY = old_dirX * sin(rotation_speed) + \
-	game->raycast.dirY * cos(rotation_speed);
-	old_planeX = game->raycast.planeX;
-	game->raycast.planeX = game->raycast.planeX * cos(rotation_speed) - \
-	game->raycast.planeY * sin(rotation_speed);
-	game->raycast.planeY = old_planeX * sin(rotation_speed) + \
-	game->raycast.planeY * cos(rotation_speed);
-}
-
-void    turn_right(t_game_data *game, double rotation_speed)
-{
-	double	old_dirX;
-	double	old_planeX;
-
-	old_dirX = game->raycast.dirX;
 	game->raycast.dirX = game->raycast.dirX * cos(-rotation_speed) - \
 	game->raycast.dirY * sin(-rotation_speed);
 	game->raycast.dirY = old_dirX * sin(-rotation_speed) + \
@@ -66,6 +49,23 @@ void    turn_right(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * sin(-rotation_speed);
 	game->raycast.planeY = old_planeX * sin(-rotation_speed) + \
 	game->raycast.planeY * cos(-rotation_speed);
+}
+
+void    turn_right(t_game_data *game, double rotation_speed)
+{
+	double	old_dirX;
+	double	old_planeX;
+
+	old_dirX = game->raycast.dirX;
+	game->raycast.dirX = game->raycast.dirX * cos(rotation_speed) - \
+	game->raycast.dirY * sin(rotation_speed);
+	game->raycast.dirY = old_dirX * sin(rotation_speed) + \
+	game->raycast.dirY * cos(rotation_speed);
+	old_planeX = game->raycast.planeX;
+	game->raycast.planeX = game->raycast.planeX * cos(rotation_speed) - \
+	game->raycast.planeY * sin(rotation_speed);
+	game->raycast.planeY = old_planeX * sin(rotation_speed) + \
+	game->raycast.planeY * cos(rotation_speed);
 }
 
 void    move_front(t_game_data *game, double moveSpeed)
