@@ -28,7 +28,7 @@ int	textures_n_s(t_game_data *game, char *file)
 		if (game->north_texture == NULL)
 			return (-1);
 	}
-	else if (file[0] == 'S')
+	if (file[0] == 'S')
 	{
 		game->south_texture = NULL;
 		game->south_texture = get_file_texture(file);
@@ -49,7 +49,7 @@ int	textures_w_e(t_game_data *game, char *file)
 		if (game->west_texture == NULL)
 			return (-1);
 	}
-	else if (file[0] == 'E')
+	if (file[0] == 'E')
 	{
 		game->east_texture = NULL;
 		game->east_texture = get_file_texture(file);
@@ -78,11 +78,21 @@ int	get_textures(t_game_data *game, char **file)
 	while (file[i])
 	{
 		if (textures(game, file[i]) == -1)
-			return (ft_putstr_fd("Wrong textures\n", 2), -1);
+			return (ft_putstr_fd("Invalid textures\n", 2), -1);
+		else if (get_colors(game, file[i]) == -1)
+			return (ft_putstr_fd("Invalid colors\n", 2), -1);
 		i++;
 	}
 	if (!game->north_texture || !game->south_texture
 		|| !game->west_texture || !game->east_texture)
-		return (ft_putstr_fd("Wrong textures\n", 2), -1);
+		return (ft_putstr_fd("Invalid textures\n", 2), -1);
+	else if (!game->ceiling_color || !game->floor_color)
+		return (ft_putstr_fd("Invalid colors\n", 2), -1);
+	printf("game->north_texture : %s\n", game->north_texture);
+	printf("game->south_texture : %s\n", game->south_texture);
+	printf("game->west_texture : %s\n", game->west_texture);
+	printf("game->east_texture : %s\n", game->east_texture);
+	printf("game->floor_color : %s\n", game->floor_color);
+	printf("game->ceiling_color : %s\n", game->ceiling_color);
 	return (0);
 }
