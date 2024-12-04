@@ -1,20 +1,20 @@
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	decide_wall_color(t_game_data *game, int *color)
 {
 	if (game->raycast.side == 0)
 	{
 		if (game->raycast.stepX > 0)
-			*color = rgbBLUE;
+			*color = RGBBLUE;
 		else
-			*color = rgbDEFAULT;
+			*color = RGBDEFAULT;
 	}
 	else
 	{
 		if (game->raycast.stepY > 0)
-			*color = rgbRED;
+			*color = RGBRED;
 		else
-			*color = rgbGREEN;
+			*color = RGBGREEN;
 	}
 	if (game->raycast.side == 1)
 		*color = *color / 2;

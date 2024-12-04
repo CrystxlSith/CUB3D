@@ -10,10 +10,10 @@
 # define MAP_WIDTH 10
 # define PI 3.14159265359
 
-# define rgbRED 0xFF0000
-# define rgbGREEN 0x00FF00
-# define rgbBLUE 0x0000FF
-# define rgbDEFAULT 0xFFFF00 // Jaune
+# define RGBRED 0xFF0000
+# define RGBGREEN 0x00FF00
+# define RGBBLUE 0x0000FF
+# define RGBDEFAULT 0xFFFF00 // Jaune
 
 
 # include "../mlx/mlx.h"
@@ -34,7 +34,6 @@
 //    int  g;
 //    int  b;
 // } t_colorRGB;
-
 
 typedef struct s_ray
 {
@@ -76,6 +75,12 @@ typedef struct s_game_data
 	double		frameTime;
 	double		moveSpeed;
 	double		rotSpeed;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	char		*floor_color;
+	char		*ceiling_color;
 	char		**map;
 	char		**file;
 	void		*mlx;
@@ -122,6 +127,8 @@ int		count_lines_map(char **file, int index);
 char	**get_map(char **file, int index);
 int		map_length(int index, char **input);
 void	free_everything(char **s);
-
+char	*get_file_texture(char *file);
+int		textures(t_game_data *game, char *file);
+int		get_textures(t_game_data *game, char **file);
 
 #endif

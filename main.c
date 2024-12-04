@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
 void	ft_mlx_init(t_game_data *game)
 {

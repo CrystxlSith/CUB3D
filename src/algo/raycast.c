@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void draw_line(t_game_data *game, int x, int start, int end, int color)
 {
