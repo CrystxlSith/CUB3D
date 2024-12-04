@@ -157,10 +157,10 @@ int main(int argc, char const *argv[])
 	game_data_init(&game);
 	image_init(&game);
 	// draw_map(&game);
-	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game);
 	mlx_hook(game.win, 33, 1L << 17, &close_game, &game);
 	mlx_hook(game.win, 3, 1L << 1, &input_release, &game);
+	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_do_sync(game.mlx);
 	mlx_loop(game.mlx);
 	// mlx_hook(game.win, 17, 0, end, data);
