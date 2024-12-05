@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_north.xpm
+SO /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_south.xpm
+WE /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_west.xpm
+EA /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_east.xpm
 
 F 220,100,0
 C 225,30,0

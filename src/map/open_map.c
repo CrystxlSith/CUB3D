@@ -24,7 +24,6 @@ int	fill_map_struct(t_game_data *game, char **av)
 	if (map_check(game->map) == FALSE)
 		return (free_everything(game->map), free_everything(game->file), -1);
 	init_game(game);
-	exit(0);
 	return (0);
 }
 
