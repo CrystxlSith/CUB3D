@@ -14,8 +14,8 @@ void    init_game(t_game_data *game)
 {
     game->player.old_x = 0; // Player previous position
     game->player.old_y = 0;
-    game->raycast.dirX = -1; // Initial vector direction
-    game->raycast.dirY = 0;
+    game->raycast.dirX = -1.0; // Initial vector direction
+    game->raycast.dirY = 0.0;
     game->raycast.planeX = 0; // 2D raycaster of camera plane
     game->raycast.planeY = 0.66; 
     game->raycast.deltaDistX = 0;
@@ -36,6 +36,7 @@ void    init_game(t_game_data *game)
     game->key.turn_left = 0;
     game->key.turn_right = 0;
     game->key.escape = 0;
+    printf("dirX: %.2f, dirY: %.2f\n", game->raycast.dirX, game->raycast.dirY);
 
 }
 

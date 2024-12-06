@@ -34,7 +34,7 @@ void    ft_mlx_init(t_game_data *game)
 	}
 }
 
-void	turn_left(t_game_data *game, double rotation_speed)
+void	turn_right(t_game_data *game, double rotation_speed)
 {
 	double	old_dirX;
 	double	old_planeX;
@@ -51,7 +51,7 @@ void	turn_left(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * cos(-rotation_speed);
 }
 
-void    turn_right(t_game_data *game, double rotation_speed)
+void    turn_left(t_game_data *game, double rotation_speed)
 {
 	double	old_dirX;
 	double	old_planeX;
@@ -59,8 +59,10 @@ void    turn_right(t_game_data *game, double rotation_speed)
 	old_dirX = game->raycast.dirX;
 	game->raycast.dirX = game->raycast.dirX * cos(rotation_speed) - \
 	game->raycast.dirY * sin(rotation_speed);
+	printf("dirX: %.2f\n", game->raycast.dirX);	
 	game->raycast.dirY = old_dirX * sin(rotation_speed) + \
 	game->raycast.dirY * cos(rotation_speed);
+	printf("dirY: %.2f\n", game->raycast.dirY);
 	old_planeX = game->raycast.planeX;
 	game->raycast.planeX = game->raycast.planeX * cos(rotation_speed) - \
 	game->raycast.planeY * sin(rotation_speed);
@@ -106,13 +108,13 @@ int handle_input(int keycode, t_game_data *game)
 {
 	if (keycode == XK_Escape)
 		game->key.escape = 1;
-	else if (keycode == 119)
+	else if (keycode == XK_z)
 		game->key.forward = 1;
-	else if (keycode == 115)
+	else if (keycode == XK_s)
 		game->key.backward = 1;
-	else if (keycode == 97)
+	else if (keycode == XK_q)
 		game->key.turn_left = 1;
-	else if (keycode == 100)
+	else if (keycode == XK_d)
 		game->key.turn_right = 1;
 	printf("Key pressed: %d\n", keycode);
 	// update_player(game);
@@ -122,13 +124,13 @@ int handle_input(int keycode, t_game_data *game)
 
 int input_release(int keycode, t_game_data *game)
 {
-	if (keycode == 119)
+	if (keycode == XK_z)
 		game->key.forward = 0;
-	else if (keycode == 115)
+	else if (keycode == XK_s)
 		game->key.backward = 0;
-	else if (keycode == 97)
+	else if (keycode == XK_q)
 		game->key.turn_left = 0;
-	else if (keycode == 100)
+	else if (keycode == XK_d)
 		game->key.turn_right = 0;
 	return (0);
 }

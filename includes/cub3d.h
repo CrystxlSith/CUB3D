@@ -50,8 +50,8 @@ typedef struct s_ray
 	double  perpWallDist;
 	double  time;
 	double  oldTime;
-	int     dirX;
-	int     dirY;
+	double     dirX;
+	double     dirY;
 	int     stepX; // Step direction (-1 or 1)
 	int     stepY;
 	int     hit; // Hit a wall
