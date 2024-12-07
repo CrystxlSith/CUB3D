@@ -78,7 +78,6 @@ void	draw_player(t_game_data *game, double x, double y, int radius, int color)
 
 void update_player(t_game_data *game)
 {
-	printf("dirX: %.2f, dirY: %.2f\n", game->raycast.dirX, game->raycast.dirY);
 	if (game->key.escape)
 		exit(0);
 	else if (game->key.forward)
@@ -89,11 +88,6 @@ void update_player(t_game_data *game)
 		turn_left(game, 0.1);
 	else if (game->key.turn_right)
 		turn_right(game, 0.1);
-	else
-		printf("No key pressed.\n");
-
-	// mlx_do_sync(game->mlx);
-	printf("Player position: x = %.2f, y = %.2f\n", game->player.x, game->player.y);
 }
 int    render_frame(t_game_data *game)
 {

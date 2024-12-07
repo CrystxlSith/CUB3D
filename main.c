@@ -59,10 +59,8 @@ void    turn_left(t_game_data *game, double rotation_speed)
 	old_dirX = game->raycast.dirX;
 	game->raycast.dirX = game->raycast.dirX * cos(rotation_speed) - \
 	game->raycast.dirY * sin(rotation_speed);
-	printf("dirX: %.2f\n", game->raycast.dirX);	
 	game->raycast.dirY = old_dirX * sin(rotation_speed) + \
 	game->raycast.dirY * cos(rotation_speed);
-	printf("dirY: %.2f\n", game->raycast.dirY);
 	old_planeX = game->raycast.planeX;
 	game->raycast.planeX = game->raycast.planeX * cos(rotation_speed) - \
 	game->raycast.planeY * sin(rotation_speed);
