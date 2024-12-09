@@ -45,10 +45,15 @@ typedef struct s_ray
 	double  oldTime;
 	double     dirX;
 	double     dirY;
-	int     stepX; // Step direction (-1 or 1)
+	int     	stepX; // Step direction (-1 or 1)
 	int     stepY;
 	int     hit; // Hit a wall
 	int     side; // Where the wall is hit
+	int     texNum; // Texture number
+	double	wallX;	// X coordinate of the wall
+	int		texX;	// X coordinate of the texture
+	int		texY;	// Y coordinate of the texture
+	int     line_height;
 } t_ray;
 
 typedef struct s_key
@@ -71,6 +76,16 @@ typedef struct s_player
 	double  angle; // Player angle
 } t_player;
 
+typedef struct s_texture
+{
+    void	*img;
+    char	*addr;
+    int		width;
+    int		height;
+    int		bpp;
+    int		line_length;
+    int		endian;
+}				t_texture;
 
 typedef struct s_game_data
 {
@@ -101,6 +116,7 @@ typedef struct s_game_data
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
+    t_texture	textures[4]; // Tableau de textures
 }				t_game_data;
 
 //Algo
@@ -118,6 +134,8 @@ void    turn_right(t_game_data *game, double rotation_speed);
 void	turn_left(t_game_data *game, double rotation_speed);
 void 	update_player(t_game_data *game);
 void    init_game(t_game_data *game);
+void	draw_raycast(t_game_data *game, int x);
+
 //Exec
 int	map_check(t_game_data *game);
 int	check_lines(t_game_data *game);

@@ -19,6 +19,38 @@ void	draw_line(t_game_data *game, int x, int start, int end, int color)
 	}
 }
 
+void	texture_number(t_game_data *game)
+{
+   if (game->raycast.side == 0)
+    {
+        if (game->raycast.rayDirX > 0)
+            game->raycast.texNum = 0; // Mur nord
+        else
+            game->raycast.texNum = 1; // Mur sud
+    }
+    else
+    {
+        if (game->raycast.rayDirY > 0)
+            game->raycast.texNum = 2; // Mur ouest
+        else
+            game->raycast.texNum = 3; // Mur est
+    }
+}
+
+void	texture_calculation(t_game_data *game)
+{
+	if (game->raycast.side == 0)
+		game->raycast.wallX = game->raycast.posY + game->raycast.perpWallDist * game->raycast.rayDirY;
+	else
+		game->raycast.wallX = game->raycast.posX + game->raycast.perpWallDist * game->raycast.rayDirX;
+	game->raycast.wallX -= floor(game->raycast.wallX);
+	game->raycast.texX = (int)(game->raycast.wallX * (double)game->textures[game->raycast.texNum].width);
+	if (game->raycast.side == 0 && game->raycast.rayDirX > 0)
+		game->raycast.texX = game->textures[game->raycast.texNum].width - game->raycast.texX - 1;
+	if (game->raycast.side == 1 && game->raycast.rayDirY < 0)
+		game->raycast.texX = game->textures[game->raycast.texNum].width - game->raycast.texX - 1;
+}
+
 void	step_dist(t_game_data *game)
 {
 	if (game->raycast.rayDirX < 0)
@@ -47,14 +79,6 @@ void	raycalculate(t_game_data *game, int x)
 {
 	game->player.mapX = (int)game->player.x;
 	game->player.mapY = (int)game->player.y;
-	// game->raycast.posX = game->player.x;
-	// game->raycast.posY = game->player.y;
-	if (game->player.mapY < 0 || game->player.mapY >= SCREEN_HEIGHT || game->player.mapX < 0 || game->player.mapX >= SCREEN_WIDTH)
-	{
-		printf("mapX = %d, mapY = %d\n", game->player.mapX, game->player.mapY);
-		printf("Error: Out of bounds map access.\n");
-		exit(1);
-	}
 	if (game->raycast.rayDirX == 0)
 		game->raycast.deltaDistX = 1e30; // Avoid division per 0
 	else
@@ -65,6 +89,9 @@ void	raycalculate(t_game_data *game, int x)
 		game->raycast.deltaDistY = fabs(1 / game->raycast.rayDirY);
 	step_dist(game);
 	digital_differential_analyzer(game, x);
+	texture_number(game);
+	texture_calculation(game);
+	draw_raycast(game, x);
 }
 
 

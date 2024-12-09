@@ -50,12 +50,10 @@ void	draw_circle(t_game_data *game, int center_x, int center_y, int radius, int 
 {
 	int	x,	y;
 
-	// Parcourir un carré englobant tout le cercle
 	for (y = -radius; y <= radius; y++)
 	{
 		for (x = -radius; x <= radius; x++)
 		{
-			// Vérifier si le pixel (x, y) est dans le cercle
 			if ((x * x) + (y * y) <= (radius * radius))
 			{
 				my_mlx_pixel_put(game, center_x + x, center_y + y, color); // Placer le pixel
@@ -96,7 +94,6 @@ int	render_frame(t_game_data *game)
 	mlx_clear_window(game->mlx, game->win);
 	update_player(game);
 	raycasting(game);
-	printf("Updated dirX: %.2f, dirY: %.2f\n", game->raycast.dirX, game->raycast.dirY);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img);
 	// mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);

@@ -97,8 +97,6 @@ int handle_input(int keycode, t_game_data *game)
 		game->key.turn_left = 1;
 	else if (keycode == XK_d)
 		game->key.turn_right = 1;
-	printf("Key pressed: %d\n", keycode);
-	// update_player(game);
 	return (0);
 }
 
@@ -130,7 +128,6 @@ int	main(int argc, char *argv[])
 	ft_mlx_init(&game);
 	if (fill_map_struct(&game, argv) == -1)
 		return (0);
-	printf("X: %.2f, Y: %.2f\n", game.player.x, game.player.x);
 	image_init(&game);
 	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game);
 	mlx_hook(game.win, 33, 1L << 17, &close_game, &game);
