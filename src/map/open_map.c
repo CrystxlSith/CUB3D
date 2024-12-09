@@ -21,7 +21,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 	game->map = get_map(game->file, index);
 	if (!game->map)
 		return (free_everything(game->file), -1);
-	if (map_check(game->map) == FALSE)
+	if (map_check(game) == FALSE)
 		return (free_everything(game->map), free_everything(game->file), -1);
 	init_game(game);
 	return (0);

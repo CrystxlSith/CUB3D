@@ -76,7 +76,7 @@ void	draw_player(t_game_data *game, double x, double y, int radius, int color)
 	draw_circle(game, draw_x, draw_y, radius, color);
 }
 
-void update_player(t_game_data *game)
+void	update_player(t_game_data *game)
 {
 	if (game->key.escape)
 		exit(0);
@@ -89,7 +89,7 @@ void update_player(t_game_data *game)
 	else if (game->key.turn_right)
 		turn_right(game, 0.1);
 }
-int    render_frame(t_game_data *game)
+int	render_frame(t_game_data *game)
 {
 	game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
 	game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, &game->line_length, &game->endian);

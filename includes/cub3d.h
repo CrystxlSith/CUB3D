@@ -119,14 +119,14 @@ void	turn_left(t_game_data *game, double rotation_speed);
 void 	update_player(t_game_data *game);
 void    init_game(t_game_data *game);
 //Exec
-int		map_check(char **input);
-int		check_lines(char **map);
+int	map_check(t_game_data *game);
+int	check_lines(t_game_data *game);
 int		count_lines(int fd);
 int		check_file(char *input);
 int		map_width(int index, char **input);
 int		count_words(char *input);
 int		check_walls(int width, int index, char **map);
-int		check_start(char **map);
+int	check_start(t_game_data *game);
 int		check_filling(char **map);
 char	*open_file(char **av);
 int		fill_map_struct(t_game_data *game, char **av);

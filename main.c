@@ -51,7 +51,7 @@ void    turn_left(t_game_data *game, double rotation_speed)
 	game->raycast.planeY * cos(rotation_speed);
 }
 
-void    move_front(t_game_data *game, double moveSpeed)
+void	move_front(t_game_data *game, double moveSpeed)
 {
 	double newposX = game->player.x + game->raycast.dirX * moveSpeed;
 	double newposY = game->player.y + game->raycast.dirY * moveSpeed;
@@ -102,7 +102,6 @@ int handle_input(int keycode, t_game_data *game)
 	return (0);
 }
 
-
 int input_release(int keycode, t_game_data *game)
 {
 	if (keycode == XK_z)
@@ -131,6 +130,7 @@ int	main(int argc, char *argv[])
 	ft_mlx_init(&game);
 	if (fill_map_struct(&game, argv) == -1)
 		return (0);
+	printf("X: %.2f, Y: %.2f\n", game.player.x, game.player.x);
 	image_init(&game);
 	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game);
 	mlx_hook(game.win, 33, 1L << 17, &close_game, &game);
