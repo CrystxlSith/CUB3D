@@ -1,7 +1,7 @@
-NO /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_north.xpm
-SO /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_south.xpm
-WE /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_west.xpm
-EA /sgoinfre/goinfre/Perso/agiliber/42cursus/Cercle_4/Cub3D/ForkCubAGT/textures/star_wars_wall_east.xpm
+NO textures/Cloth_14-512x512.xpm
+SO textures/Cloth_21-512x512.xpm
+WE textures/Stone_13-512x512.xpm
+EA textures/Stone_21-512x512.xpm
 
 F 220,100,0
 C 225,30,0
