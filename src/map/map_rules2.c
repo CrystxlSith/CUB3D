@@ -17,8 +17,10 @@ int	check_start(t_game_data *game)
 			if (game->map[index_x][index_y] == 'N' || game->map[index_x][index_y] == 'S'
 				|| game->map[index_x][index_y] == 'E' || game->map[index_x][index_y] == 'W')
 			{
-				game->player.x = index_x;
-				game->player.y = index_y;
+				game->player.x = index_x + 0.5;
+				game->player.y = index_y + 0.5;
+				game->raycast.posX = index_x + 0.5;
+				game->raycast.posY = index_y + 0.5;
 				count++;
 			}
 			index_y++;
