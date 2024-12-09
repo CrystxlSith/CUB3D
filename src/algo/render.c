@@ -14,7 +14,7 @@ void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color)
 
 void draw_square(t_game_data *game, int x, int y, int size, int color)
 {
-	int i, j;
+	int	i,	j;
 
 	for (i = 0; i < size; i++) // Hauteur du carré
 	{
@@ -23,10 +23,10 @@ void draw_square(t_game_data *game, int x, int y, int size, int color)
 	}
 }
 
-void    draw_map(t_game_data *game)
+void	draw_map(t_game_data *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -48,7 +48,7 @@ void    draw_map(t_game_data *game)
 
 void	draw_circle(t_game_data *game, int center_x, int center_y, int radius, int color)
 {
-	int x, y;
+	int	x,	y;
 
 	// Parcourir un carré englobant tout le cercle
 	for (y = -radius; y <= radius; y++)
@@ -66,8 +66,8 @@ void	draw_circle(t_game_data *game, int center_x, int center_y, int radius, int 
 
 void	draw_player(t_game_data *game, double x, double y, int radius, int color)
 {
-	int draw_x;
-	int draw_y;
+	int	draw_x;
+	int	draw_y;
 
 	// Calculer la position de dessin
 	draw_x = (x * CELL_SIZE) + (CELL_SIZE / 2);
