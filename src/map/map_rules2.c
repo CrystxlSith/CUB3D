@@ -1,6 +1,6 @@
 #include "../../includes/cub3d.h"
 
-int	check_start(char **map)
+int	check_start(t_game_data *game)
 {
 	int	index_x;
 	int	index_y;
@@ -9,14 +9,20 @@ int	check_start(char **map)
 	index_x = 0;
 	index_y = 0;
 	count = 0;
-	while (map[index_x])
+	while (game->map[index_x])
 	{
 		index_y = 0;
-		while (map[index_x][index_y])
+		while (game->map[index_x][index_y])
 		{
-			if (map[index_x][index_y] == 'N' || map[index_x][index_y] == 'S'
-				|| map[index_x][index_y] == 'E' || map[index_x][index_y] == 'W')
+			if (game->map[index_x][index_y] == 'N' || game->map[index_x][index_y] == 'S'
+				|| game->map[index_x][index_y] == 'E' || game->map[index_x][index_y] == 'W')
+			{
+				game->player.x = index_x + 0.5;
+				game->player.y = index_y + 0.5;
+				game->raycast.posX = index_x + 0.5;
+				game->raycast.posY = index_y + 0.5;
 				count++;
+			}
 			index_y++;
 		}
 		index_x++;

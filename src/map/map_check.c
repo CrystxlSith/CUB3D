@@ -1,30 +1,28 @@
 #include "../../includes/cub3d.h"
 
-int	map_check(char **input)
+int	map_check(t_game_data *game)
 {
-	if (check_lines(input) == FALSE)
+	if (check_lines(game) == FALSE)
 		return (FALSE);
-	// if (!flood_fill(input))
-	// 	return (FALSE);
 	return (TRUE);
 }
 
-int	check_lines(char **map)
+int	check_lines(t_game_data *game)
 {
 	int	index;
 	int	width;
 
 	index = 0;
-	while (map[index])
+	while (game->map[index])
 	{
-		width = map_width(index, map);
-		if (check_walls(width, index, map) == FALSE)
+		width = map_width(index, game->map);
+		if (check_walls(width, index, game->map) == FALSE)
 			return (ft_putstr_fd("Error\nWall Error\n", 2), FALSE);
 		index++;
 	}
-	if (check_start(map) == FALSE)
+	if (check_start(game) == FALSE)
 		return (ft_putstr_fd("Error\nStart Error\n", 2), FALSE);
-	if (check_filling(map) == FALSE)
+	if (check_filling(game->map) == FALSE)
 		return (ft_putstr_fd("Error\nFilling Error\n", 2), FALSE);
 	return (TRUE);
 }
