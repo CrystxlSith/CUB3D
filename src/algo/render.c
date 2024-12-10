@@ -94,6 +94,7 @@ int	render_frame(t_game_data *game)
 	mlx_clear_window(game->mlx, game->win);
 	update_player(game);
 	raycasting(game);
+	fps_count(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img);
 	// mlx_put_image_to_window(game->mlx, game->win, game->player_img, 0, 0);

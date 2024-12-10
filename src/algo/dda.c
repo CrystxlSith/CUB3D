@@ -31,10 +31,11 @@ static void	verLine(t_game_data *game, int x, int start, int end)
 		my_mlx_pixel_put(game, x, start, color);
 		start++;
 	}
-	
+
 }
 
-
+//Ajouter une variable "pitch" pour apporter une vision de haut et bas
+//Ajouter une variable "jump" pour changer la niveau vertical de vision
 void	draw_raycast(t_game_data *game, int x)
 {
 	int	draw_start;
@@ -68,7 +69,7 @@ void	digital_differential_analyzer(t_game_data *game, int x)
 			game->raycast.sideDistY += game->raycast.deltaDistY;
 			game->player.mapY += game->raycast.stepY;
 			game->raycast.side = 1;
-		} 
+		}
 		if (game->map[game->player.mapX][game->player.mapY] == '1')
 			game->raycast.hit = 1;
 	}

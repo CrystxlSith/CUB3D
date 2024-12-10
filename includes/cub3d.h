@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define FLOOR_HORIZONTAL 1
 # define TRUE 1
 # define FALSE 0
 # define CELL_SIZE 32
@@ -27,33 +28,37 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
+# include <sys/time.h>
 
 typedef struct s_ray
 {
-	double  rayDirX;
-	double  rayDirY;
-	double  planeX;
-	double  planeY;
-	double  deltaDistX; // Distance to go through 1 case
-	double  deltaDistY;
-	double  sideDistX;
-	double  sideDistY;
-	double  posX; // Position of the ray
-	double  posY;
-	double  perpWallDist;
-	double  time;
-	double  oldTime;
-	double     dirX;
-	double     dirY;
-	int     	stepX; // Step direction (-1 or 1)
-	int     stepY;
-	int     hit; // Hit a wall
-	int     side; // Where the wall is hit
-	int     texNum; // Texture number
+	double	rayDirX;
+	double	rayDirY;
+	double	planeX;
+	double	planeY;
+	double	deltaDistX; // Distance to go through 1 case
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	double	posX; // Position of the ray
+	double	posY;
+	double	posZ;
+	double	perpWallDist;
+	double	time;
+	double	oldTime;
+	double	delta_time;
+	double	dirX;
+	double	dirY;
+	double	pitch;
+	int		stepX; // Step direction (-1 or 1)
+	int		stepY;
+	int		hit; // Hit a wall
+	int		side; // Where the wall is hit
+	int		texNum; // Texture number
 	double	wallX;	// X coordinate of the wall
 	int		texX;	// X coordinate of the texture
 	int		texY;	// Y coordinate of the texture
-	int     line_height;
+	int		line_height;
 } t_ray;
 
 typedef struct s_key
@@ -135,16 +140,18 @@ void	turn_left(t_game_data *game, double rotation_speed);
 void 	update_player(t_game_data *game);
 void    init_game(t_game_data *game);
 void	draw_raycast(t_game_data *game, int x);
+void	fps_count(t_game_data *game);
+double	get_time_in_seconds(void);
 
 //Exec
-int	map_check(t_game_data *game);
-int	check_lines(t_game_data *game);
+int		map_check(t_game_data *game);
+int		check_lines(t_game_data *game);
 int		count_lines(int fd);
 int		check_file(char *input);
 int		map_width(int index, char **input);
 int		count_words(char *input);
 int		check_walls(int width, int index, char **map);
-int	check_start(t_game_data *game);
+int		check_start(t_game_data *game);
 int		check_filling(char **map);
 char	*open_file(char **av);
 int		fill_map_struct(t_game_data *game, char **av);
