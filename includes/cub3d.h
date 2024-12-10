@@ -28,6 +28,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
+# include <sys/time.h>
 
 typedef struct s_ray
 {
@@ -45,6 +46,7 @@ typedef struct s_ray
 	double	perpWallDist;
 	double	time;
 	double	oldTime;
+	double	delta_time;
 	double	dirX;
 	double	dirY;
 	double	pitch;
@@ -138,16 +140,18 @@ void	turn_left(t_game_data *game, double rotation_speed);
 void 	update_player(t_game_data *game);
 void    init_game(t_game_data *game);
 void	draw_raycast(t_game_data *game, int x);
+void	fps_count(t_game_data *game);
+double	get_time_in_seconds(void);
 
 //Exec
-int	map_check(t_game_data *game);
-int	check_lines(t_game_data *game);
+int		map_check(t_game_data *game);
+int		check_lines(t_game_data *game);
 int		count_lines(int fd);
 int		check_file(char *input);
 int		map_width(int index, char **input);
 int		count_words(char *input);
 int		check_walls(int width, int index, char **map);
-int	check_start(t_game_data *game);
+int		check_start(t_game_data *game);
 int		check_filling(char **map);
 char	*open_file(char **av);
 int		fill_map_struct(t_game_data *game, char **av);

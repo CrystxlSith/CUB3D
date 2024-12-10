@@ -43,7 +43,8 @@ void	init_game(t_game_data *game)
 	game->raycast.stepY = 0;
 	game->raycast.side = 0;
 	game->raycast.time = 0;
-	game->raycast.oldTime = 0;
+	game->raycast.oldTime = get_time_in_seconds();
+	game->raycast.delta_time = 1.0 / 60.0;
 	game->raycast.pitch = 0;
 	game->raycast.rayDirX = 0;
 	game->raycast.rayDirY = 0;

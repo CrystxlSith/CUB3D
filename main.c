@@ -53,9 +53,13 @@ void	turn_left(t_game_data *game, double rotation_speed)
 
 void	move_front(t_game_data *game, double moveSpeed)
 {
-	double newposX = game->player.x + game->raycast.dirX * moveSpeed;
-	double newposY = game->player.y + game->raycast.dirY * moveSpeed;
+	double	newposX;
+	double	newposY;
+	double	new_speed;
 
+	new_speed = game->raycast.delta_time * moveSpeed * 60.0;
+	newposX = game->player.x + game->raycast.dirX * new_speed;
+	newposY = game->player.y + game->raycast.dirY * new_speed;
 	if (game->map[(int)newposX][(int)game->player.y] != '1')
 	{
 		game->player.x = newposX;
@@ -70,9 +74,13 @@ void	move_front(t_game_data *game, double moveSpeed)
 
 void	move_back(t_game_data *game, double moveSpeed)
 {
-	double newposX = game->player.x - game->raycast.dirX * moveSpeed;
-	double newposY = game->player.y - game->raycast.dirY * moveSpeed;
+	double	newposX;
+	double	newposY;
+	double	new_speed;
 
+	new_speed = game->raycast.delta_time * moveSpeed * 60.0;
+	newposX = game->player.x - game->raycast.dirX * new_speed;
+	newposY = game->player.y - game->raycast.dirY * new_speed;
 	if (game->map[(int)newposX][(int)game->player.y] != '1')
 	{
 		game->player.x = newposX;
@@ -121,7 +129,7 @@ int	close_game(t_game_data *game)
 
 int	handle_mouse_motion(int x, int y, t_game_data *game)
 {
-	static int	last_x; // Conserver la dernière position X de la souris
+	static int	last_x; //Conserver la dernière position X de la souris
 	int			delta_x;
 	double		rotation_speed;
 	double		old_dir_x;

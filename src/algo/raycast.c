@@ -21,20 +21,20 @@ void	draw_line(t_game_data *game, int x, int start, int end, int color)
 
 void	texture_number(t_game_data *game)
 {
-   if (game->raycast.side == 0)
-    {
-        if (game->raycast.rayDirX > 0)
-            game->raycast.texNum = 0; // Mur nord
-        else
-            game->raycast.texNum = 1; // Mur sud
-    }
-    else
-    {
-        if (game->raycast.rayDirY > 0)
-            game->raycast.texNum = 2; // Mur ouest
-        else
-            game->raycast.texNum = 3; // Mur est
-    }
+	if (game->raycast.side == 0)
+	{
+		if (game->raycast.rayDirX > 0)
+			game->raycast.texNum = 0; // Mur nord
+		else
+			game->raycast.texNum = 1; // Mur sud
+	}
+	else
+	{
+		if (game->raycast.rayDirY > 0)
+			game->raycast.texNum = 2; // Mur ouest
+		else
+			game->raycast.texNum = 3; // Mur est
+	}
 }
 
 void	texture_calculation(t_game_data *game)
