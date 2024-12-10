@@ -8,36 +8,29 @@ void	set_index(int index_x, int index_y, t_game_data *game)
 	game->raycast.posy = index_y + 0.5;
 }
 
-void	start_condition(int count, int index_x, int index_y, t_game_data *game)
-{
-	if (game->map[index_x][index_y] == 'N'
-		|| game->map[index_x][index_y] == 'S'
-		|| game->map[index_x][index_y] == 'E'
-		|| game->map[index_x][index_y] == 'W')
-	{
-		set_index(index_x, index_y, game);
-		count++;
-	}
-}
-
 int	check_start(t_game_data *game)
 {
-	int	index_x;
-	int	index_y;
+	int	x;
+	int	y;
 	int	count;
 
-	index_x = 0;
-	index_y = 0;
+	x = 0;
+	y = 0;
 	count = 0;
-	while (game->map[index_x])
+	while (game->map[x])
 	{
-		index_y = 0;
-		while (game->map[index_x][index_y])
+		y = 0;
+		while (game->map[x][y])
 		{
-			start_condition(count, index_x, index_y, game);
-			index_y++;
+			if (game->map[x][y] == 'N' || game->map[x][y] == 'S'
+				|| game->map[x][y] == 'E' || game->map[x][y] == 'W')
+			{
+				set_index(x, y, game);
+				count++;
+			}
+			y++;
 		}
-		index_x++;
+		x++;
 	}
 	if (count == 0 || count > 1)
 		return (FALSE);
