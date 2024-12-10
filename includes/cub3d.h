@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define FLOOR_HORIZONTAL 1
 # define TRUE 1
 # define FALSE 0
 # define CELL_SIZE 32
@@ -30,30 +31,32 @@
 
 typedef struct s_ray
 {
-	double  rayDirX;
-	double  rayDirY;
-	double  planeX;
-	double  planeY;
-	double  deltaDistX; // Distance to go through 1 case
-	double  deltaDistY;
-	double  sideDistX;
-	double  sideDistY;
-	double  posX; // Position of the ray
-	double  posY;
-	double  perpWallDist;
-	double  time;
-	double  oldTime;
-	double     dirX;
-	double     dirY;
-	int     	stepX; // Step direction (-1 or 1)
-	int     stepY;
-	int     hit; // Hit a wall
-	int     side; // Where the wall is hit
-	int     texNum; // Texture number
+	double	rayDirX;
+	double	rayDirY;
+	double	planeX;
+	double	planeY;
+	double	deltaDistX; // Distance to go through 1 case
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	double	posX; // Position of the ray
+	double	posY;
+	double	posZ;
+	double	perpWallDist;
+	double	time;
+	double	oldTime;
+	double	dirX;
+	double	dirY;
+	double	pitch;
+	int		stepX; // Step direction (-1 or 1)
+	int		stepY;
+	int		hit; // Hit a wall
+	int		side; // Where the wall is hit
+	int		texNum; // Texture number
 	double	wallX;	// X coordinate of the wall
 	int		texX;	// X coordinate of the texture
 	int		texY;	// Y coordinate of the texture
-	int     line_height;
+	int		line_height;
 } t_ray;
 
 typedef struct s_key
