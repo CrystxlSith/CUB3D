@@ -36,6 +36,7 @@ int	render_frame(t_game_data *game)
 	game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, \
 		&game->line_length, &game->endian);
 	mlx_clear_window(game->mlx, game->win);
+	draw_floor_and_ceiling(game);
 	update_player(game);
 	raycasting(game);
 	fps_count(game);
