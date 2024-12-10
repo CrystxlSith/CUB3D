@@ -11,11 +11,6 @@
 # define MAP_WIDTH 10
 # define PI 3.14159265359
 
-#define rgbRED 0xFF0000
-#define rgbGREEN 0x00FF00
-#define rgbBLUE 0x0000FF
-#define rgbDEFAULT 0xFFFF00 // Jaune
-
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
@@ -32,74 +27,71 @@
 
 typedef struct s_ray
 {
-	double	rayDirX;
-	double	rayDirY;
-	double	planeX;
-	double	planeY;
-	double	deltaDistX; // Distance to go through 1 case
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	double	posX; // Position of the ray
-	double	posY;
-	double	posZ;
-	double	perpWallDist;
+	double	raydirx;
+	double	raydiry;
+	double	planex;
+	double	planey;
+	double	deltadistx; // Distance to go through 1 case
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
+	double	posx;
+	double	posy;
+	double	posz;
+	double	perpwalldist;
 	double	time;
-	double	oldTime;
+	double	oldtime;
 	double	delta_time;
-	double	dirX;
-	double	dirY;
+	double	dirx;
+	double	diry;
 	double	pitch;
-	int		stepX; // Step direction (-1 or 1)
-	int		stepY;
-	int		hit; // Hit a wall
-	int		side; // Where the wall is hit
-	int		texNum; // Texture number
-	double	wallX;	// X coordinate of the wall
-	int		texX;	// X coordinate of the texture
-	int		texY;	// Y coordinate of the texture
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	int		texnum;
+	double	wallx;
+	int		texx;
+	int		texy;
 	int		line_height;
-} t_ray;
+}			t_ray;
 
 typedef struct s_key
 {
-	int     forward;
-	int     backward;
-	int     turn_left;
-	int     turn_right;
-	int     escape;
-} t_key;
+	int		forward;
+	int		backward;
+	int		turn_left;
+	int		turn_right;
+	int		escape;
+}			t_key;
 
 typedef struct s_player
 {
-	double  x; // Player EXACT position
-	double  y;
-	int     mapX; // Player position (1 or 0)
-	int     mapY;
-	double  old_x; // Player previous exact position
-	double  old_y;
-	double  angle; // Player angle
-} t_player;
+	double	x;
+	double	y;
+	int		mapx;
+	int		mapy;
+	double	old_x;
+	double	old_y;
+	double	angle;
+}			t_player;
 
 typedef struct s_texture
 {
-    void	*img;
-    char	*addr;
-    int		width;
-    int		height;
-    int		bpp;
-    int		line_length;
-    int		endian;
-}				t_texture;
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}			t_texture;
 
 typedef struct s_game_data
 {
-	int			bpp; // Bits per pixel
-	double		time; // Time of current frame
-	double		oldTime; // Time if previous frame
-	double		frameTime;
-	double		moveSpeed;
-	double		rotSpeed;
+	int			bpp;
+	double		movespeed;
+	double		rotspeed;
 	char		*north_texture;
 	char		*south_texture;
 	char		*west_texture;
@@ -121,52 +113,91 @@ typedef struct s_game_data
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
-    t_texture	textures[4]; // Tableau de textures
+	t_texture	textures[4];
 }				t_game_data;
 
-//Algo
-void    image_init(t_game_data *game);
-void    draw_map(t_game_data *game);
+// ----------------------------------------------------------------------
+// 									ALGO
+// ----------------------------------------------------------------------
+
+//draw.c
+void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
-void    game_data_init(t_game_data *game);
-int     render_frame(t_game_data *game);
-void    draw_player(t_game_data *game, double x, double y, int radius, int color);
-void    raycasting(t_game_data *game);
-void    digital_differential_analyzer(t_game_data *game, int x);
-void    move_back(t_game_data *game, double moveSpeed);
-void    move_front(t_game_data *game, double moveSpeed);
-void    turn_right(t_game_data *game, double rotation_speed);
-void	turn_left(t_game_data *game, double rotation_speed);
-void 	update_player(t_game_data *game);
-void    init_game(t_game_data *game);
-void	draw_raycast(t_game_data *game, int x);
+void	draw_player(t_game_data *game, double x, \
+	double y, int radius, int color);
+
+//render.c
+int		render_frame(t_game_data *game);
+void	update_player(t_game_data *game);
+
+//raycast.c
+void	raycasting(t_game_data *game);
+
+//raycast_utils.c
 void	fps_count(t_game_data *game);
 double	get_time_in_seconds(void);
 
-//Exec
+//dda.c
+void	draw_raycast(t_game_data *game, int x);
+void	digital_differential_analyzer(t_game_data *game, int x);
+
+// movement.c
+void	move_back(t_game_data *game, double movespeed);
+void	move_front(t_game_data *game, double movespeed);
+void	turn_right(t_game_data *game, double rotation_speed);
+void	turn_left(t_game_data *game, double rotation_speed);
+
+//handle_input.c
+int		handle_input(int keycode, t_game_data *game);
+int		input_release(int keycode, t_game_data *game);
+int		close_game(t_game_data *game);
+int		handle_mouse_motion(int x, int y, t_game_data *game);
+
+// init.c
+void	init_game(t_game_data *game);
+void	ft_mlx_init(t_game_data *game);
+void	image_init(t_game_data *game);
+void	image_init2(t_game_data *game);
+void	init_game2(t_game_data *game);
+
+// ----------------------------------------------------------------------
+// 									PARSING
+// ----------------------------------------------------------------------
+
+//open_map.c
+char	*open_file(char **av);
+int		fill_map_struct(t_game_data *game, char **av);
+int		get_map_index(char **file);
+int		count_lines_map(char **file, int index);
+char	**get_map(char **file, int index);
+
+//get_colors.c
+char	*get_file_color(char *file);
+int		get_colors(t_game_data *game, char *file);
+int		open_texture(char *texture);
+
+//get_textures.c
+int		get_textures(t_game_data *game, char **file);
+char	*get_file_texture(char *file);
+int		textures(t_game_data *game, char *file);
+
+//map_check.c
 int		map_check(t_game_data *game);
 int		check_lines(t_game_data *game);
 int		count_lines(int fd);
 int		check_file(char *input);
+void	free_everything(char **s);
+
+//map_dimensions.c
 int		map_width(int index, char **input);
 int		count_words(char *input);
+int		map_length(int index, char **input);
+
+//map_rules.c
 int		check_walls(int width, int index, char **map);
+
+//map_rules2.c
 int		check_start(t_game_data *game);
 int		check_filling(char **map);
-char	*open_file(char **av);
-int		fill_map_struct(t_game_data *game, char **av);
-void	fill_map(char **map, int length, int row, int column);
-int		flood_fill(char **map);
-int		get_map_index(char **file);
-int		count_lines_map(char **file, int index);
-char	**get_map(char **file, int index);
-int		map_length(int index, char **input);
-void	free_everything(char **s);
-char	*get_file_texture(char *file);
-int		textures(t_game_data *game, char *file);
-int		get_textures(t_game_data *game, char **file);
-char	*get_file_color(char *file);
-int		get_colors(t_game_data *game, char *file);
-int		open_texture(char *texture);
 
 #endif

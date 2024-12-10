@@ -1,5 +1,25 @@
 #include "../../includes/cub3d.h"
 
+void	set_index(int index_x, int index_y, t_game_data *game)
+{
+	game->player.x = index_x + 0.5;
+	game->player.y = index_y + 0.5;
+	game->raycast.posx = index_x + 0.5;
+	game->raycast.posy = index_y + 0.5;
+}
+
+void	start_condition(int count, int index_x, int index_y, t_game_data *game)
+{
+	if (game->map[index_x][index_y] == 'N'
+		|| game->map[index_x][index_y] == 'S'
+		|| game->map[index_x][index_y] == 'E'
+		|| game->map[index_x][index_y] == 'W')
+	{
+		set_index(index_x, index_y, game);
+		count++;
+	}
+}
+
 int	check_start(t_game_data *game)
 {
 	int	index_x;
@@ -14,22 +34,12 @@ int	check_start(t_game_data *game)
 		index_y = 0;
 		while (game->map[index_x][index_y])
 		{
-			if (game->map[index_x][index_y] == 'N' || game->map[index_x][index_y] == 'S'
-				|| game->map[index_x][index_y] == 'E' || game->map[index_x][index_y] == 'W')
-			{
-				game->player.x = index_x + 0.5;
-				game->player.y = index_y + 0.5;
-				game->raycast.posX = index_x + 0.5;
-				game->raycast.posY = index_y + 0.5;
-				count++;
-			}
+			start_condition(count, index_x, index_y, game);
 			index_y++;
 		}
 		index_x++;
 	}
-	if (count == 0)
-		return (FALSE);
-	if (count > 1)
+	if (count == 0 || count > 1)
 		return (FALSE);
 	return (TRUE);
 }

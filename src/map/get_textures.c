@@ -20,8 +20,6 @@ char	*get_file_texture(char *file)
 
 int	textures_n_s(t_game_data *game, char *file)
 {
-
-
 	if (!file)
 		return (-1);
 	if (file[0] == 'N')
@@ -99,11 +97,5 @@ int	get_textures(t_game_data *game, char **file)
 		return (ft_putstr_fd("Invalid textures\n", 2), -1);
 	else if (game->ceiling_color == NULL || game->floor_color == NULL)
 		return (ft_putstr_fd("Invalid colors\n", 2), -1);
-	printf("game->north_texture : %s\n", game->north_texture);
-	printf("game->south_texture : %s\n", game->south_texture);
-	printf("game->west_texture : %s\n", game->west_texture);
-	printf("game->east_texture : %s\n", game->east_texture);
-	printf("game->floor_color : %s\n", game->floor_color);
-	printf("game->ceiling_color : %s\n", game->ceiling_color);
 	return (0);
 }
