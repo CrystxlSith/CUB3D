@@ -110,6 +110,8 @@ typedef struct s_game_data
 	char		*player_addr;
 	int			endian;
 	int			line_length;
+	int			map_width;
+	int			map_height;
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
@@ -207,5 +209,7 @@ int		check_walls(int width, int index, char **map);
 //map_rules2.c
 int		check_start(t_game_data *game);
 int		check_filling(char **map);
+int		get_map_width(char **map);
+int		get_map_height(char **map);
 
 #endif
