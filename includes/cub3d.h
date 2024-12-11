@@ -125,6 +125,7 @@ void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void	draw_player(t_game_data *game, double x, \
 	double y, int radius, int color);
+void	draw_floor_and_ceiling(t_game_data *game);
 
 //render.c
 int		render_frame(t_game_data *game);

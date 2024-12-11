@@ -32,8 +32,8 @@ int	check_start(t_game_data *game)
 		}
 		x++;
 	}
-	if (count == 0 || count > 1)
-		return (FALSE);
+	// if (count == 0 || count > 1)
+	// 	return (FALSE);
 	return (TRUE);
 }
 
