@@ -78,9 +78,7 @@ void	draw_player(t_game_data *game, double x, double y, \
 	int	draw_x;
 	int	draw_y;
 
-	// Calculer la position de dessin
 	draw_x = (x * CELL_SIZE);
 	draw_y = (y * CELL_SIZE);
-	// Dessiner un cercle
 	draw_circle(game, draw_x, draw_y, radius, color);
 }
