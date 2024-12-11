@@ -4,7 +4,7 @@
 # define FLOOR_HORIZONTAL 1
 # define TRUE 1
 # define FALSE 0
-# define CELL_SIZE 32
+# define CELL_SIZE 16
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 # define MAP_HEIGHT 10
@@ -120,6 +120,13 @@ typedef struct s_game_data
 // 									ALGO
 // ----------------------------------------------------------------------
 
+//minimap.c
+void	minimap(t_game_data *data);
+void	draw_square(t_game_data *game, int x, int y, int size, int color);
+void	draw_map(t_game_data *game);
+void	draw_line(t_game_data *game, int x, int start, int end, int color);
+void	draw_circle(t_game_data *game, int center_x, int center_y, \
+	int radius, int color);
 //draw.c
 void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);

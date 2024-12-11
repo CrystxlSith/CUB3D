@@ -39,6 +39,7 @@ int	render_frame(t_game_data *game)
 	draw_floor_and_ceiling(game);
 	update_player(game);
 	raycasting(game);
+	minimap(game);
 	fps_count(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img);
