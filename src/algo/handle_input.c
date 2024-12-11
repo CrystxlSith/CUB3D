@@ -12,6 +12,8 @@ int	handle_input(int keycode, t_game_data *game)
 		game->key.turn_left = 1;
 	else if (keycode == XK_d)
 		game->key.turn_right = 1;
+	else if (keycode == XK_e)
+		game->raycast.hit = 0;
 	return (0);
 }
 
@@ -25,6 +27,8 @@ int	input_release(int keycode, t_game_data *game)
 		game->key.turn_left = 0;
 	else if (keycode == XK_d)
 		game->key.turn_right = 0;
+	else if (keycode == XK_e)
+		game->raycast.hit = 0;
 	return (0);
 }
 

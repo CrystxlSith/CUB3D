@@ -43,16 +43,20 @@ void	move_front(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x + game->raycast.dirx * new_speed;
 	newposy = game->player.y + game->raycast.diry * new_speed;
-	if (game->map[(int)newposx][(int)game->player.y] != '1')
+	if (game->map[(int)newposx][(int)game->player.y] != '1'
+		&& game->map[(int)game->player.x][(int)newposy] != 'P')
 	{
 		game->player.x = newposx;
 		game->raycast.posx = newposx;
 	}
-	if (game->map[(int)game->player.x][(int)newposy] != '1')
+	if (game->map[(int)game->player.x][(int)newposy] != '1'
+		&& game->map[(int)game->player.x][(int)newposy] != 'P')
 	{
 		game->player.y = newposy;
 		game->raycast.posy = newposy;
 	}
+	if (game->map[(int)newposx][(int)game->player.y] == 'P')
+		through_door(game, newposx, newposy);
 }
 
 void	move_back(t_game_data *game, double movespeed)
@@ -64,14 +68,31 @@ void	move_back(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x - game->raycast.dirx * new_speed;
 	newposy = game->player.y - game->raycast.diry * new_speed;
-	if (game->map[(int)newposx][(int)game->player.y] != '1')
+	if (game->map[(int)newposx][(int)game->player.y] != '1'
+		&& game->map[(int)game->player.x][(int)newposy] != 'P')
 	{
 		game->player.x = newposx;
 		game->raycast.posx = newposx;
 	}
-	if (game->map[(int)game->player.x][(int)newposy] != '1')
+	if (game->map[(int)game->player.x][(int)newposy] != '1'
+		&& game->map[(int)game->player.x][(int)newposy] != 'P')
 	{
 		game->player.y = newposy;
 		game->raycast.posy = newposy;
 	}
+	if (game->map[(int)newposx][(int)game->player.y] == 'P')
+		through_door(game, newposx, newposy);
+
+}
+
+void	through_door(t_game_data *game, double newposx, double newposy)
+{
+	if (game->raycast.hit == 1)
+	{
+		game->player.x = newposx;
+		game->raycast.posx = newposx;
+		game->player.y = newposy;
+		game->raycast.posy = newposy;
+	}
+	game->raycast.hit = 0;
 }

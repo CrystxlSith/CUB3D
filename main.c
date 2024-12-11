@@ -1,7 +1,5 @@
 #include "includes/cub3d.h"
 
-// FIXME: Check start false condition
-
 int	main(int argc, char *argv[])
 {
 	t_game_data	game;

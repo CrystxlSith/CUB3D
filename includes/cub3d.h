@@ -31,7 +31,7 @@ typedef struct s_ray
 	double	raydiry;
 	double	planex;
 	double	planey;
-	double	deltadistx; // Distance to go through 1 case
+	double	deltadistx;
 	double	deltadisty;
 	double	sidedistx;
 	double	sidedisty;
@@ -127,6 +127,9 @@ void	draw_player(t_game_data *game, double x, \
 	double y, int radius, int color);
 void	draw_floor_and_ceiling(t_game_data *game);
 
+//draw_utils.c
+void	draw_floor_and_ceiling(t_game_data *game);
+
 //render.c
 int		render_frame(t_game_data *game);
 void	update_player(t_game_data *game);
@@ -147,6 +150,7 @@ void	move_back(t_game_data *game, double movespeed);
 void	move_front(t_game_data *game, double movespeed);
 void	turn_right(t_game_data *game, double rotation_speed);
 void	turn_left(t_game_data *game, double rotation_speed);
+void	through_door(t_game_data *game, double newposx, double newposy);
 
 //handle_input.c
 int		handle_input(int keycode, t_game_data *game);
