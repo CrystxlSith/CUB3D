@@ -12,6 +12,8 @@ int	handle_input(int keycode, t_game_data *game)
 		game->key.turn_left = 1;
 	else if (keycode == XK_d)
 		game->key.turn_right = 1;
+	else if (keycode == XK_e)
+		game->raycast.hit = 0;
 	return (0);
 }
 
@@ -25,6 +27,24 @@ int	input_release(int keycode, t_game_data *game)
 		game->key.turn_left = 0;
 	else if (keycode == XK_d)
 		game->key.turn_right = 0;
+	else if (keycode == XK_e)
+	{
+		if (game->raycast.door == 1.0)
+		{
+			if (game->map[game->player.mapx][game->player.mapy] == 'P')
+			{
+				game->raycast.doorx = game->player.mapx;
+				game->raycast.doory = game->player.mapy;
+				game->map[game->player.mapx][game->player.mapy] = '0';
+				game->raycast.door = 2.0;
+			}
+		}
+		else if (game->raycast.door == 2.0)
+		{
+			game->map[game->raycast.doorx][game->raycast.doory] = 'P';
+			game->raycast.door = 0.0;
+		}
+	}
 	return (0);
 }
 

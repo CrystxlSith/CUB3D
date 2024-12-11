@@ -31,7 +31,7 @@ typedef struct s_ray
 	double	raydiry;
 	double	planex;
 	double	planey;
-	double	deltadistx; // Distance to go through 1 case
+	double	deltadistx;
 	double	deltadisty;
 	double	sidedistx;
 	double	sidedisty;
@@ -51,6 +51,9 @@ typedef struct s_ray
 	int		side;
 	int		texnum;
 	double	wallx;
+	double	door;
+	int		doorx;
+	int		doory;
 	int		texx;
 	int		texy;
 	int		line_height;
@@ -115,7 +118,7 @@ typedef struct s_game_data
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
-	t_texture	textures[4];
+	t_texture	textures[5];
 }				t_game_data;
 
 // ----------------------------------------------------------------------
@@ -134,6 +137,9 @@ void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void	draw_player(t_game_data *game, double x, \
 	double y, int radius, int color);
+void	draw_floor_and_ceiling(t_game_data *game);
+
+//draw_utils.c
 void	draw_floor_and_ceiling(t_game_data *game);
 
 //render.c
@@ -156,6 +162,7 @@ void	move_back(t_game_data *game, double movespeed);
 void	move_front(t_game_data *game, double movespeed);
 void	turn_right(t_game_data *game, double rotation_speed);
 void	turn_left(t_game_data *game, double rotation_speed);
+void	through_door(t_game_data *game, double newposx, double newposy);
 
 //handle_input.c
 int		handle_input(int keycode, t_game_data *game);

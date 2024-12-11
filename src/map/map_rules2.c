@@ -68,7 +68,7 @@ int	check_filling(char **map)
 			if (map[x][y] == '1' || map[x][y] == '0'
 				|| map[x][y] == 'N' || map[x][y] == 'S'
 				|| map[x][y] == 'E' || map[x][y] == 'W'
-				|| map[x][y] == ' ')
+				|| map[x][y] == ' ' || map[x][y] == 'P')
 				y++;
 			else
 				return (FALSE);

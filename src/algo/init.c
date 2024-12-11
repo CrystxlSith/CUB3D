@@ -68,6 +68,7 @@ void	init_game(t_game_data *game)
 	game->raycast.sidedisty = 0;
 	game->raycast.perpwalldist = 0;
 	game->raycast.hit = 0;
+	game->raycast.door = 0;
 	init_game2(game);
 }
 
