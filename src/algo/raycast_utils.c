@@ -16,5 +16,5 @@ void	fps_count(t_game_data *game)
 	game->raycast.delta_time = game->raycast.time - game->raycast.oldtime;
 	game->raycast.oldtime = game->raycast.time;
 	fps = 1.0 / game->raycast.delta_time;
-	printf("FPS: %.2f\n", fps);
+	//printf("FPS: %.2f\n", fps);
 }

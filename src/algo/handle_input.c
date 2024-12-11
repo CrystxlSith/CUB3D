@@ -28,7 +28,17 @@ int	input_release(int keycode, t_game_data *game)
 	else if (keycode == XK_d)
 		game->key.turn_right = 0;
 	else if (keycode == XK_e)
-		game->raycast.hit = 0;
+	{
+		printf("door %.2f\n", game->raycast.door);
+		if (game->raycast.door == 1.0)
+		{
+			printf("door %c\n", game->map[game->player.mapx + 1][game->player.mapy]);
+			game->map[game->player.mapx + 1][game->player.mapy] = '0';
+			game->key.forward = 0;
+			game->map[game->player.mapx - 1][game->player.mapy] = 'P';
+			game->raycast.door = 0;
+		}
+	}
 	return (0);
 }
 

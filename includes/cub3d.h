@@ -51,6 +51,7 @@ typedef struct s_ray
 	int		side;
 	int		texnum;
 	double	wallx;
+	double	door;
 	int		texx;
 	int		texy;
 	int		line_height;
