@@ -52,6 +52,8 @@ typedef struct s_ray
 	int		texnum;
 	double	wallx;
 	double	door;
+	int		doorx;
+	int		doory;
 	int		texx;
 	int		texy;
 	int		line_height;
@@ -114,7 +116,7 @@ typedef struct s_game_data
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
-	t_texture	textures[4];
+	t_texture	textures[5];
 }				t_game_data;
 
 // ----------------------------------------------------------------------
