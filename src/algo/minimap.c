@@ -35,40 +35,34 @@ void minimap(t_game_data *data)
     int y;
     int map_offset_x;
     int map_offset_y;
+    int minimap_size = 8; // Half the width/height of the minimap in tiles
+    int tile_size = 16;   // Size of each tile in pixels
 
-    // Define the minimap size and offsets to center the player
-    int minimap_size = 10; // Half the width/height of the minimap in tiles
-    int tile_size = 16;    // Size of each tile in pixels
-
-    // Calculate the map section to display around the player
-    map_offset_x = data->player.x - minimap_size / 2;
-    map_offset_y = data->player.y - minimap_size / 2;
-
-    // Draw the minimap tiles
-    for (y = 0; y < minimap_size; y++)
+    map_offset_y = data->player.x - minimap_size / 2;
+    map_offset_x = data->player.y - minimap_size / 2;
+    y = 0;
+    while (y < minimap_size)
     {
-        for (x = 0; x < minimap_size; x++)
+        x = 0;
+        while (x < minimap_size)
         {
             int map_x = map_offset_x + x;
             int map_y = map_offset_y + y;
-
-            // Check if the map position is within bounds
             if (map_y >= 0 && map_y < data->map_height && map_x >= 0 && map_x < data->map_width)
             {
                 if (data->map[map_y][map_x] == '1')
                     draw_square(data, x * tile_size, y * tile_size, tile_size, 0x000000);
                 else if (data->map[map_y][map_x] == '0' || data->map[map_y][map_x] == 'N')
                     draw_square(data, x * tile_size, y * tile_size, tile_size, 0xFFFFFF);
+                else
+                    draw_square(data, x * tile_size, y * tile_size, tile_size, 0x8B00FF); // Draw in purple if not wall, player, or floor
             }
             else
-            {
-                // Draw a black square if out of bounds
-                draw_square(data, x * tile_size, y * tile_size, tile_size, 0x000000);
-            }
+                draw_square(data, x * tile_size, y * tile_size, tile_size, 0x8B00FF); // Draw in dark violet if out of bounds
+            x++;
         }
+        y++;
     }
-
-    // Draw the player at the center of the minimap
     draw_player(data, (minimap_size / 2) * tile_size, (minimap_size / 2) * tile_size, 3, 0xFF0000);
 }
 

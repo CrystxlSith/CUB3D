@@ -75,10 +75,10 @@ void	draw_circle(t_game_data *game, int center_x, int center_y, \
 void	draw_player(t_game_data *game, double x, double y, \
 	int radius, int color)
 {
-	int	draw_x;
-	int	draw_y;
+	// int	draw_x;
+	// int	draw_y;
 
-	draw_x = (x * CELL_SIZE);
-	draw_y = (y * CELL_SIZE);
-	draw_circle(game, draw_x, draw_y, radius, color);
+	// draw_x = (x * CELL_SIZE);
+	// draw_y = (y * CELL_SIZE);
+	draw_circle(game, x, y, radius, color);
 }
