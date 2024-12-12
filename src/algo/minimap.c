@@ -33,13 +33,13 @@ void minimap(t_game_data *data)
 {
     int x;
     int y;
-    int map_offset_x;
-    int map_offset_y;
-    int minimap_size = 8; // Half the width/height of the minimap in tiles
-    int tile_size = 16;   // Size of each tile in pixels
+    double map_offset_x;
+    double map_offset_y;
+    int minimap_size = 8;
+    int tile_size = 16;
 
-    map_offset_y = data->player.x - minimap_size / 2;
-    map_offset_x = data->player.y - minimap_size / 2;
+    map_offset_y = data->player.x - (double)minimap_size / 2;
+    map_offset_x = data->player.y - (double)minimap_size / 2;
     y = 0;
     while (y < minimap_size)
     {
@@ -63,7 +63,7 @@ void minimap(t_game_data *data)
         }
         y++;
     }
-    draw_player(data, (minimap_size / 2) * tile_size, (minimap_size / 2) * tile_size, 3, 0xFF0000);
+    draw_player(data, ((minimap_size / 2) * tile_size) + 6, ((minimap_size / 2) * tile_size) + 6, 3, 0xFF0000);
 }
 
 
