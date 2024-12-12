@@ -69,6 +69,22 @@ typedef struct s_key
 	int		escape;
 }			t_key;
 
+typedef struct s_minimap
+{
+	int		tile_size;
+	double	minimap_size;
+	double	map_offset_x;
+	double	map_offset_y;
+	int		player_minimap_x;
+	int		player_minimap_y;
+	double	world_x;
+	double	world_y;
+	int		map_x;
+	int		map_y;
+	int		pixel_y;
+	int		pixel_x;
+} t_minimap;
+
 typedef struct s_player
 {
 	double	x;
