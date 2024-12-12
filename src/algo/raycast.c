@@ -67,6 +67,7 @@ void	step_dist(t_game_data *game)
 
 void	raycalculate(t_game_data *game, int x)
 {
+	game->raycast.door = 0.0;
 	game->player.mapx = (int)game->player.x;
 	game->player.mapy = (int)game->player.y;
 	if (game->raycast.raydirx == 0)
@@ -80,7 +81,10 @@ void	raycalculate(t_game_data *game, int x)
 	step_dist(game);
 	digital_differential_analyzer(game, x);
 	texture_number(game);
-	texture_calculation(game);
+	if (game->raycast.door == 1.0)
+		door_texture_calculation(game);
+	else
+		texture_calculation(game);
 	draw_raycast(game, x);
 }
 

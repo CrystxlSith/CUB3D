@@ -48,28 +48,31 @@ int	check_start(t_game_data *game)
 		}
 		x++;
 	}
-	// if (count == 0 || count > 1)
-	// 	return (FALSE);
+	if (count == 0 || count > 1)
+		return (FALSE);
 	return (TRUE);
 }
 
-int	check_filling(char **map)
+int	check_filling(t_game_data *game)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	y = 0;
-	while (map[x])
+	while (game->map[x])
 	{
 		y = 0;
-		while (map[x][y])
+		while (game->map[x][y])
 		{
-			if (map[x][y] == '1' || map[x][y] == '0'
-				|| map[x][y] == 'N' || map[x][y] == 'S'
-				|| map[x][y] == 'E' || map[x][y] == 'W'
-				|| map[x][y] == ' ' || map[x][y] == 'P')
+			if (game->map[x][y] == '1' || game->map[x][y] == '0'
+				|| game->map[x][y] == 'N' || game->map[x][y] == 'S'
+				|| game->map[x][y] == 'E' || game->map[x][y] == 'W'
+				|| game->map[x][y] == ' ' || game->map[x][y] == 'P')
+			{
+				if (game->map[x][y] == 'P')
+					game->door_nbr++;
 				y++;
+			}
 			else
 				return (FALSE);
 		}

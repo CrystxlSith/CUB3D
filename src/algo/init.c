@@ -5,7 +5,6 @@ void	ft_mlx_init(t_game_data *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		free(game->mlx);
 		ft_printf("mlx_init fail");
 	}
 	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, \
@@ -51,6 +50,12 @@ void	image_init2(t_game_data *game)
 	game->textures[3].addr = mlx_get_data_addr(game->textures[3].img, \
 		&game->textures[3].bpp, &game->textures[3].line_length, \
 		&game->textures[3].endian);
+	game->textures[4].img = mlx_xpm_file_to_image(game->mlx, \
+		"textures/blackhole.xpm", &game->textures[4].width, \
+		&game->textures[4].height);
+	game->textures[4].addr = mlx_get_data_addr(game->textures[4].img, \
+		&game->textures[4].bpp, &game->textures[4].line_length, \
+		&game->textures[4].endian);
 }
 
 void	init_game(t_game_data *game)
@@ -68,7 +73,7 @@ void	init_game(t_game_data *game)
 	game->raycast.sidedisty = 0;
 	game->raycast.perpwalldist = 0;
 	game->raycast.hit = 0;
-	game->raycast.door = 0;
+	game->door_nbr = 0;
 	init_game2(game);
 }
 

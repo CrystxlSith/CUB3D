@@ -36,10 +36,10 @@ int	input_release(int keycode, t_game_data *game)
 				game->raycast.doorx = game->player.mapx;
 				game->raycast.doory = game->player.mapy;
 				game->map[game->player.mapx][game->player.mapy] = '0';
-				game->raycast.door = 2.0;
+				game->raycast.old_door = game->raycast.door;
 			}
 		}
-		else if (game->raycast.door == 2.0)
+		else if (game->raycast.old_door == 1.0)
 		{
 			game->map[game->raycast.doorx][game->raycast.doory] = 'P';
 			game->raycast.door = 0.0;
