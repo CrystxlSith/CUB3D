@@ -45,15 +45,16 @@ typedef struct s_ray
 	double	dirx;
 	double	diry;
 	double	pitch;
+	double	door;
+	double	old_door;
+	int		doorx;
+	int		doory;
 	int		stepx;
 	int		stepy;
 	int		hit;
 	int		side;
 	int		texnum;
 	double	wallx;
-	double	door;
-	int		doorx;
-	int		doory;
 	int		texx;
 	int		texy;
 	int		line_height;
@@ -111,6 +112,7 @@ typedef struct s_game_data
 	char		*ray_addr;
 	char		*img_addr;
 	char		*player_addr;
+	int			door_nbr;
 	int			endian;
 	int			line_length;
 	int			map_width;
@@ -177,6 +179,10 @@ void	image_init(t_game_data *game);
 void	image_init2(t_game_data *game);
 void	init_game2(t_game_data *game);
 
+//door_textures.c
+void	door_texture_calculation(t_game_data *game);
+void	verline_door(t_game_data *game, int x, int start, int end);
+
 // ----------------------------------------------------------------------
 // 									PARSING
 // ----------------------------------------------------------------------
@@ -215,8 +221,10 @@ int		check_walls(int width, int index, char **map);
 
 //map_rules2.c
 int		check_start(t_game_data *game);
-int		check_filling(char **map);
+int		check_filling(t_game_data *game);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
+int		fill_door_struct(t_game_data *game);
+int		find_door_index(t_game_data *game);
 
 #endif

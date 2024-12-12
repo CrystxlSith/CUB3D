@@ -35,7 +35,10 @@ void	draw_raycast(t_game_data *game, int x)
 	draw_end = game->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
-	verline(game, x, draw_start, draw_end);
+	if (game->raycast.door == 1.0)
+		verline_door(game, x, draw_start, draw_end);
+	else
+		verline(game, x, draw_start, draw_end);
 }
 
 void	digital_differential_analyzer(t_game_data *game, int x)
@@ -58,7 +61,11 @@ void	digital_differential_analyzer(t_game_data *game, int x)
 		}
 		if (game->map[game->player.mapx][game->player.mapy] == '1'
 			|| game->map[game->player.mapx][game->player.mapy] == 'P')
+		{
+			if (game->map[game->player.mapx][game->player.mapy] == 'P')
+				game->raycast.door = 1.0;
 			game->raycast.hit = 1;
+		}
 	}
 	if (game->raycast.side == 0)
 		game->raycast.perpwalldist = (game->raycast.sidedistx - \

@@ -22,7 +22,7 @@ int	check_lines(t_game_data *game)
 	}
 	if (check_start(game) == FALSE)
 		return (ft_putstr_fd("Error\nStart Error\n", 2), FALSE);
-	if (check_filling(game->map) == FALSE)
+	if (check_filling(game) == FALSE)
 		return (ft_putstr_fd("Error\nFilling Error\n", 2), FALSE);
 	game->map_width = get_map_width(game->map);
 	game->map_height = get_map_height(game->map);
