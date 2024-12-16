@@ -76,12 +76,18 @@ void	move_back(t_game_data *game, double movespeed)
 	newposy = game->player.y - game->raycast.diry * new_speed;
 	if (is_valid_position(game, newposx, game->player.y))
 	{
-		game->player.x = newposx;
-		game->raycast.posx = newposx;
+		if (game->raycast.is_door != 1)
+		{
+			game->player.x = newposx;
+			game->raycast.posx = newposx;
+		}
 	}
 	if (is_valid_position(game, game->player.x, newposy))
 	{
-		game->player.y = newposy;
-		game->raycast.posy = newposy;
+		if (game->raycast.is_door != 1)
+		{
+			game->player.y = newposy;
+			game->raycast.posy = newposy;
+		}
 	}
 }
