@@ -35,10 +35,8 @@ void	draw_raycast(t_game_data *game, int x)
 	draw_end = game->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
-	// if (game->raycast.is_door == 1)
-	// 	verline_door(game, x, draw_start, draw_end);
-	// else
-		verline(game, x, draw_start, draw_end);
+
+	verline(game, x, draw_start, draw_end);
 }
 
 void	digital_differential_analyzer(t_game_data *game, int x)

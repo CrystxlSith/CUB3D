@@ -34,23 +34,23 @@ int	input_release(int keycode, t_game_data *game)
 
 void	handle_door(t_game_data *game)
 {
-	if (game->raycast.door == 1.0)
+	if (game->raycast.is_door == 1)
 	{
-		if (game->raycast.is_door == 1)
+		if (game->map[game->player.mapx][game->player.mapy] == 'P')
 		{
-			if (game->map[game->player.mapx][game->player.mapy] == 'P')
-			{
-				game->raycast.doorx = game->player.mapx;
-				game->raycast.doory = game->player.mapy;
-				game->map[game->player.mapx][game->player.mapy] = '0';
-				game->raycast.old_door = game->raycast.is_door;
-			}
+			game->raycast.doorx = game->player.mapx;
+			game->raycast.doory = game->player.mapy;
+			game->map[game->player.mapx][game->player.mapy] = '0';
+			game->raycast.old_door = game->raycast.is_door;
+			game->raycast.door_state = 1;
 		}
-		else if (game->raycast.old_door == 1)
-		{
-			game->map[game->raycast.doorx][game->raycast.doory] = 'P';
-			game->raycast.is_door = 0.0;
-		}
+	}
+	else if (game->raycast.old_door == 1 && game->raycast.door_state == 1)
+	{
+		game->map[game->raycast.doorx][game->raycast.doory] = 'P';
+		game->raycast.door_state = 0;
+		game->raycast.is_door = 0;
+	}
 }
 
 int	close_game(t_game_data *game)

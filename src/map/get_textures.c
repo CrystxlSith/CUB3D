@@ -1,12 +1,5 @@
 #include "../../includes/cub3d.h"
 
-char    bonjoru()
-{
-
-
-	hello = 1;
-}
-
 char	*get_file_texture(char *file)
 {
 	int		i;

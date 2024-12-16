@@ -1,5 +1,15 @@
 #include "../../includes/cub3d.h"
 
+int	is_valid_position(t_game_data *game, double new_x, double new_y)
+{
+	if (game->map[(int)new_x][(int)new_y] == '1')
+		return (0);
+	if (game->map[(int)new_x][(int)new_y] == 'P'
+		&& game->raycast.door_state != 1)
+		return (0);
+	return (1);
+}
+
 void	turn_right(t_game_data *game, double rotation_speed)
 {
 	double	old_dirx;
@@ -43,21 +53,15 @@ void	move_front(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x + game->raycast.dirx * new_speed;
 	newposy = game->player.y + game->raycast.diry * new_speed;
-	if (game->map[(int)newposx][(int)game->player.y] != '1')
+	if (is_valid_position(game, newposx, game->player.y))
 	{
-		if (game->raycast.is_door != 1.0)
-		{
-			game->player.x = newposx;
-			game->raycast.posx = newposx;
-		}
+		game->player.x = newposx;
+		game->raycast.posx = newposx;
 	}
-	if (game->map[(int)game->player.x][(int)newposy] != '1')
+	if (is_valid_position(game, game->player.x, newposy))
 	{
-		if (game->raycast.is_door != 1.0)
-		{
-			game->player.y = newposy;
-			game->raycast.posy = newposy;
-		}
+		game->player.y = newposy;
+		game->raycast.posy = newposy;
 	}
 }
 
@@ -70,26 +74,14 @@ void	move_back(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x - game->raycast.dirx * new_speed;
 	newposy = game->player.y - game->raycast.diry * new_speed;
-	if (game->map[(int)newposx][(int)game->player.y] != '1')
+	if (is_valid_position(game, newposx, game->player.y))
 	{
 		game->player.x = newposx;
 		game->raycast.posx = newposx;
 	}
-	if (game->map[(int)game->player.x][(int)newposy] != '1')
+	if (is_valid_position(game, game->player.x, newposy))
 	{
 		game->player.y = newposy;
 		game->raycast.posy = newposy;
 	}
-}
-
-void	through_door(t_game_data *game, double newposx, double newposy)
-{
-	if (game->raycast.hit == 1)
-	{
-		game->player.x = newposx;
-		game->raycast.posx = newposx;
-		game->player.y = newposy;
-		game->raycast.posy = newposy;
-	}
-	game->raycast.hit = 0;
 }
