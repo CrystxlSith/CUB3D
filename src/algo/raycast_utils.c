@@ -18,6 +18,7 @@ void	fps_count(t_game_data *game)
 	game->raycast.oldtime = game->raycast.time;
 	fps = 1.0 / game->raycast.delta_time;
 	str_fps = ft_strjoin("FPS: ", ft_itoa(fps));
-	mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 50, 10, 0xFFFFFF, str_fps);
+	mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 50, \
+		10, 0xFFFFFF, str_fps);
 	free(str_fps);
 }

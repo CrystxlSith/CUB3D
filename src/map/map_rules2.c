@@ -1,19 +1,23 @@
 #include "../../includes/cub3d.h"
 
-int get_map_height(char **map)
+int	get_map_height(char **map)
 {
-    int height = 0;
-    while (map[height] != NULL)
-        height++;
-    return (height);
+	int	height;
+
+	height = 0;
+	while (map[height] != NULL)
+		height++;
+	return (height);
 }
 
-int get_map_width(char **map)
+int	get_map_width(char **map)
 {
-    int width = 0;
-    if (map[0] != NULL)
-        width = ft_strlen(map[0]);
-    return (width);
+	int	width;
+
+	width = 0;
+	if (map[0] != NULL)
+		width = ft_strlen(map[0]);
+	return (width);
 }
 
 void	set_index(int index_x, int index_y, t_game_data *game)

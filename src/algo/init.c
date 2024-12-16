@@ -70,6 +70,11 @@ void	image_init2(t_game_data *game)
 	game->textures[3].addr = mlx_get_data_addr(game->textures[3].img, \
 		&game->textures[3].bpp, &game->textures[3].line_length, \
 		&game->textures[3].endian);
+	if (open("textures/blackhole.xpm", O_RDONLY) == -1)
+	{
+		ft_putstr_fd("Can't open texture file", 2);
+		return ;
+	}
 	game->textures[4].img = mlx_xpm_file_to_image(game->mlx, \
 		"textures/blackhole.xpm", &game->textures[4].width, \
 		&game->textures[4].height);

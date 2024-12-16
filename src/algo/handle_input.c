@@ -28,6 +28,13 @@ int	input_release(int keycode, t_game_data *game)
 	else if (keycode == XK_d)
 		game->key.turn_right = 0;
 	else if (keycode == XK_e)
+		handle_door(game);
+	return (0);
+}
+
+void	handle_door(t_game_data *game)
+{
+	if (game->raycast.door == 1.0)
 	{
 		if (game->raycast.is_door == 1)
 		{
@@ -44,8 +51,6 @@ int	input_release(int keycode, t_game_data *game)
 			game->map[game->raycast.doorx][game->raycast.doory] = 'P';
 			game->raycast.is_door = 0.0;
 		}
-	}
-	return (0);
 }
 
 int	close_game(t_game_data *game)

@@ -83,7 +83,7 @@ typedef struct s_minimap
 	int		map_y;
 	int		pixel_y;
 	int		pixel_x;
-} t_minimap;
+}			t_minimap;
 
 typedef struct s_player
 {
@@ -174,6 +174,7 @@ double	get_time_in_seconds(void);
 //dda.c
 void	draw_raycast(t_game_data *game, int x);
 void	digital_differential_analyzer(t_game_data *game, int x);
+void	perp_wall_dist(t_game_data *game);
 
 // movement.c
 void	move_back(t_game_data *game, double movespeed);
@@ -187,6 +188,7 @@ int		handle_input(int keycode, t_game_data *game);
 int		input_release(int keycode, t_game_data *game);
 int		close_game(t_game_data *game);
 int		handle_mouse_motion(int x, int y, t_game_data *game);
+void	handle_door(t_game_data *game);
 
 // init.c
 void	init_game(t_game_data *game);
@@ -240,7 +242,5 @@ int		check_start(t_game_data *game);
 int		check_filling(t_game_data *game);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
-int		fill_door_struct(t_game_data *game);
-int		find_door_index(t_game_data *game);
 
 #endif

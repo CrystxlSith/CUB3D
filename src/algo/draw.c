@@ -77,7 +77,6 @@ void	draw_player(t_game_data *game, double x, double y, \
 {
 	// int	draw_x;
 	// int	draw_y;
-
 	// draw_x = (x * CELL_SIZE);
 	// draw_y = (y * CELL_SIZE);
 	draw_circle(game, x, y, radius, color);

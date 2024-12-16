@@ -46,6 +46,5 @@ void	verline_door(t_game_data *game, int x, int start, int end)
 			my_mlx_pixel_put(game, x, start, color);
 			start++;
 		}
-
 	}
 }
