@@ -36,19 +36,21 @@ void	handle_door(t_game_data *game)
 {
 	if (game->raycast.door == 1.0)
 	{
-		if (game->map[game->player.mapx][game->player.mapy] == 'P')
+		if (game->raycast.is_door == 1)
 		{
-			game->raycast.doorx = game->player.mapx;
-			game->raycast.doory = game->player.mapy;
-			game->map[game->player.mapx][game->player.mapy] = '0';
-			game->raycast.old_door = game->raycast.door;
+			if (game->map[game->player.mapx][game->player.mapy] == 'P')
+			{
+				game->raycast.doorx = game->player.mapx;
+				game->raycast.doory = game->player.mapy;
+				game->map[game->player.mapx][game->player.mapy] = '0';
+				game->raycast.old_door = game->raycast.is_door;
+			}
 		}
-	}
-	else if (game->raycast.old_door == 1.0)
-	{
-		game->map[game->raycast.doorx][game->raycast.doory] = 'P';
-		game->raycast.door = 0.0;
-	}
+		else if (game->raycast.old_door == 1)
+		{
+			game->map[game->raycast.doorx][game->raycast.doory] = 'P';
+			game->raycast.is_door = 0.0;
+		}
 }
 
 int	close_game(t_game_data *game)
