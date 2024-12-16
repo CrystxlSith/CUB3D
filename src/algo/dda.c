@@ -67,6 +67,11 @@ void	digital_differential_analyzer(t_game_data *game, int x)
 			game->raycast.hit = 1;
 		}
 	}
+	perp_wall_dist(game);
+}
+
+void	perp_wall_dist(t_game_data *game)
+{
 	if (game->raycast.side == 0)
 		game->raycast.perpwalldist = (game->raycast.sidedistx - \
 		game->raycast.deltadistx);
