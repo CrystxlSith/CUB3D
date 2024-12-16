@@ -46,6 +46,7 @@ typedef struct s_ray
 	double	diry;
 	double	pitch;
 	int		is_door;
+	int		door_state;
 	double	old_door;
 	int		doorx;
 	int		doory;

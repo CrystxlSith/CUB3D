@@ -2,27 +2,27 @@
 
 void	texture_number(t_game_data *game)
 {
-    if (game->raycast.is_door)
-    {
-        game->raycast.texnum = 4; // Texture de porte
-    }
-    else
-    {
-        if (game->raycast.side == 0)
-        {
-            if (game->raycast.raydirx > 0)
-                game->raycast.texnum = 0; // Mur nord
-            else
-                game->raycast.texnum = 1; // Mur sud
-        }
-        else
-        {
-            if (game->raycast.raydiry > 0)
-                game->raycast.texnum = 2; // Mur ouest
-            else
-                game->raycast.texnum = 3; // Mur est
-        }
-    }
+	if (game->raycast.is_door)
+	{
+		game->raycast.texnum = 4; // Texture de porte
+	}
+	else
+	{
+		if (game->raycast.side == 0)
+		{
+			if (game->raycast.raydirx > 0)
+				game->raycast.texnum = 0; // Mur nord
+			else
+				game->raycast.texnum = 1; // Mur sud
+		}
+		else
+		{
+			if (game->raycast.raydiry > 0)
+				game->raycast.texnum = 2; // Mur ouest
+			else
+				game->raycast.texnum = 3; // Mur est
+		}
+	}
 }
 
 void	texture_calculation(t_game_data *game)
@@ -88,10 +88,7 @@ void	raycalculate(t_game_data *game, int x)
 	step_dist(game);
 	digital_differential_analyzer(game, x);
 	texture_number(game);
-	// if (game->raycast.is_door == 1)
-	// 	door_texture_calculation(game);
-	// else
-		texture_calculation(game);
+	texture_calculation(game);
 	draw_raycast(game, x);
 }
 
