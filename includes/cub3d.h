@@ -83,7 +83,7 @@ typedef struct s_minimap
 	int		map_y;
 	int		pixel_y;
 	int		pixel_x;
-} t_minimap;
+}			t_minimap;
 
 typedef struct s_player
 {
@@ -242,7 +242,5 @@ int		check_start(t_game_data *game);
 int		check_filling(t_game_data *game);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
-int		fill_door_struct(t_game_data *game);
-int		find_door_index(t_game_data *game);
 
 #endif
