@@ -37,7 +37,7 @@ typedef struct s_ray
 	double	sidedisty;
 	double	posx;
 	double	posy;
-	double	posz;
+	// double	posz;
 	double	perpwalldist;
 	double	time;
 	double	oldtime;
@@ -45,8 +45,24 @@ typedef struct s_ray
 	double	dirx;
 	double	diry;
 	double	pitch;
-	int		is_door;
 	double	old_door;
+	float	raydirx0;
+	float	raydiry0;
+	float	raydirx1;
+	float	raydiry1;
+	float	posz;
+	float	floorstepx;
+	float	floorstepy;
+	float	floorx;
+	float	floory;
+	int		cellx;
+	int		celly;
+	int		tx;
+	int		ty;
+	int		floor_texture;
+	int		ceiling_texture;
+	float	rowdistance;
+	int		is_door;
 	int		doorx;
 	int		doory;
 	int		stepx;
@@ -166,7 +182,7 @@ void	update_player(t_game_data *game);
 
 //raycast.c
 void	raycasting(t_game_data *game);
-
+void    floorcasting(t_game_data *game);
 //raycast_utils.c
 void	fps_count(t_game_data *game);
 double	get_time_in_seconds(void);
@@ -242,5 +258,7 @@ int		get_map_width(char **map);
 int		get_map_height(char **map);
 int		fill_door_struct(t_game_data *game);
 int		find_door_index(t_game_data *game);
+// error.c
+void    exit_error(t_game_data *game, char *error);
 
 #endif

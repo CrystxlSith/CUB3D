@@ -19,7 +19,7 @@ void	draw_line(t_game_data *game, int x, int start, int end, int color)
 void	update_player(t_game_data *game)
 {
 	if (game->key.escape)
-		exit(0);
+		exit_error(game, "Exit game\n");
 	else if (game->key.forward)
 		move_front(game, 0.1);
 	else if (game->key.backward)
@@ -32,16 +32,16 @@ void	update_player(t_game_data *game)
 
 int	render_frame(t_game_data *game)
 {
-	game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
-	game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, \
-		&game->line_length, &game->endian);
+	// game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
+	// game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, 
+	// 	&game->line_length, &game->endian);
 	mlx_clear_window(game->mlx, game->win);
 	draw_floor_and_ceiling(game);
 	update_player(game);
+	floorcasting(game);
 	raycasting(game);
-	minimap(game);
+	// minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img, 0, 0);
 	fps_count(game);
-	mlx_destroy_image(game->mlx, game->ray_img);
 	return (0);
 }

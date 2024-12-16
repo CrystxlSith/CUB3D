@@ -35,9 +35,9 @@ MAP_SRC = open_map.c map_check.c map_rules.c map_rules2.c map_dimensions.c \
 	get_textures.c get_colors.c
 
 ALGO_SRC = init.c render.c raycast.c dda.c raycast_utils.c movement.c draw.c \
-	handle_input.c draw_utils.c minimap.c door_textures.c
+	handle_input.c draw_utils.c minimap.c door_textures.c floorcast.c \
 
-MAIN = main.c
+MAIN = main.c error.c
 
 MAP_OBJ = ${MAP_SRC:%.c=%.o}
 MAP_DEP = ${MAP_OBJ:%.o=%.d}

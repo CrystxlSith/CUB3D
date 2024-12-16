@@ -53,7 +53,7 @@ void	move_front(t_game_data *game, double movespeed)
 	}
 	if (game->map[(int)game->player.x][(int)newposy] != '1')
 	{
-		if (game->raycast.is_door != 1.0)
+		if (game->raycast.is_door != 1)
 		{
 			game->player.y = newposy;
 			game->raycast.posy = newposy;
@@ -72,13 +72,19 @@ void	move_back(t_game_data *game, double movespeed)
 	newposy = game->player.y - game->raycast.diry * new_speed;
 	if (game->map[(int)newposx][(int)game->player.y] != '1')
 	{
-		game->player.x = newposx;
-		game->raycast.posx = newposx;
+		if (game->raycast.is_door != 1)
+		{
+			game->player.x = newposx;
+			game->raycast.posx = newposx;
+		}
 	}
 	if (game->map[(int)game->player.x][(int)newposy] != '1')
 	{
-		game->player.y = newposy;
-		game->raycast.posy = newposy;
+		if (game->raycast.is_door != 1)
+		{
+			game->player.y = newposy;
+			game->raycast.posy = newposy;
+		}
 	}
 }
 

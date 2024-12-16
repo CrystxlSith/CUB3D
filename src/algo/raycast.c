@@ -88,10 +88,7 @@ void	raycalculate(t_game_data *game, int x)
 	step_dist(game);
 	digital_differential_analyzer(game, x);
 	texture_number(game);
-	// if (game->raycast.is_door == 1)
-	// 	door_texture_calculation(game);
-	// else
-		texture_calculation(game);
+	texture_calculation(game);
 	draw_raycast(game, x);
 }
 

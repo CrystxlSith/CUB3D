@@ -50,8 +50,8 @@ int	input_release(int keycode, t_game_data *game)
 
 int	close_game(t_game_data *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	exit(0);
+	exit_error(game, "Exit game\n");
+	return (0);
 }
 
 int	handle_mouse_motion(int x, int y, t_game_data *game)

@@ -23,18 +23,39 @@ void	init_minimap_2(t_minimap *minimap, int pixel_x, int pixel_y)
 	minimap->map_y = (int)minimap->world_y;
 }
 
-void	draw_minimap(t_game_data *data, t_minimap minimap, int pixel_x)
+
+void draw_minimap(t_game_data *data, t_minimap minimap, int pixel_x)
 {
-	if (data->map[minimap.map_y][minimap.map_x] == '1')
-		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x000000);
-	else if (data->map[minimap.map_y][minimap.map_x] == '0' \
-	|| data->map[minimap.map_y][minimap.map_x] == 'N')
-		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xFFFFFF);
-	else if (data->map[minimap.map_y][minimap.map_x] == 'P')
-		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x8B00FF);
-	else
-		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xADD8E6);
+    if (minimap.map_y >= 0 && minimap.map_y < data->map_height &&
+        minimap.map_x >= 0 && minimap.map_x < data->map_width)
+    {
+        char map_value = data->map[minimap.map_y][minimap.map_x];
+        if (map_value == '1')
+            my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x000000);
+        else if (map_value == '0' || map_value == 'N')
+            my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xFFFFFF);
+        else if (map_value == 'P')
+            my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x8B00FF);
+        else
+            my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xADD8E6);
+    }
 }
+// void	draw_minimap(t_game_data *data, t_minimap minimap, int pixel_x)
+// {
+//     if (minimap.map_y >= 0 && minimap.map_y < data->map_height &&
+//         minimap.map_x >= 0 && minimap.map_x < data->map_width)
+//     {
+//         if (data->map[minimap.map_y][minimap.map_x] && data->map[minimap.map_y][minimap.map_x] == '1')
+//             my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x000000);
+//         else if (data->map[minimap.map_y][minimap.map_x] && (data->map[minimap.map_y][minimap.map_x] == '0' ||
+//                  data->map[minimap.map_y][minimap.map_x] == 'N'))
+//             my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xFFFFFF);
+//         else if (data->map[minimap.map_y][minimap.map_x] && data->map[minimap.map_y][minimap.map_x] == 'P')
+//             my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x8B00FF);
+//         else
+//             my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xADD8E6);
+//     }
+// }
 
 void	minimap(t_game_data *data)
 {
@@ -48,10 +69,10 @@ void	minimap(t_game_data *data)
 		while (++pixel_x < (minimap.minimap_size * minimap.tile_size) + 5)
 		{
 			init_minimap_2(&minimap, pixel_x, minimap.pixel_y);
-			if (minimap.map_y >= 0 && minimap.map_y < data->map_height \
-			&& minimap.map_x >= 0 && minimap.map_x < data->map_width)
-				draw_minimap(data, minimap, pixel_x);
-			else
+			// if (minimap.map_y >= 0 && minimap.map_y < data->map_height 
+			// && minimap.map_x >= 0 && minimap.map_x < data->map_width)
+			// 	draw_minimap(data, minimap, pixel_x);
+			// else
 				my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xADD8E6);
 		}
 	}
