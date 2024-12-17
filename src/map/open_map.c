@@ -1,5 +1,42 @@
 #include "../../includes/cub3d.h"
 
+int	verify_xpm_file(char *file_path)
+{
+	int		fd;
+	char	buffer[4];
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Error\nInvalid XPM file: ", 2);
+		ft_putstr_fd(file_path, 2);
+		ft_putstr_fd("\n", 2);
+		return (-1);
+	}
+	if (read(fd, buffer, 4) != 4 || ft_strncmp(buffer, "/* XPM", 4) != 0)
+	{
+		ft_putstr_fd("Error\nCorrupted XPM file: ", 2);
+		ft_putstr_fd(file_path, 2);
+		ft_putstr_fd("\n", 2);
+		close(fd);
+		return (-1);
+	}
+	close(fd);
+	return (0);
+}
+
+int	verify_xpm_files(t_game_data *game)
+{
+	char	*textures[4] = {game->north_texture, game->south_texture, game->west_texture, game->east_texture};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (verify_xpm_file(textures[i]) == -1)
+			return (-1);
+	}
+	return (0);
+}
+
 int	fill_map_struct(t_game_data *game, char **av)
 {
 	char	*full_file;
@@ -14,6 +51,8 @@ int	fill_map_struct(t_game_data *game, char **av)
 	if (!game->file)
 		return (-1);
 	if (get_textures(game, game->file) == -1)
+		return (free_everything(game->file), -1);
+	if (verify_xpm_files(game) == -1)
 		return (free_everything(game->file), -1);
 	index = get_map_index(game->file);
 	if (index == -1)
