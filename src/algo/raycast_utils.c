@@ -22,6 +22,8 @@ void	fps_count(t_game_data *game)
 	str_fps = ft_strjoin("FPS: ", fps_value);
 	mlx_string_put(game->mlx, game->win, SCREEN_WIDTH - 50, 10, \
 	0xFFFFFF, str_fps);
+	game->movespeed = (game->raycast.delta_time * 5.0) / 10;
+	game->rotspeed = (game->raycast.delta_time * 3.0) / 2;
 	free(fps_value);
 	free(str_fps);
 }

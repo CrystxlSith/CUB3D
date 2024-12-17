@@ -47,17 +47,17 @@ void	update_player(t_game_data *game)
 	if (game->key.escape)
 		exit_error(game, "Exit game\n");
 	else if (game->key.forward == 1)
-		move_front(game, 0.1);
+		move_front(game, game->movespeed);
 	else if (game->key.backward == 1)
-		move_back(game, 0.1);
+		move_back(game,game->movespeed);
 	else if (game->key.turn_left == 1)
-		turn_left(game, 0.1);
+		turn_left(game, game->rotspeed);
 	else if (game->key.turn_right == 1)
-		turn_right(game, 0.1);
+		turn_right(game, game->rotspeed);
 	else if (game->key.strafe_left == 1)
-		strafe_left(game, 0.1);
+		strafe_left(game, game->movespeed);
 	else if (game->key.strafe_right == 1)
-		strafe_right(game, 0.1);
+		strafe_right(game, game->movespeed);
 }
 
 int	render_frame(t_game_data *game)
