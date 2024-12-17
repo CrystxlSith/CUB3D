@@ -18,9 +18,6 @@ void	ft_mlx_init(t_game_data *game)
 
 void	image_init(t_game_data *game)
 {
-	int	i;
-
-	i = 0;
 	game->ray_img = mlx_new_image(game->mlx, 1920, 1080);
 	game->ray_addr = mlx_get_data_addr(game->ray_img, &game->bpp, \
 		&game->line_length, &game->endian);
@@ -36,34 +33,24 @@ void	image_init(t_game_data *game)
 	game->textures[3].img = mlx_xpm_file_to_image(game->mlx, \
 		game->east_texture, &game->textures[3].width, \
 		&game->textures[3].height);
-	if (open("textures/blackhole.xpm", O_RDONLY) == -1)
-	{
-		ft_putstr_fd("Can't open texture file", 2);
-		return ;
-	}
 	game->textures[4].img = mlx_xpm_file_to_image(game->mlx, \
-		"textures/blackhole.xpm", &game->textures[4].width, \
+		"textures/dark_oak_trapdoor.xpm", &game->textures[4].width, \
 		&game->textures[4].height);
-	while (i < 5)
-	{
-		if (!game->textures[i].img)
-		{
-			exit_error(game, "texture fail");
-		}
-		i++;
-	}
-	image_init2(game);
+	game->textures[5].img = mlx_xpm_file_to_image(game->mlx, \
+		"textures/obsidian.xpm", &game->textures[5].width, \
+		&game->textures[5].height);
+	game->textures[6].img = mlx_xpm_file_to_image(game->mlx, \
+		"textures/suspicious_gravel_0.xpm", &game->textures[6].width, \
+		&game->textures[6].height);
+	image_verify(game);
 }
+
 
 void	image_init2(t_game_data *game)
 {
-	int	i;
-
-	i = 0;
 	game->textures[0].addr = mlx_get_data_addr(game->textures[0].img, \
 		&game->textures[0].bpp, &game->textures[0].line_length, \
 		&game->textures[0].endian);
-
 	game->textures[1].addr = mlx_get_data_addr(game->textures[1].img, \
 		&game->textures[1].bpp, &game->textures[1].line_length, \
 		&game->textures[1].endian);
@@ -76,14 +63,13 @@ void	image_init2(t_game_data *game)
 	game->textures[4].addr = mlx_get_data_addr(game->textures[4].img, \
 		&game->textures[4].bpp, &game->textures[4].line_length, \
 		&game->textures[4].endian);
-	while (i < 5)
-	{
-		if (!game->textures[i].addr)
-		{
-			exit_error(game, "texture addr fail");
-		}
-		i++;
-	}
+	game->textures[5].addr = mlx_get_data_addr(game->textures[5].img, \
+		&game->textures[5].bpp, &game->textures[5].line_length, \
+		&game->textures[5].endian);
+	game->textures[6].addr = mlx_get_data_addr(game->textures[6].img, \
+		&game->textures[6].bpp, &game->textures[6].line_length, \
+		&game->textures[6].endian);
+	addr_verify(game);
 }
 
 void	init_game(t_game_data *game)

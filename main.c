@@ -1,5 +1,26 @@
 #include "includes/cub3d.h"
 
+
+/*
+	gerer les free dans les erreurs lors de l'initialisation
+	verifier le .xpm avant de le charger
+
+*/
+
+/*
+	erreur valgrind si porte sans murs autour
+	==19685== Conditional jump or move depends on uninitialised value(s)
+	==19685==    at 0x11128C: handle_door (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x111190: input_release (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x1154C5: mlx_loop (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x113BAC: main (in /home/rottbliss/42/cub/cub3d)
+	==19685== 
+	==19685== Conditional jump or move depends on uninitialised value(s)
+	==19685==    at 0x11129A: handle_door (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x111190: input_release (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x1154C5: mlx_loop (in /home/rottbliss/42/cub/cub3d)
+	==19685==    by 0x113BAC: main (in /home/rottbliss/42/cub/cub3d)
+*/
 int	main(int argc, char *argv[])
 {
 	t_game_data	game;

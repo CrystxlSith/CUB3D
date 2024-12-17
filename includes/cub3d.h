@@ -152,7 +152,7 @@ typedef struct s_game_data
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
-	t_texture	textures[5];
+	t_texture	textures[7];
 }				t_game_data;
 
 // ----------------------------------------------------------------------
@@ -165,12 +165,12 @@ void	draw_square(t_game_data *game, int x, int y, int size, int color);
 void	draw_map(t_game_data *game);
 void	draw_line(t_game_data *game, int x, int start, int end, int color);
 void	draw_circle(t_game_data *game, int center_x, int center_y, \
-	int radius, int color);
+	int color);
 //draw.c
 void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void	draw_player(t_game_data *game, double x, \
-	double y, int radius, int color);
+	double y);
 void	draw_floor_and_ceiling(t_game_data *game);
 
 //draw_utils.c
@@ -189,7 +189,7 @@ double	get_time_in_seconds(void);
 
 //dda.c
 void	draw_raycast(t_game_data *game, int x);
-void	digital_differential_analyzer(t_game_data *game, int x);
+void	digital_differential_analyzer(t_game_data *game);
 void	perp_wall_dist(t_game_data *game);
 
 // movement.c
@@ -227,7 +227,9 @@ int		fill_map_struct(t_game_data *game, char **av);
 int		get_map_index(char **file);
 int		count_lines_map(char **file, int index);
 char	**get_map(char **file, int index);
-
+void	complete_map(t_game_data *game);
+void	image_verify(t_game_data *game);
+void	addr_verify(t_game_data *game);
 //get_colors.c
 char	*get_file_color(char *file);
 int		get_colors(t_game_data *game, char *file);

@@ -20,8 +20,6 @@ static void	verline(t_game_data *game, int x, int start, int end)
 	}
 }
 
-//Ajouter une variable "pitch" pour apporter une vision de haut et bas
-//Ajouter une variable "jump" pour changer la niveau vertical de vision
 void	draw_raycast(t_game_data *game, int x)
 {
 	int	draw_start;
@@ -35,40 +33,42 @@ void	draw_raycast(t_game_data *game, int x)
 	draw_end = game->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
-
 	verline(game, x, draw_start, draw_end);
 }
 
-void	digital_differential_analyzer(t_game_data *game, int x)
+static void	update_ray(t_game_data *game)
 {
-	(void)x;
+	if (game->raycast.sidedistx < game->raycast.sidedisty)
+	{
+		game->raycast.sidedistx += game->raycast.deltadistx;
+		game->player.mapx += game->raycast.stepx;
+		game->raycast.side = 0;
+	}
+	else
+	{
+		game->raycast.sidedisty += game->raycast.deltadisty;
+		game->player.mapy += game->raycast.stepy;
+		game->raycast.side = 1;
+	}
+}
+
+void	digital_differential_analyzer(t_game_data *game)
+{
 	game->raycast.hit = 0;
 	while (game->raycast.hit == 0)
 	{
-		if (game->raycast.sidedistx < game->raycast.sidedisty)
-		{
-			game->raycast.sidedistx += game->raycast.deltadistx;
-			game->player.mapx += game->raycast.stepx;
-			game->raycast.side = 0;
-		}
-		else
-		{
-			game->raycast.sidedisty += game->raycast.deltadisty;
-			game->player.mapy += game->raycast.stepy;
-			game->raycast.side = 1;
-		}
+		update_ray(game);
 		if (game->map[game->player.mapx][game->player.mapy] == '1')
 		{
 			game->raycast.hit = 1;
-			game->raycast.is_door = 0; // Not a door
+			game->raycast.is_door = 0;
 		}
 		else if (game->map[game->player.mapx][game->player.mapy] == 'P')
 		{
 			game->raycast.hit = 1;
-			game->raycast.is_door = 1; // It's a door
+			game->raycast.is_door = 1;
 		}
 	}
-	perp_wall_dist(game);
 }
 
 void	perp_wall_dist(t_game_data *game)

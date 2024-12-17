@@ -47,3 +47,30 @@ void	draw_floor_and_ceiling(t_game_data *game)
 		y++;
 	}
 }
+
+void	image_verify(t_game_data *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+	{
+		if (!game->textures[i].img)
+			exit_error(game, "texture fail");
+		i++;
+	}
+	image_init2(game);
+}
+
+void	addr_verify(t_game_data *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+	{
+		if (!game->textures[i].addr)
+			exit_error(game, "texture addr fail");
+		i++;
+	}
+}

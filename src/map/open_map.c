@@ -23,6 +23,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 		return (free_everything(game->file), -1);
 	if (map_check(game) == FALSE)
 		return (free_everything(game->map), free_everything(game->file), -1);
+	complete_map(game);
 	init_game(game);
 	return (0);
 }

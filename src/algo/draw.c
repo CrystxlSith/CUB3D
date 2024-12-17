@@ -11,60 +11,19 @@ void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color)
 	}
 }
 
-void	draw_square(t_game_data *game, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			my_mlx_pixel_put(game, x + j, y + i, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_map(t_game_data *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	game->img_addr = mlx_get_data_addr(game->img, &game->bpp, \
-	&game->line_length, &game->endian);
-	while (game->map[y])
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == '1')
-				draw_square(game, x * CELL_SIZE, y * CELL_SIZE, \
-				CELL_SIZE, 0x00FF0000);
-			x++;
-		}
-		y++;
-	}
-}
-
 void	draw_circle(t_game_data *game, int center_x, int center_y, \
-	int radius, int color)
+	int color)
 {
 	int	x;
 	int	y;
 
-	y = -radius;
-	while (y <= radius)
+	y = -3;
+	while (y <= 3)
 	{
-		x = -radius;
-		while (x <= radius)
+		x = -3;
+		while (x <= 3)
 		{
-			if ((x * x) + (y * y) <= (radius * radius))
+			if ((x * x) + (y * y) <= (3 * 3))
 				my_mlx_pixel_put(game, center_x + x, center_y + y, color);
 			x++;
 		}
@@ -72,12 +31,7 @@ void	draw_circle(t_game_data *game, int center_x, int center_y, \
 	}
 }
 
-void	draw_player(t_game_data *game, double x, double y, \
-	int radius, int color)
+void	draw_player(t_game_data *game, double x, double y)
 {
-	// int	draw_x;
-	// int	draw_y;
-	// draw_x = (x * CELL_SIZE);
-	// draw_y = (y * CELL_SIZE);
-	draw_circle(game, x, y, radius, color);
+	draw_circle(game, x, y, 0xFF0000);
 }

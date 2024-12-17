@@ -31,34 +31,32 @@ static void	init_floorcast_x(t_game_data *game)
 		(game->textures[4].height - 1);
 	game->raycast.floorx += game->raycast.floorstepx;
 	game->raycast.floory += game->raycast.floorstepy;
-
 }
 
 void	floorcasting(t_game_data *game)
 {
-    int	y;
-    int	x;
-    int	p;
-    
-    y = 0;
-    while (y < SCREEN_HEIGHT)
-    {
-        init_floorcast_y(game, y, &p);
-        x = 0;
-        while (x < SCREEN_WIDTH)
-        {
-            init_floorcast_x(game);
-            my_mlx_pixel_put(game, x, y, \
-                *(int *)(game->textures[2].addr + \
-                (game->raycast.ty * game->textures[2].line_length + \
-                game->raycast.tx * (game->textures[2].bpp / 8))));
-            my_mlx_pixel_put(game, x, SCREEN_HEIGHT - y - 1, \
-                *(int *)(game->textures[3].addr + \
-                (game->raycast.ty * game->textures[3].line_length + \
-                game->raycast.tx * (game->textures[3].bpp / 8))));
-            
-            x++;
-        }
-        y++;
-    }
+	int	y;
+	int	x;
+	int	p;
+
+	y = 0;
+	while (y < SCREEN_HEIGHT)
+	{
+		init_floorcast_y(game, y, &p);
+		x = 0;
+		while (x < SCREEN_WIDTH)
+		{
+			init_floorcast_x(game);
+			my_mlx_pixel_put(game, x, y, \
+				*(int *)(game->textures[5].addr + \
+				(game->raycast.ty * game->textures[5].line_length + \
+				game->raycast.tx * (game->textures[5].bpp / 8))));
+			my_mlx_pixel_put(game, x, SCREEN_HEIGHT - y - 1, \
+				*(int *)(game->textures[6].addr + \
+				(game->raycast.ty * game->textures[6].line_length + \
+				game->raycast.tx * (game->textures[6].bpp / 8))));
+			x++;
+		}
+		y++;
+	}
 }
