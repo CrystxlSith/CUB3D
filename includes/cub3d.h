@@ -78,6 +78,8 @@ typedef struct s_key
 {
 	int		forward;
 	int		backward;
+	int		strafe_left;
+	int		strafe_right;
 	int		turn_left;
 	int		turn_right;
 	int		escape;
@@ -175,7 +177,6 @@ void	draw_circle(t_game_data *game, int center_x, int center_y, \
 	int color);
 
 //draw.c
-void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
 void	draw_player(t_game_data *game, double x, \
 	double y);
@@ -212,17 +213,14 @@ int		handle_input(int keycode, t_game_data *game);
 int		input_release(int keycode, t_game_data *game);
 int		close_game(t_game_data *game);
 int		handle_mouse_motion(int x, int y, t_game_data *game);
-
+int		is_valid_position(t_game_data *game, double new_x, double new_y);
 // init.c
 void	init_game(t_game_data *game);
 void	ft_mlx_init(t_game_data *game);
 void	image_init(t_game_data *game);
 void	image_init2(t_game_data *game);
 void	init_game2(t_game_data *game);
-
-//door_textures.c
-void	door_texture_calculation(t_game_data *game);
-void	verline_door(t_game_data *game, int x, int start, int end);
+void	close_mlx(t_game_data *game);
 
 // ----------------------------------------------------------------------
 // 									PARSING

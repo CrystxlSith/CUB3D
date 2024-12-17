@@ -9,7 +9,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 	game->map = NULL;
 	full_file = open_file(av);
 	if (!full_file)
-		return (-1);
+		return (close_mlx(game), exit(EXIT_FAILURE), -1);
 	game->file = ft_split(full_file, '\n');
 	free(full_file);
 	if (!game->file)

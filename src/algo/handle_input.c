@@ -8,10 +8,14 @@ int	handle_input(int keycode, t_game_data *game)
 		game->key.forward = 1;
 	else if (keycode == XK_s)
 		game->key.backward = 1;
-	else if (keycode == XK_a)
+	else if (keycode == 65361)
 		game->key.turn_left = 1;
-	else if (keycode == XK_d)
+	else if (keycode == 65363)
 		game->key.turn_right = 1;
+	else if (keycode == XK_a)
+		game->key.strafe_left = 1;
+	else if (keycode == XK_d)
+		game->key.strafe_right = 1;
 	else if (keycode == XK_e && game->key_e_pressed == 0)
 	{
 		game->key_e_pressed = 1;
@@ -28,11 +32,15 @@ int	input_release(int keycode, t_game_data *game)
 	else if (keycode == XK_s)
 		game->key.backward = 0;
 	else if (keycode == XK_a)
-		game->key.turn_left = 0;
+		game->key.strafe_left = 0;
 	else if (keycode == XK_d)
-		game->key.turn_right = 0;
+		game->key.strafe_right = 0;
 	else if (keycode == XK_e)
 		game->key_e_pressed = 0;
+	else if (keycode == 65361)
+		game->key.turn_left = 0;
+	else if (keycode == 65363)
+		game->key.turn_right = 0;
 	return (0);
 }
 

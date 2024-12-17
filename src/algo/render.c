@@ -1,17 +1,63 @@
 #include "../../includes/cub3d.h"
 
+static void	strafe_left(t_game_data *game, double movespeed)
+{
+	double	newposx;
+	double	newposy;
+	double	new_speed;
+
+	new_speed = game->raycast.delta_time * movespeed * 60.0;
+	newposx = game->player.x - game->raycast.diry * new_speed;
+	newposy = game->player.y + game->raycast.dirx * new_speed;
+	if (is_valid_position(game, newposx, game->player.y))
+	{
+		game->player.x = newposx;
+		game->raycast.posx = newposx;
+	}
+	if (is_valid_position(game, game->player.x, newposy))
+	{
+		game->player.y = newposy;
+		game->raycast.posy = newposy;
+	}
+}
+
+static void	strafe_right(t_game_data *game, double movespeed)
+{
+	double	newposx;
+	double	newposy;
+	double	new_speed;
+
+	new_speed = game->raycast.delta_time * movespeed * 60.0;
+	newposx = game->player.x + game->raycast.diry * new_speed;
+	newposy = game->player.y - game->raycast.dirx * new_speed;
+	if (is_valid_position(game, newposx, game->player.y))
+	{
+		game->player.x = newposx;
+		game->raycast.posx = newposx;
+	}
+	if (is_valid_position(game, game->player.x, newposy))
+	{
+		game->player.y = newposy;
+		game->raycast.posy = newposy;
+	}
+}
+
 void	update_player(t_game_data *game)
 {
 	if (game->key.escape)
 		exit_error(game, "Exit game\n");
-	else if (game->key.forward)
+	else if (game->key.forward == 1)
 		move_front(game, 0.1);
-	else if (game->key.backward)
+	else if (game->key.backward == 1)
 		move_back(game, 0.1);
-	else if (game->key.turn_left)
+	else if (game->key.turn_left == 1)
 		turn_left(game, 0.1);
-	else if (game->key.turn_right)
+	else if (game->key.turn_right == 1)
 		turn_right(game, 0.1);
+	else if (game->key.strafe_left == 1)
+		strafe_left(game, 0.1);
+	else if (game->key.strafe_right == 1)
+		strafe_right(game, 0.1);
 }
 
 int	render_frame(t_game_data *game)

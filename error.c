@@ -1,5 +1,16 @@
 #include "includes/cub3d.h"
 
+void	close_mlx(t_game_data *game)
+{
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+}
+
 void	free_all(t_game_data *game)
 {
 	if (game->map)
@@ -47,10 +58,7 @@ void	exit_error(t_game_data *game, char *error)
 
 void	exit_error_map(t_game_data *game, char *error)
 {
-	int	i;
-
 	ft_putstr_fd(error, 2);
-	i = 0;
 	free_all(game);
 	if (game->ray_img)
 		mlx_destroy_image(game->mlx, game->ray_img);
