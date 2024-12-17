@@ -14,7 +14,7 @@
 	==19685==    by 0x111190: input_release (in /home/rottbliss/42/cub/cub3d)
 	==19685==    by 0x1154C5: mlx_loop (in /home/rottbliss/42/cub/cub3d)
 	==19685==    by 0x113BAC: main (in /home/rottbliss/42/cub/cub3d)
-	==19685== 
+	==19685==
 	==19685== Conditional jump or move depends on uninitialised value(s)
 	==19685==    at 0x11129A: handle_door (in /home/rottbliss/42/cub/cub3d)
 	==19685==    by 0x111190: input_release (in /home/rottbliss/42/cub/cub3d)
@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 	if (fill_map_struct(&game, argv) == -1)
 		return (0);
 	image_init(&game);
+	init_doors(&game);
 	mlx_hook(game.win, MotionNotify, PointerMotionMask, \
 		handle_mouse_motion, &game);
 	mlx_hook(game.win, 2, 1L << 0, &handle_input, &game);

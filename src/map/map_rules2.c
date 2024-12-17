@@ -72,11 +72,7 @@ int	check_filling(t_game_data *game)
 				|| game->map[x][y] == 'N' || game->map[x][y] == 'S'
 				|| game->map[x][y] == 'E' || game->map[x][y] == 'W'
 				|| game->map[x][y] == ' ' || game->map[x][y] == 'P')
-			{
-				if (game->map[x][y] == 'P')
-					game->door_nbr++;
 				y++;
-			}
 			else
 				return (FALSE);
 		}
