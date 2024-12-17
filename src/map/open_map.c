@@ -71,7 +71,7 @@ int	get_map_index(char **file)
 	{
 		while (file[index][i] != ' ' && file[index][i] != '1')
 			index++;
-		if (file[index][i] == ' ')
+		if (file[index][i] == ' ' || file[index][i] == '1')
 		{
 			i = 0;
 			while (file[index][i])

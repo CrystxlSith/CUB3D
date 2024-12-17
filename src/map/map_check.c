@@ -17,13 +17,13 @@ int	check_lines(t_game_data *game)
 	{
 		width = map_width(index, game->map);
 		if (check_walls(width, index, game->map) == FALSE)
-			return (ft_putstr_fd("Error\nWall Error\n", 2), FALSE);
+			return (FALSE);
 		index++;
 	}
 	if (check_start(game) == FALSE)
-		return (ft_putstr_fd("Error\nStart Error\n", 2), FALSE);
+		return (FALSE);
 	if (check_filling(game) == FALSE)
-		return (ft_putstr_fd("Error\nFilling Error\n", 2), FALSE);
+		return (FALSE);
 	game->map_width = get_map_width(game->map);
 	game->map_height = get_map_height(game->map);
 	return (TRUE);
@@ -38,8 +38,7 @@ int	count_lines(int fd)
 	count = 0;
 	ret = read(fd, map_name, sizeof(map_name));
 	if (ret == -1)
-		return (close(fd), \
-			ft_printf("Error\n Read Map%s\n"), FALSE);
+		return (close(fd), FALSE);
 	count = ret;
 	return (count);
 }
