@@ -1,7 +1,7 @@
 NO textures/tuff.xpm
-SO textures/Cloth_21-512x512.xpm
-WE textures/Stone_13-512x512.xpm
-EA textures/Stone_21-512x512.xpm
+SO textures/polished_blackstone_bricks_0.xpm
+WE textures/black_terracotta.xpm
+EA textures/dragon_egg.xpm
 
 F 220,100,0
 C 225,30,0

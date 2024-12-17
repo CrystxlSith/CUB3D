@@ -45,7 +45,7 @@ MAP_DEP = ${MAP_OBJ:%.o=%.d}
 ALGO_OBJ = ${ALGO_SRC:%.c=%.o}
 ALGO_DEP = ${ALGO_OBJ:%.o=%.d}
 
-MAIN_OBJ = main.o
+MAIN_OBJ = main.o error.o
 
 MAP_SRCF = $(addprefix $(MAP_SRC_DIR), $(MAP_SRC))
 MAP_OBJF = $(addprefix $(MAP_OBJ_DIR), $(MAP_OBJ))

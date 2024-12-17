@@ -84,6 +84,8 @@ int	get_textures(t_game_data *game, char **file)
 	int	i;
 
 	i = 0;
+	if (!*file)
+		return (-1);
 	while (file[i])
 	{
 		if (textures(game, file[i]) == -1)

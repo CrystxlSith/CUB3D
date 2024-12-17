@@ -88,6 +88,11 @@ void	init_game(t_game_data *game)
 	game->raycast.hit = 0;
 	game->raycast.door_state = 0;
 	game->door_nbr = 0;
+	game->north_texture = NULL;
+	game->south_texture = NULL;
+	game->west_texture = NULL;
+	game->east_texture = NULL;
+	game->ray_img = NULL;
 	init_game2(game);
 }
 
@@ -108,4 +113,6 @@ void	init_game2(t_game_data *game)
 	game->key.turn_right = 0;
 	game->key.escape = 0;
 	game->key_e_pressed = 0;
+	game->floor_color = NULL;
+	game->ceiling_color = NULL;
 }
