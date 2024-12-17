@@ -15,7 +15,8 @@ int	handle_input(int keycode, t_game_data *game)
 	else if (keycode == XK_e && game->key_e_pressed == 0)
 	{
 		game->key_e_pressed = 1;
-		handle_door(game);
+		if (game->door_nbr > 0)
+			handle_door(game);
 	}
 	return (0);
 }

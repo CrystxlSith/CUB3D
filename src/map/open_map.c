@@ -6,6 +6,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 	int		index;
 
 	game->file = NULL;
+	game->map = NULL;
 	full_file = open_file(av);
 	if (!full_file)
 		return (-1);
@@ -13,18 +14,18 @@ int	fill_map_struct(t_game_data *game, char **av)
 	free(full_file);
 	if (!game->file)
 		return (-1);
+	init_game(game);
 	if (get_textures(game, game->file) == -1)
-		return (free_everything(game->file), -1);
+		return (-1);
 	index = get_map_index(game->file);
 	if (index == -1)
-		return (free_everything(game->file), -1);
+		return (-1);
 	game->map = get_map(game->file, index);
 	if (!game->map)
-		return (free_everything(game->file), -1);
+		return (-1);
 	if (map_check(game) == FALSE)
-		return (free_everything(game->map), free_everything(game->file), -1);
+		return (-1);
 	complete_map(game);
-	init_game(game);
 	return (0);
 }
 

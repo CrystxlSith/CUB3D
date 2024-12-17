@@ -275,5 +275,7 @@ void	handle_door(t_game_data *game);
 
 // error.c
 void	exit_error(t_game_data *game, char *error);
+void	free_all(t_game_data *game);
+void	exit_error_map(t_game_data *game, char *error);
 
 #endif

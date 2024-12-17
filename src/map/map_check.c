@@ -61,6 +61,8 @@ void	free_everything(char **s)
 {
 	int	index;
 
+	if (!*s)
+		return ;
 	index = 0;
 	while (s[index])
 	{

@@ -73,12 +73,12 @@ void	move_back(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x - game->raycast.dirx * new_speed;
 	newposy = game->player.y - game->raycast.diry * new_speed;
-	if (game->map[(int)newposx][(int)game->player.y] != '1')
+	if (is_valid_position(game, newposx, game->player.y))
 	{
 		game->player.x = newposx;
 		game->raycast.posx = newposx;
 	}
-	if (game->map[(int)game->player.x][(int)newposy] != '1')
+	if (is_valid_position(game, game->player.x, newposy))
 	{
 		game->player.y = newposy;
 		game->raycast.posy = newposy;
