@@ -45,7 +45,6 @@ void	image_init(t_game_data *game)
 	image_verify(game);
 }
 
-
 void	image_init2(t_game_data *game)
 {
 	game->textures[0].addr = mlx_get_data_addr(game->textures[0].img, \
@@ -108,4 +107,5 @@ void	init_game2(t_game_data *game)
 	game->key.turn_left = 0;
 	game->key.turn_right = 0;
 	game->key.escape = 0;
+	game->key_e_pressed = 0;
 }

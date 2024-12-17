@@ -26,14 +26,11 @@ void	exit_error(t_game_data *game, char *error)
 
 	ft_putstr_fd(error, 2);
 	i = 0;
-	if (game->textures)
+	while (i < 7)
 	{
-		while (i < 7)
-		{
-			if (game->textures[i].img)
-				mlx_destroy_image(game->mlx, game->textures[i].img);
-			i++;
-		}
+		if (game->textures[i].img)
+			mlx_destroy_image(game->mlx, game->textures[i].img);
+		i++;
 	}
 	free_all(game);
 	if (game->ray_img)

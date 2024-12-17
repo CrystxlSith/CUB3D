@@ -4,8 +4,7 @@ int	is_valid_position(t_game_data *game, double new_x, double new_y)
 {
 	if (game->map[(int)new_x][(int)new_y] == '1')
 		return (0);
-	if (game->map[(int)new_x][(int)new_y] == 'P'
-		&& game->raycast.door_state != 1)
+	if (game->map[(int)new_x][(int)new_y] == 'P')
 		return (0);
 	return (1);
 }
@@ -74,20 +73,14 @@ void	move_back(t_game_data *game, double movespeed)
 	new_speed = game->raycast.delta_time * movespeed * 60.0;
 	newposx = game->player.x - game->raycast.dirx * new_speed;
 	newposy = game->player.y - game->raycast.diry * new_speed;
-	if (is_valid_position(game, newposx, game->player.y))
+	if (game->map[(int)newposx][(int)game->player.y] != '1')
 	{
-		if (game->raycast.is_door != 1)
-		{
-			game->player.x = newposx;
-			game->raycast.posx = newposx;
-		}
+		game->player.x = newposx;
+		game->raycast.posx = newposx;
 	}
-	if (is_valid_position(game, game->player.x, newposy))
+	if (game->map[(int)game->player.x][(int)newposy] != '1')
 	{
-		if (game->raycast.is_door != 1)
-		{
-			game->player.y = newposy;
-			game->raycast.posy = newposy;
-		}
+		game->player.y = newposy;
+		game->raycast.posy = newposy;
 	}
 }

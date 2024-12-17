@@ -62,8 +62,6 @@ typedef struct s_ray
 	int		ceiling_texture;
 	float	rowdistance;
 	int		is_door;
-	int		doorx;
-	int		doory;
 	int		stepx;
 	int		stepy;
 	int		hit;
@@ -112,6 +110,13 @@ typedef struct s_player
 	double	angle;
 }			t_player;
 
+typedef struct s_door
+{
+	int	x;
+	int	y;
+	int	state;
+}	t_door;
+
 typedef struct s_texture
 {
 	void	*img;
@@ -149,10 +154,12 @@ typedef struct s_game_data
 	int			line_length;
 	int			map_width;
 	int			map_height;
+	int			key_e_pressed;
 	t_key		key;
 	t_ray		raycast;
 	t_player	player;
 	t_texture	textures[7];
+	t_door		doors[100];
 }				t_game_data;
 
 // ----------------------------------------------------------------------
@@ -166,6 +173,7 @@ void	draw_map(t_game_data *game);
 void	draw_line(t_game_data *game, int x, int start, int end, int color);
 void	draw_circle(t_game_data *game, int center_x, int center_y, \
 	int color);
+
 //draw.c
 void	draw_map(t_game_data *game);
 void	my_mlx_pixel_put(t_game_data *data, int x, int y, int color);
@@ -182,7 +190,8 @@ void	update_player(t_game_data *game);
 
 //raycast.c
 void	raycasting(t_game_data *game);
-void    floorcasting(t_game_data *game);
+void	floorcasting(t_game_data *game);
+
 //raycast_utils.c
 void	fps_count(t_game_data *game);
 double	get_time_in_seconds(void);
@@ -197,14 +206,12 @@ void	move_back(t_game_data *game, double movespeed);
 void	move_front(t_game_data *game, double movespeed);
 void	turn_right(t_game_data *game, double rotation_speed);
 void	turn_left(t_game_data *game, double rotation_speed);
-void	through_door(t_game_data *game, double newposx, double newposy);
 
 //handle_input.c
 int		handle_input(int keycode, t_game_data *game);
 int		input_release(int keycode, t_game_data *game);
 int		close_game(t_game_data *game);
 int		handle_mouse_motion(int x, int y, t_game_data *game);
-void	handle_door(t_game_data *game);
 
 // init.c
 void	init_game(t_game_data *game);
@@ -227,9 +234,10 @@ int		fill_map_struct(t_game_data *game, char **av);
 int		get_map_index(char **file);
 int		count_lines_map(char **file, int index);
 char	**get_map(char **file, int index);
-void	complete_map(t_game_data *game);
 void	image_verify(t_game_data *game);
 void	addr_verify(t_game_data *game);
+void	complete_map(t_game_data *game);
+
 //get_colors.c
 char	*get_file_color(char *file);
 int		get_colors(t_game_data *game, char *file);
@@ -260,9 +268,12 @@ int		check_start(t_game_data *game);
 int		check_filling(t_game_data *game);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
-int		fill_door_struct(t_game_data *game);
-int		find_door_index(t_game_data *game);
+
+//handle_door.c
+void	init_doors(t_game_data *game);
+void	handle_door(t_game_data *game);
+
 // error.c
-void    exit_error(t_game_data *game, char *error);
+void	exit_error(t_game_data *game, char *error);
 
 #endif
