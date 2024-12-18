@@ -4,8 +4,8 @@ RM = rm -rf
 EXEC = cub3d
 NAME = cub3d.a
 MLX_DIR = ./minilibx-linux
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
-LIBS = libft/libft.a minilibx-linux/libmlx.a -lX11 -lXext -lm
+MLX_LIB = $(MLX_DIR)/libmlx$(UNAME).a
+LIBS = libft/libft.a $(MLX_LIB) -lX11 -lXext -lm
 
 RED    = \033[31m
 GREEN  = \033[32m

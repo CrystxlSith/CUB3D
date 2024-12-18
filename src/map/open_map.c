@@ -23,9 +23,9 @@ int	fill_map_struct(t_game_data *game, char **av)
 	game->map = get_map(game->file, index);
 	if (!game->map)
 		return (-1);
+	complete_map(game);
 	if (map_check(game) == FALSE)
 		return (-1);
-	complete_map(game);
 	return (0);
 }
 
