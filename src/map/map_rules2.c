@@ -20,12 +20,40 @@ int	get_map_width(char **map)
 	return (width);
 }
 
-void	set_index(int index_x, int index_y, t_game_data *game)
+void	set_index(int index_x, int index_y, t_game_data *game, char c)
 {
 	game->player.x = index_x + 0.5;
 	game->player.y = index_y + 0.5;
 	game->raycast.posx = index_x + 0.5;
 	game->raycast.posy = index_y + 0.5;
+	if (c == 'N')
+	{
+		game->raycast.dirx = -1;
+		game->raycast.diry = 0;
+		game->raycast.planex = 0;
+		game->raycast.planey = 0.66;
+	}
+	else if (c == 'S')
+	{
+		game->raycast.dirx = 1;
+		game->raycast.diry = 0;
+		game->raycast.planex = 0;
+		game->raycast.planey = -0.66;
+	}
+	else if (c == 'E')
+	{
+		game->raycast.dirx = 0;
+		game->raycast.diry = 1;
+		game->raycast.planex = 0.66;
+		game->raycast.planey = 0;
+	}
+	else if (c == 'W')
+	{
+		game->raycast.dirx = 0;
+		game->raycast.diry = -1;
+		game->raycast.planex = -0.66;
+		game->raycast.planey = 0;
+	}
 }
 
 int	check_start(t_game_data *game)
@@ -45,7 +73,7 @@ int	check_start(t_game_data *game)
 			if (game->map[x][y] == 'N' || game->map[x][y] == 'S'
 				|| game->map[x][y] == 'E' || game->map[x][y] == 'W')
 			{
-				set_index(x, y, game);
+				set_index(x, y, game, game->map[x][y]);
 				count++;
 			}
 			y++;

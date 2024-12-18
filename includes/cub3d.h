@@ -12,7 +12,7 @@
 # define PI 3.14159265359
 
 
-# include "../mlx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>

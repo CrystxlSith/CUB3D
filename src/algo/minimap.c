@@ -30,7 +30,8 @@ void	draw_minimap(t_game_data *data, t_minimap minimap, int pixel_x)
 	map_value = data->map[minimap.map_y][minimap.map_x];
 	if (map_value == '1')
 		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x000000);
-	else if (map_value == '0' || map_value == 'N')
+	else if (map_value == '0' || map_value == 'N' || map_value == 'S' \
+	|| map_value == 'E' || map_value == 'W')
 		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0xFFFFFF);
 	else if (map_value == 'P')
 		my_mlx_pixel_put(data, pixel_x, minimap.pixel_y, 0x8B00FF);

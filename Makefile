@@ -3,9 +3,9 @@ CFLAGS = -g3 -Wall -Wextra -Werror -I./includes/
 RM = rm -rf
 EXEC = cub3d
 NAME = cub3d.a
-MLX_DIR = ./mlx
+MLX_DIR = ./minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
-LIBS = libft/libft.a mlx/libmlx.a -lX11 -lXext -lm
+LIBS = libft/libft.a minilibx-linux/libmlx.a -lX11 -lXext -lm
 
 RED    = \033[31m
 GREEN  = \033[32m
@@ -66,7 +66,7 @@ DEPF = $(ALGO_DEPF) $(MAP_DEPF)
 .SILENCE : $(CC) $(FLAGS) $(SRC) $(EXEC) $(OBJ) $(OBJF) $(OBJ_DIR) \
 	$(DEP_DIR) $(SRC_DIR) $(MLX_LIB)
 
-all: $(MLX_LIB) cub3d
+all: cub3d
 
 cub3d: $(NAME) $(OBJ_DIR) $(DEP_DIR) $(OBJF)
 	@echo "${CYAN}Compiling cub3d...${RESET}"
