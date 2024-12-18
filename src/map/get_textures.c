@@ -89,15 +89,15 @@ int	get_textures(t_game_data *game, char **file)
 	while (file[i])
 	{
 		if (textures(game, file[i]) == -1)
-			return (ft_putstr_fd("Invalid textures\n", 2), -1);
+			return (-1);
 		else if (get_colors(game, file[i]) == -1)
-			return (ft_putstr_fd("Invalid colors\n", 2), -1);
+			return (-1);
 		i++;
 	}
 	if (game->north_texture == NULL || game->south_texture == NULL
 		|| game->west_texture == NULL || game->east_texture == NULL)
-		return (ft_putstr_fd("Invalid textures\n", 2), -1);
+		return (-1);
 	else if (game->ceiling_color == NULL || game->floor_color == NULL)
-		return (ft_putstr_fd("Invalid colors\n", 2), -1);
+		return (-1);
 	return (0);
 }

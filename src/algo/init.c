@@ -93,6 +93,8 @@ void	init_game(t_game_data *game)
 	game->west_texture = NULL;
 	game->east_texture = NULL;
 	game->ray_img = NULL;
+	game->movespeed = 0;
+	game->rotspeed = 0;
 	init_game2(game);
 }
 
@@ -112,6 +114,8 @@ void	init_game2(t_game_data *game)
 	game->key.turn_left = 0;
 	game->key.turn_right = 0;
 	game->key.escape = 0;
+	game->key.strafe_left = 0;
+	game->key.strafe_right = 0;
 	game->key_e_pressed = 0;
 	game->floor_color = NULL;
 	game->ceiling_color = NULL;
