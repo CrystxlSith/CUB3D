@@ -21,8 +21,8 @@ int	map_length(int index, char **input)
 	int	length;
 
 	length = 0;
-	index_x = 0;
-	while (input[index_x][index])
+	index_x = index;
+	while (input[index_x])
 	{
 		length++;
 		index_x++;

@@ -1,40 +1,89 @@
 #include "../../includes/cub3d.h"
 
-int	check_walls_horizontal(int width, int index, char **map)
-{
-	int	i;
+// int	first_wall(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	if (index == 0 || map[index + 1] == NULL)
-	{
-		while (map[index][i] == ' ' || map[index][i] == '1')
-			i++;
-	}
-	else
-	{
-		while (map[index][i] == '0' || map[index][i] == '1'
-			|| map[index][i] == 'N' || map[index][i] == 'S'
-			|| map[index][i] == 'E' || map[index][i] == 'W'
-			|| map[index][i] == ' ' || map[index][i] == 'P')
-			i++;
-	}
-	if (i == width && map[index][i - 1] == '1')
-		return (TRUE);
-	else
+// 	i = 0;
+// 	while (line[i])
+// 	{
+// 		if (line[i] == '1')
+// 			return (i);
+// 		i++;
+// 	}
+// 	return (-1);
+// }
+
+// int	last_wall(char *line)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (line[i])
+// 		i++;
+// 	while (i > 0)
+// 	{
+// 		if (line[i] == '1')
+// 			return (i);
+// 		i--;
+// 	}
+// 	return (-1);
+// }
+
+
+// int	check_space(char c, t_game_data *game, int x, int y)
+// {
+// 	if (c == ' ' && y > first_wall(game->map[x]) && y < last_wall(game->map[x]))
+// 	{
+// 		if (game->map[x + 1][y] != '1' || game->map[x - 1][y] != '1'
+// 			|| game->map[x][y + 1] != '1' || game->map[x][y - 1] != '1')
+// 			return (-1);
+// 	}
+// 	return (0);
+// }
+
+int	is_line_closed(int i, char **map, int length)
+{
+	int	y;
+
+	y = 0;
+	(void)length;
+	while (map[i][y] == ' ')
+		y++;
+	if (map[i][y] != '1')
 		return (FALSE);
+	while (map[i][y])
+	{
+		if (i > 0 && map[i][y] == ' ' && map[i - 1][y] == '0')
+			return (FALSE);
+		y++;
+	}
+	y--;
+	if (i != 0)
+	{
+		while (y >= 0 && map[i][y] == ' '
+			&& (map[i - 1][y] == '1' || map[i - 1][y] == ' '))
+			y--;
+	}
+	if (map[i][y] != '1')
+		return (FALSE);
+	return (TRUE);
 }
 
-int	check_walls_vertical(int length, int index, char **map)
+int	is_map_closed(char **map, int length)
 {
-	while (map[i][index] == '0' || map[i][index] == '1'
-		|| map[i][index] == 'N' || map[i][index] == 'S'
-		|| map[i][index] == 'E' || map[i][index] == 'W'
-		|| map[i][index] == ' ' || map[i][index] == 'P')
-		i++;
-	if (i == length && map[i - 1][index] == '1')
-		return (TRUE);
-	else
+	int	y;
+
+	if (!map || length <= 0)
 		return (FALSE);
+	y = 0;
+	while (y < length)
+	{
+		if (!is_line_closed(y, map, length))
+			return (FALSE);
+		y++;
+	}
+	return (TRUE);
 }
 
 int	check_texture_files(char *texture)

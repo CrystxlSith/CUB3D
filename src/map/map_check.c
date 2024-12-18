@@ -10,26 +10,14 @@ int	map_check(t_game_data *game)
 int	check_lines(t_game_data *game)
 {
 	int	index;
-	int	width;
 	int	length;
 	int	i;
 
 	index = 0;
 	i = 0;
-	while (game->map[index])
-	{
-		width = map_width(index, game->map);
-		if (check_walls_horizontal(width, index, game->map) == FALSE)
-			return (FALSE);
-		index++;
-	}
-	while (game->map[0][i])
-	{
-		length = map_length(i, game->map);
-		if (check_walls_vertical(width, index, game->map) == FALSE)
-			return (FALSE);
-		i++;
-	}
+	length = map_length(index, game->map);
+	if (is_map_closed(game->map, length) == FALSE)
+		return (FALSE);
 	if (check_start(game) == FALSE)
 		return (FALSE);
 	if (check_filling(game) == FALSE)
