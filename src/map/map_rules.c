@@ -1,6 +1,6 @@
 #include "../../includes/cub3d.h"
 
-int	check_walls(int width, int index, char **map)
+int	check_walls_horizontal(int width, int index, char **map)
 {
 	int	i;
 
@@ -19,6 +19,19 @@ int	check_walls(int width, int index, char **map)
 			i++;
 	}
 	if (i == width && map[index][i - 1] == '1')
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	check_walls_vertical(int length, int index, char **map)
+{
+	while (map[i][index] == '0' || map[i][index] == '1'
+		|| map[i][index] == 'N' || map[i][index] == 'S'
+		|| map[i][index] == 'E' || map[i][index] == 'W'
+		|| map[i][index] == ' ' || map[i][index] == 'P')
+		i++;
+	if (i == length && map[i - 1][index] == '1')
 		return (TRUE);
 	else
 		return (FALSE);
