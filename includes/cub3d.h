@@ -259,7 +259,8 @@ int		count_words(char *input);
 int		map_length(int index, char **input);
 
 //map_rules.c
-int		check_walls(int width, int index, char **map);
+int		check_walls_horizontal(int width, int index, char **map);
+int		check_walls_vertical(int length, int index, char **map);
 int		check_texture_files(char *texture);
 int		texture_verify(t_game_data *game);
 
