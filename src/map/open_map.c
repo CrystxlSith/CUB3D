@@ -7,7 +7,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 
 	game->file = NULL;
 	game->map = NULL;
-	full_file = open_file(av);
+	full_file = open_file(av[1], ".cub");
 	if (!full_file)
 		return (close_mlx(game), exit(EXIT_FAILURE), -1);
 	game->file = ft_split(full_file, '\n');
@@ -29,7 +29,7 @@ int	fill_map_struct(t_game_data *game, char **av)
 	return (0);
 }
 
-char	*open_file(char **av)
+char	*open_file(char *av, char *extension)
 {
 	char	*full_file;
 	int		fd;
@@ -37,23 +37,22 @@ char	*open_file(char **av)
 	int		size;
 	char	*final_file;
 
-	if (check_file(av[1]) == FALSE)
-		return (ft_putstr_fd("Error\nWrong File\n", 2), NULL);
-	fd = open(av[1], O_RDONLY);
+	if (check_file(av, extension) == FALSE)
+		return (NULL);
+	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd("Error\nOpen file\n", 2), NULL);
+		return (NULL);
 	if (read(fd, 0, 0) < 0)
-		return (ft_putstr_fd("Error\nWrong input\n", 2), NULL);
+		return (NULL);
 	size = count_lines(fd);
 	close(fd);
-	fd = open(av[1], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd("Error\nOpen file\n", 2), NULL);
+		return (NULL);
 	full_file = ft_calloc(size + 1, sizeof(char));
 	ret = read(fd, full_file, size);
 	if (ret == -1)
-		return (free(full_file), close(fd), \
-			ft_putstr_fd("Error\nRead file\n", 2), NULL);
+		return (free(full_file), close(fd), NULL);
 	final_file = ft_strdup(full_file);
 	return (free(full_file), close(fd), final_file);
 }

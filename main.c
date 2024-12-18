@@ -14,6 +14,8 @@ int	main(int argc, char *argv[])
 	ft_mlx_init(&game);
 	if (fill_map_struct(&game, argv) == -1)
 		return (exit_error_map(&game, "Map error\n"), 0);
+	if (texture_verify(&game) == -1)
+		return (exit_error_map(&game, "Texture error\n"), 0);
 	image_init(&game);
 	init_doors(&game);
 	mlx_hook(game.win, MotionNotify, PointerMotionMask, \
