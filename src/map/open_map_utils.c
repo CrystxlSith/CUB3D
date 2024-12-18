@@ -1,5 +1,17 @@
 #include "../../includes/cub3d.h"
 
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
+}
+
 static void	fill(t_game_data *game, int max_len, int i, char **new_map)
 {
 	int	j;
@@ -42,5 +54,6 @@ void	complete_map(t_game_data *game)
 	i = 0;
 	fill(game, max_len, i, new_map);
 	free_everything(game->map);
+	print_map(new_map);
 	game->map = new_map;
 }

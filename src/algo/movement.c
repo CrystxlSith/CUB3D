@@ -2,6 +2,9 @@
 
 int	is_valid_position(t_game_data *game, double new_x, double new_y)
 {
+	if (new_x < 0 || new_y >= game->map_width || new_y < 0 || \
+	new_x >= game->map_height)
+		return (0);
 	if (game->map[(int)new_x][(int)new_y] == '1')
 		return (0);
 	if (game->map[(int)new_x][(int)new_y] == 'P')

@@ -58,6 +58,9 @@ void	digital_differential_analyzer(t_game_data *game)
 	while (game->raycast.hit == 0)
 	{
 		update_ray(game);
+		if (game->player.mapx < 0 || game->player.mapy >= game->map_width || \
+		game->player.mapy < 0 || game->player.mapx >= game->map_height)
+			break ;
 		if (game->map[game->player.mapx][game->player.mapy] == '1')
 		{
 			game->raycast.hit = 1;

@@ -63,8 +63,8 @@ void	update_player(t_game_data *game)
 int	render_frame(t_game_data *game)
 {
 	mlx_clear_window(game->mlx, game->win);
-	draw_floor_and_ceiling(game);
 	update_player(game);
+	draw_floor_and_ceiling(game);
 	floorcasting(game);
 	raycasting(game);
 	minimap(game);
