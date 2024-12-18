@@ -43,7 +43,7 @@ int	count_lines(int fd)
 	return (count);
 }
 
-int	check_file(char *input)
+int	check_file(char *input, char *extension)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ int	check_file(char *input)
 	while (input[i])
 		i++;
 	i = i - 4;
-	if (ft_strncmp(&input[i], ".cub", 5) == 0)
+	if (ft_strncmp(&input[i], extension, 5) == 0)
 		return (TRUE);
 	return (FALSE);
 }

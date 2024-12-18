@@ -227,7 +227,6 @@ void	close_mlx(t_game_data *game);
 // ----------------------------------------------------------------------
 
 //open_map.c
-char	*open_file(char **av);
 int		fill_map_struct(t_game_data *game, char **av);
 int		get_map_index(char **file);
 int		count_lines_map(char **file, int index);
@@ -235,6 +234,7 @@ char	**get_map(char **file, int index);
 void	image_verify(t_game_data *game);
 void	addr_verify(t_game_data *game);
 void	complete_map(t_game_data *game);
+char	*open_file(char *av, char *extension);
 
 //get_colors.c
 char	*get_file_color(char *file);
@@ -250,7 +250,7 @@ int		textures(t_game_data *game, char *file);
 int		map_check(t_game_data *game);
 int		check_lines(t_game_data *game);
 int		count_lines(int fd);
-int		check_file(char *input);
+int		check_file(char *input, char *extension);
 void	free_everything(char **s);
 
 //map_dimensions.c
@@ -260,6 +260,8 @@ int		map_length(int index, char **input);
 
 //map_rules.c
 int		check_walls(int width, int index, char **map);
+int		check_texture_files(char *texture);
+int		texture_verify(t_game_data *game);
 
 //map_rules2.c
 int		check_start(t_game_data *game);
