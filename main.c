@@ -1,10 +1,5 @@
 #include "includes/cub3d.h"
 
-/*
-	gerer les free dans les erreurs lors de l'initialisation
-	verifier le .xpm avant de le charger
-
-*/
 int	main(int argc, char *argv[])
 {
 	t_game_data	game;
