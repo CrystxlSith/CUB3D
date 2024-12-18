@@ -77,9 +77,6 @@ void	raycalculate(t_game_data *game, int x)
 	game->raycast.is_door = 0;
 	game->player.mapx = (int)game->player.x;
 	game->player.mapy = (int)game->player.y;
-	if (game->raycast.raydirx == 0)
-		game->raycast.deltadistx = 1e30;
-	else
 		game->raycast.deltadistx = fabs(1 / game->raycast.raydirx);
 	if (game->raycast.raydiry == 0)
 		game->raycast.deltadisty = 1e30;

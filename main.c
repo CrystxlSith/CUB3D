@@ -1,6 +1,5 @@
 #include "includes/cub3d.h"
 
-
 /*
 	gerer les free dans les erreurs lors de l'initialisation
 	verifier le .xpm avant de le charger

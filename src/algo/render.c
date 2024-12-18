@@ -49,7 +49,7 @@ void	update_player(t_game_data *game)
 	else if (game->key.forward == 1)
 		move_front(game, game->movespeed);
 	else if (game->key.backward == 1)
-		move_back(game,game->movespeed);
+		move_back(game, game->movespeed);
 	else if (game->key.turn_left == 1)
 		turn_left(game, game->rotspeed);
 	else if (game->key.turn_right == 1)
