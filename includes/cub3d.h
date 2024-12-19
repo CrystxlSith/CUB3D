@@ -273,6 +273,8 @@ int		get_map_height(char **map);
 //handle_door.c
 void	init_doors(t_game_data *game);
 void	handle_door(t_game_data *game);
+int		get_map_height(char **map);
+int		get_map_width(char **map);
 
 // error.c
 void	exit_error(t_game_data *game, char *error);
