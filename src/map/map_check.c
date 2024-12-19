@@ -16,7 +16,7 @@ int	check_lines(t_game_data *game)
 	index = 0;
 	i = 0;
 	length = map_length(index, game->map);
-	if (is_map_closed(game->map, length) == FALSE)
+	if (is_map_closed(game, length) == FALSE)
 		return (FALSE);
 	if (check_start(game) == FALSE)
 		return (FALSE);
