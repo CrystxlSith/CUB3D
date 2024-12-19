@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jopfeiff <jopfeiff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:32:01 by agiliber          #+#    #+#             */
-/*   Updated: 2024/12/19 14:33:32 by agiliber         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:42:49 by jopfeiff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	raycalculate(t_game_data *game, int x)
 	game->raycast.is_door = 0;
 	game->player.mapx = (int)game->player.x;
 	game->player.mapy = (int)game->player.y;
-		game->raycast.deltadistx = fabs(1 / game->raycast.raydirx);
+	game->raycast.deltadistx = fabs(1 / game->raycast.raydirx);
 	if (game->raycast.raydiry == 0)
 		game->raycast.deltadisty = 1e30;
 	else

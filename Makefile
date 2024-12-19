@@ -69,6 +69,8 @@ DEPF = $(ALGO_DEPF) $(MAP_DEPF)
 all: cub3d
 
 cub3d: $(NAME) $(OBJ_DIR) $(DEP_DIR) $(OBJF)
+	@echo "${CYAN}Compiling minilibx...${RESET}"
+	@$(MAKE) --no-print-directory -C $(MLX_DIR)
 	@echo "${CYAN}Compiling cub3d...${RESET}"
 	@cc ${SRCF} $(NAME) $(LIBS) -o $(EXEC)
 	@echo "${GREEN}Succes!!!${RESET}"
@@ -113,6 +115,7 @@ $(MAP_DEP_DIR) :
 clean:
 	@echo "${RED}Cleaning libft && Cub3d..${RESET}"
 	@$(MAKE) clean --no-print-directory -C ./libft
+	@$(MAKE) clean --no-print-directory -C ./minilibx-linux
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(MAIN_OBJ)
 	@$(RM) $(DEP_DIR)
