@@ -69,3 +69,24 @@ int	get_colors(t_game_data *game, char *file)
 	}
 	return (0);
 }
+
+int	texture_verify(t_game_data *game)
+{
+	(void)game;
+	if (check_texture_files("textures/dark_oak_trapdoor.xpm") == -1)
+		return (-1);
+	if (check_texture_files("textures/obsidian.xpm") == -1)
+		return (-1);
+	if (check_texture_files("textures/suspicious_gravel_0.xpm") == -1)
+		return (-1);
+	if (check_texture_files("textures/polished_blackstone_bricks_0.xpm") \
+		== -1)
+		return (-1);
+	if (check_texture_files("textures/tuff.xpm") == -1)
+		return (-1);
+	if (check_texture_files("textures/dragon_egg.xpm") == -1)
+		return (-1);
+	if (check_texture_files("textures/black_terracotta.xpm") == -1)
+		return (-1);
+	return (0);
+}
