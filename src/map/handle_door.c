@@ -1,5 +1,25 @@
 #include "../../includes/cub3d.h"
 
+int	get_map_height(char **map)
+{
+	int	height;
+
+	height = 0;
+	while (map[height] != NULL)
+		height++;
+	return (height);
+}
+
+int	get_map_width(char **map)
+{
+	int	width;
+
+	width = 0;
+	if (map[0] != NULL)
+		width = ft_strlen(map[0]);
+	return (width);
+}
+
 void	init_doors(t_game_data *game)
 {
 	int	x;

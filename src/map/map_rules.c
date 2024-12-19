@@ -1,47 +1,5 @@
 #include "../../includes/cub3d.h"
 
-// int	first_wall(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i])
-// 	{
-// 		if (line[i] == '1')
-// 			return (i);
-// 		i++;
-// 	}
-// 	return (-1);
-// }
-
-// int	last_wall(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i])
-// 		i++;
-// 	while (i > 0)
-// 	{
-// 		if (line[i] == '1')
-// 			return (i);
-// 		i--;
-// 	}
-// 	return (-1);
-// }
-
-
-// int	check_space(char c, t_game_data *game, int x, int y)
-// {
-// 	if (c == ' ' && y > first_wall(game->map[x]) && y < last_wall(game->map[x]))
-// 	{
-// 		if (game->map[x + 1][y] != '1' || game->map[x - 1][y] != '1'
-// 			|| game->map[x][y + 1] != '1' || game->map[x][y - 1] != '1')
-// 			return (-1);
-// 	}
-// 	return (0);
-// }
-
 int	is_line_closed(int i, char **map, int length)
 {
 	int	y;
