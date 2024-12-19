@@ -119,4 +119,6 @@ void	init_game2(t_game_data *game)
 	game->key_e_pressed = 0;
 	game->floor_color = NULL;
 	game->ceiling_color = NULL;
+	game->map_height = 0;
+	game->map_width = 0;
 }

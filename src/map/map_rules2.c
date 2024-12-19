@@ -71,6 +71,21 @@ int	check_start(t_game_data *game)
 	return (TRUE);
 }
 
+int	check_spaces(t_game_data *game, int x, int y)
+{
+	if (game->map[x][y] == ' ' && x > 0
+		&& y > 0 && x < game->map_height - 1 && y < game->map_width - 1)
+	{
+		if (game->map[x + 1][y] == '0' || game->map[x - 1][y] == '0'
+			|| game->map[x][y + 1] == '0' || game->map[x][y - 1] == '0')
+			return (-1);
+		if (game->map[x + 1][y] == 'P' || game->map[x - 1][y] == 'P'
+			|| game->map[x][y + 1] == 'P' || game->map[x][y - 1] == 'P')
+			return (-1);
+	}
+	return (0);
+}
+
 int	check_filling(t_game_data *game)
 {
 	int	x;
@@ -86,7 +101,11 @@ int	check_filling(t_game_data *game)
 				|| game->map[x][y] == 'N' || game->map[x][y] == 'S'
 				|| game->map[x][y] == 'E' || game->map[x][y] == 'W'
 				|| game->map[x][y] == ' ' || game->map[x][y] == 'P')
+			{
+				if (check_spaces(game, x, y) == -1)
+					return (FALSE);
 				y++;
+			}
 			else
 				return (FALSE);
 		}
