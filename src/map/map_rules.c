@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_rules.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agiliber <agiliber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 14:32:01 by agiliber          #+#    #+#             */
+/*   Updated: 2024/12/19 14:34:27 by agiliber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 int	check_first_or_last_line(int i, t_game_data *game)
@@ -49,7 +61,6 @@ int	is_line_closed(int i, t_game_data *game, int length)
 		return (check_first_or_last_line(i, game));
 	return (check_inner_line(i, game));
 }
-
 
 int	is_map_closed(t_game_data *game, int length)
 {
