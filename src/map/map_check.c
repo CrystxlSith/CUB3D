@@ -20,10 +20,10 @@ int	check_lines(t_game_data *game)
 		return (FALSE);
 	if (check_start(game) == FALSE)
 		return (FALSE);
-	if (check_filling(game) == FALSE)
-		return (FALSE);
 	game->map_width = get_map_width(game->map);
 	game->map_height = get_map_height(game->map);
+	if (check_filling(game) == FALSE)
+		return (FALSE);
 	return (TRUE);
 }
 
