@@ -1,43 +1,66 @@
 #include "../../includes/cub3d.h"
 
-int	is_line_closed(int i, char **map, int length)
+int	check_first_or_last_line(int i, t_game_data *game)
 {
 	int	y;
 
 	y = 0;
-	(void)length;
-	while (map[i][y] == ' ')
-		y++;
-	if (map[i][y] != '1')
-		return (FALSE);
-	while (map[i][y])
+	while (game->map[i][y])
 	{
-		if (i > 0 && map[i][y] == ' ' && map[i - 1][y] == '0')
+		if (game->map[i][y] != '1' && game->map[i][y] != ' ')
+			return (FALSE);
+		if (check_spaces(game, i, y) == -1)
+			return (FALSE);
+		y++;
+	}
+	return (TRUE);
+}
+
+int	check_inner_line(int i, t_game_data *game)
+{
+	int	y;
+
+	y = 0;
+	while (game->map[i][y] == ' ')
+		y++;
+	if (game->map[i][y] != '1')
+		return (FALSE);
+	while (game->map[i][y])
+	{
+		if (i > 0 && game->map[i][y] == ' ' && game->map[i - 1][y] == '0')
 			return (FALSE);
 		y++;
 	}
 	y--;
 	if (i != 0)
 	{
-		while (y >= 0 && map[i][y] == ' '
-			&& (map[i - 1][y] == '1' || map[i - 1][y] == ' '))
+		while (y >= 0 && game->map[i][y] == ' ' &&
+			(game->map[i - 1][y] == '1' || game->map[i - 1][y] == ' '))
 			y--;
 	}
-	if (map[i][y] != '1')
+	if (game->map[i][y] != '1')
 		return (FALSE);
 	return (TRUE);
 }
 
-int	is_map_closed(char **map, int length)
+int	is_line_closed(int i, t_game_data *game, int length)
+{
+	if (i == 0 || i == length)
+		return (check_first_or_last_line(i, game));
+	return (check_inner_line(i, game));
+}
+
+
+int	is_map_closed(t_game_data *game, int length)
 {
 	int	y;
 
-	if (!map || length <= 0)
+	if (!game->map || length <= 0)
 		return (FALSE);
 	y = 0;
 	while (y < length)
 	{
-		if (!is_line_closed(y, map, length))
+		if (!is_line_closed(y, game, length))
 			return (FALSE);
 		y++;
 	}
@@ -68,25 +91,4 @@ int	check_texture_files(char *texture)
 	if (i != 5)
 		return (free_everything(line), -1);
 	return (free_everything(line), 0);
-}
-
-int	texture_verify(t_game_data *game)
-{
-	(void)game;
-	if (check_texture_files("textures/dark_oak_trapdoor.xpm") == -1)
-		return (-1);
-	if (check_texture_files("textures/obsidian.xpm") == -1)
-		return (-1);
-	if (check_texture_files("textures/suspicious_gravel_0.xpm") == -1)
-		return (-1);
-	if (check_texture_files("textures/polished_blackstone_bricks_0.xpm") \
-		== -1)
-		return (-1);
-	if (check_texture_files("textures/tuff.xpm") == -1)
-		return (-1);
-	if (check_texture_files("textures/dragon_egg.xpm") == -1)
-		return (-1);
-	if (check_texture_files("textures/black_terracotta.xpm") == -1)
-		return (-1);
-	return (0);
 }

@@ -259,10 +259,10 @@ int		count_words(char *input);
 int		map_length(int index, char **input);
 
 //map_rules.c
-int		is_map_closed(char **map, int length);
+int		is_map_closed(t_game_data *game, int length);
 int		check_texture_files(char *texture);
 int		texture_verify(t_game_data *game);
-int		check_space(char c, t_game_data *game, int x, int y);
+int		check_spaces(t_game_data *game, int x, int y);
 
 //map_rules2.c
 int		check_start(t_game_data *game);
