@@ -2,6 +2,8 @@
 
 A Wolfenstein 3D-style raycasting engine in C with the MiniLibX. 42 school project, built as a pair (2024).
 
+![cub3D running on maps/good_map_doors.cub](docs/preview.gif)
+
 ## Features
 
 - Raycasting with DDA: one ray per screen column, perpendicular wall distance (no fish-eye), camera plane giving a field of view of about 66°.
@@ -15,7 +17,7 @@ A Wolfenstein 3D-style raycasting engine in C with the MiniLibX. 42 school proje
 
 ## Build and run
 
-Linux only (X11). Requirements: `cc`, `make` and the X11 development headers (`sudo apt install libx11-dev libxext-dev`). The libft and the MiniLibX are git submodules.
+Linux only (X11), built and run on Debian 12 with GCC 12. Requirements: `cc`, `make`, the X11 development headers and libbsd (`sudo apt install libx11-dev libxext-dev libbsd-dev`). The libft and the MiniLibX are git submodules.
 
 ```sh
 git clone --recursive https://github.com/CrystxlSith/CUB3D.git
