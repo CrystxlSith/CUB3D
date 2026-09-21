@@ -2,7 +2,7 @@
 
 A Wolfenstein 3D-style raycasting engine in C with the MiniLibX. 42 school project, built as a pair (2024).
 
-![cub3D running on maps/good_map_doors.cub](docs/preview.gif)
+![cub3D on maps/good_map_doors.cub: walking to a door, opening it and looking around](docs/preview.gif)
 
 ## Features
 
